@@ -21,6 +21,37 @@
     });
   });
 
+  // Copy email: clipboard where allowed, otherwise select the address so it can be copied by hand.
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    var label = btn.textContent;
+    var timer;
+    var done = function (text) {
+      btn.textContent = text;
+      clearTimeout(timer);
+      timer = setTimeout(function () { btn.textContent = label; }, 2000);
+    };
+    btn.setAttribute('aria-live', 'polite');
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy');
+      var fallback = function () {
+        var link = btn.parentNode.querySelector('a');
+        if (link) {
+          var range = document.createRange();
+          range.selectNodeContents(link);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        done('Selected, copy it');
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(function () { done('Copied'); }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+
   // Back to top: appears once the reader is well into the page.
   var toTop = document.createElement('button');
   toTop.type = 'button';

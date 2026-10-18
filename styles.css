@@ -281,3 +281,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 @media (prefers-reduced-motion: reduce) {
   .feature-media, .next-preview, .btn, .btn-icon, .to-top, .rail-line, .rail-tip { transition: none; }
 }
+
+/* Contact footer */
+.contact { padding-bottom: clamp(56px, 8vw, 96px); display: flex; flex-direction: column; }
+.contact-main { margin-top: var(--head-gap); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 32px 48px; }
+.contact-head { display: flex; flex-direction: column; gap: 12px; }
+.contact-title { font-weight: 500; font-size: clamp(44px, 6.5vw, 80px); line-height: 1; letter-spacing: -0.05em; }
+.contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.contact-email { font-weight: 500; font-size: 20px; line-height: 1.2; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .25s ease; }
+.contact-email:hover { background-size: 100% 1px; }
+.contact .footer-links { gap: 28px; }
+.contact-note { margin-top: var(--block-gap); }
+@media (max-width: 640px) {
+  .contact-main { grid-template-columns: minmax(0, 1fr); }
+  .contact-email { font-size: 18px; overflow-wrap: anywhere; }
+}
