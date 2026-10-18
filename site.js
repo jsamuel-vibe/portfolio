@@ -117,6 +117,135 @@
     document.body.appendChild(rail);
   }
 
+  // Carousel: prev/next step one slide; the counter follows whatever slide is in view.
+  document.querySelectorAll('[data-carousel]').forEach(function (car) {
+    var track = car.querySelector('.carousel-track');
+    var slides = [].slice.call(track.children);
+    var prev = car.querySelector('[data-prev]');
+    var next = car.querySelector('[data-next]');
+    var count = car.querySelector('.carousel-count');
+    var index = function () {
+      var left = track.getBoundingClientRect().left;
+      var best = 0, dist = Infinity;
+      slides.forEach(function (s, i) {
+        var d = Math.abs(s.getBoundingClientRect().left - left);
+        if (d < dist) { dist = d; best = i; }
+      });
+      return best;
+    };
+    var update = function () {
+      var i = index();
+      var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      count.textContent = (atEnd ? slides.length : i + 1) + ' / ' + slides.length;
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = atEnd;
+    };
+    var go = function (dir) {
+      var i = Math.max(0, Math.min(slides.length - 1, index() + dir));
+      track.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: scrollBehavior });
+    };
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+    track.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+
+  // Every still image in a case study opens in the lightbox too, all in one group per page.
+  // Links (Home cards, next-project previews) and videos are left alone.
+  if (document.querySelector('.project-intro')) {
+    document.querySelectorAll('main img.media, main img.media-strip').forEach(function (im) {
+      if (im.closest('.zoomable, a')) return;
+      var fig = im.closest('figure');
+      var figcap = fig && fig.querySelector('figcaption');
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'zoomable';
+      b.setAttribute('data-lightbox', 'page');
+      b.setAttribute('data-caption', figcap ? figcap.textContent.trim() : im.alt);
+      b.setAttribute('aria-label', 'Open image full screen: ' + im.alt);
+      im.parentNode.insertBefore(b, im);
+      b.appendChild(im);
+    });
+    // The versions carousel joins the page group so the viewer can step through everything.
+    document.querySelectorAll('[data-lightbox="home-versions"]').forEach(function (b) {
+      b.setAttribute('data-lightbox', 'page');
+    });
+  }
+
+  // Lightbox: full-screen view for [data-lightbox] buttons, grouped by the attribute's value.
+  var groups = {};
+  document.querySelectorAll('[data-lightbox]').forEach(function (b) {
+    var g = b.getAttribute('data-lightbox');
+    (groups[g] = groups[g] || []).push(b);
+  });
+  if (Object.keys(groups).length && typeof HTMLDialogElement === 'function') {
+    var lb = document.createElement('dialog');
+    lb.className = 'lightbox';
+    lb.setAttribute('aria-label', 'Image viewer');
+    lb.innerHTML =
+      '<div class="lb-top"><span class="lb-count"></span>' +
+      '<button class="lb-btn lb-close" type="button" aria-label="Close"><span aria-hidden="true">✕</span></button></div>' +
+      '<div class="lb-stage"><button class="lb-btn lb-prev" type="button" aria-label="Previous"><span aria-hidden="true">←</span></button>' +
+      '<img alt=""><button class="lb-btn lb-next" type="button" aria-label="Next"><span aria-hidden="true">→</span></button></div>' +
+      '<p class="lb-caption"></p>';
+    document.body.appendChild(lb);
+    var img = lb.querySelector('img');
+    var cap = lb.querySelector('.lb-caption');
+    var cnt = lb.querySelector('.lb-count');
+    var lbPrev = lb.querySelector('.lb-prev');
+    var lbNext = lb.querySelector('.lb-next');
+    var items = [], at = 0, opener = null;
+
+    var show = function (i) {
+      at = Math.max(0, Math.min(items.length - 1, i));
+      var src = items[at].querySelector('img');
+      img.src = src.currentSrc || src.src;
+      img.alt = src.alt;
+      cap.textContent = items[at].getAttribute('data-caption') || '';
+      cnt.textContent = (at + 1) + ' / ' + items.length;
+      lbPrev.disabled = at === 0;
+      lbNext.disabled = at === items.length - 1;
+    };
+    Object.keys(groups).forEach(function (g) {
+      groups[g].forEach(function (b, i) {
+        b.addEventListener('click', function () {
+          items = groups[g]; opener = b;
+          show(i);
+          document.documentElement.style.overflow = 'hidden';
+          lb.showModal();
+          lbNext.disabled ? lb.querySelector('.lb-close').focus() : lbNext.focus();
+        });
+      });
+    });
+    lbPrev.addEventListener('click', function () { show(at - 1); });
+    lbNext.addEventListener('click', function () { show(at + 1); });
+    lb.querySelector('.lb-close').addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lb-stage')) lb.close(); });
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+    });
+    lb.addEventListener('close', function () {
+      document.documentElement.style.overflow = '';
+      if (opener) opener.focus({ preventScroll: true });
+    });
+    // Swipe left/right on touch screens.
+    var startX = null;
+    var stage = lb.querySelector('.lb-stage');
+    stage.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') startX = e.clientX; });
+    stage.addEventListener('pointerup', function (e) {
+      if (startX === null) return;
+      var dx = e.clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1));
+    });
+  }
+
   var ticking = false;
   function onScroll() {
     ticking = false;

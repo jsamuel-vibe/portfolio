@@ -142,19 +142,38 @@
         <h2 class="t-h24">How the home screen changed</h2>
         <p class="t-body">Before building, I tried several layouts for the home screen in Figma. Here are three of them. All of them would have worked. I chose the one at the top of this page because it was the most flexible: I can add buttons and features without changing the whole structure, and it still stays minimal.</p>
       </div>
-      <div class="versions">
-        <figure class="media-figure">
-          <img class="version-img" src="assets/superstash-home-v1.jpg" alt="Early home screen: a top bar with tag filters and Home and Trash tabs above the grid" loading="lazy">
-          <figcaption class="media-caption">Tag filters and Home / Trash tabs across the top</figcaption>
-        </figure>
-        <figure class="media-figure">
-          <img class="version-img" src="assets/superstash-home-v2.jpg" alt="Early home screen: an icon sidebar, an Add new card in the grid, and sort and view options" loading="lazy">
-          <figcaption class="media-caption">Icon sidebar, an Add new card in the grid, sort and view options</figcaption>
-        </figure>
-        <figure class="media-figure">
-          <img class="version-img" src="assets/superstash-home-v3.jpg" alt="Early home screen: a text sidebar and a large Search your stash heading above the grid" loading="lazy">
-          <figcaption class="media-caption">Text sidebar with a large search heading</figcaption>
-        </figure>
+      <div class="carousel" data-carousel>
+        <div class="carousel-track" tabindex="0" aria-label="Home screen versions, scroll sideways">
+          <figure class="carousel-slide media-figure">
+            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="Version 1: Tag filters and Home / Trash tabs across the top" aria-label="Open version 1 full screen">
+              <img class="media" src="assets/superstash-home-v1.jpg" alt="Early home screen: a top bar with tag filters and Home and Trash tabs above the grid" loading="lazy">
+            </button>
+            <figcaption class="media-caption"><strong>Version 1</strong> · Tag filters and Home / Trash tabs across the top</figcaption>
+          </figure>
+          <figure class="carousel-slide media-figure">
+            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="Version 2: Icon sidebar, an Add new card in the grid, sort and view options" aria-label="Open version 2 full screen">
+              <img class="media" src="assets/superstash-home-v2.jpg" alt="Early home screen: an icon sidebar, an Add new card in the grid, and sort and view options" loading="lazy">
+            </button>
+            <figcaption class="media-caption"><strong>Version 2</strong> · Icon sidebar, an Add new card in the grid, sort and view options</figcaption>
+          </figure>
+          <figure class="carousel-slide media-figure">
+            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="Version 3: Text sidebar with a large search heading" aria-label="Open version 3 full screen">
+              <img class="media" src="assets/superstash-home-v3.jpg" alt="Early home screen: a text sidebar and a large Search your stash heading above the grid" loading="lazy">
+            </button>
+            <figcaption class="media-caption"><strong>Version 3</strong> · Text sidebar with a large search heading</figcaption>
+          </figure>
+          <figure class="carousel-slide media-figure">
+            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="The one I built: Flexible enough to add features without changing the structure" aria-label="Open the one i built full screen">
+              <img class="media" src="assets/superstash-hero.jpg" alt="The home screen I built: icon sidebar, search bar and a grid of saves" loading="lazy">
+            </button>
+            <figcaption class="media-caption"><strong>The one I built</strong> · Flexible enough to add features without changing the structure</figcaption>
+          </figure>
+        </div>
+        <div class="carousel-controls">
+          <button class="btn btn-secondary btn-round" type="button" data-prev aria-label="Previous version"><span aria-hidden="true">←</span></button>
+          <span class="carousel-count t-small muted" aria-live="polite">1 / 4</span>
+          <button class="btn btn-secondary btn-round" type="button" data-next aria-label="Next version"><span aria-hidden="true">→</span></button>
+        </div>
       </div>
     </section>
 

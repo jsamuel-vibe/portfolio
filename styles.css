@@ -211,7 +211,7 @@ a:hover .btn-icon:first-child, .btn:hover .btn-icon:first-child { transform: tra
 /* Section rail (case studies, wide screens) */
 .rail {
   position: fixed; z-index: 20; top: 50%; transform: translateY(-50%);
-  left: max(24px, calc((100vw - 944px) / 2 - 120px));
+  left: max(24px, calc(env(safe-area-inset-left, 0px) + 16px));  /* pinned to the window edge */
   display: none; flex-direction: column; gap: 2px;
   font-family: var(--font); letter-spacing: var(--tracking);
 }
@@ -314,3 +314,59 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .t-h24 { letter-spacing: var(--track-lg); }
 .t-display, .hero-title, .stat-num, .contact-title, .t-num, .footer-gosh .sign-text, .footer-big .big { letter-spacing: var(--track-xl); }
 .dg-label { letter-spacing: .04em; }
+
+/* Carousel: large slides that scroll sideways and run off the right edge of the page */
+.carousel { --edge: max(24px, (100vw - 944px) / 2); display: flex; flex-direction: column; gap: 20px; }
+.carousel-track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(82%, 760px); gap: 20px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  margin-right: calc(-1 * var(--edge)); padding: 4px var(--edge) 12px 0; scroll-padding-left: 0;
+  scrollbar-width: thin; scrollbar-color: var(--faint) transparent;
+}
+.carousel-track:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.carousel-slide { scroll-snap-align: start; min-width: 0; }
+.carousel-slide .media-caption strong { color: var(--ink); font-weight: 500; }
+.carousel-controls { display: flex; align-items: center; gap: 12px; }
+.btn-round { width: 40px; padding: 0; font-size: 16px; }
+.btn-round:disabled { opacity: .35; cursor: default; box-shadow: 0 0 0 1px var(--hairline); }
+
+/* Click-to-enlarge images */
+.zoomable { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; position: relative; border-radius: 4px; }
+.zoomable::after {
+  content: "View full screen"; position: absolute; right: 16px; bottom: 16px;
+  padding: 7px 12px; border-radius: 999px; background: rgba(17, 17, 17, .78); color: var(--white);
+  font-family: var(--font); font-size: 13px; font-weight: 500; letter-spacing: var(--track-sm);
+  opacity: 0; transform: translateY(4px); transition: opacity .2s ease, transform .2s ease;
+}
+.zoomable:hover::after, .zoomable:focus-visible::after { opacity: 1; transform: none; }
+
+/* Lightbox */
+.lightbox {
+  width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: rgba(14, 14, 14, .94); color: var(--white); font-family: var(--font); letter-spacing: var(--track-sm);
+}
+.lightbox::backdrop { background: rgba(14, 14, 14, .94); }
+.lightbox[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+.lb-top { display: flex; justify-content: space-between; align-items: center; padding: 16px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+.lb-count { font-size: 14px; color: rgba(255, 255, 255, .7); }
+.lb-stage { position: relative; display: flex; align-items: center; justify-content: center; padding: 16px 72px; min-height: 0; touch-action: pan-y; }
+.lb-stage img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; user-select: none; -webkit-user-drag: none; }
+.lb-caption { text-align: center; padding: 0 24px 24px; font-size: 14px; line-height: 1.4; color: rgba(255, 255, 255, .75); }
+.lb-btn {
+  width: 44px; height: 44px; border: 0; border-radius: 999px; cursor: pointer;
+  background: rgba(255, 255, 255, .12); color: var(--white); font-size: 18px; font-family: var(--font);
+  transition: background-color .2s ease;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, .22); }
+.lb-btn:disabled { opacity: .3; cursor: default; }
+.lb-btn:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); }
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+@media (max-width: 640px) {
+  .carousel-track { grid-auto-columns: 88%; gap: 12px; }
+  .lb-stage { padding: 12px; }
+  .lb-prev, .lb-next { top: auto; bottom: 8px; transform: none; }
+  .lb-caption { padding-bottom: 72px; }
+}
+@media (prefers-reduced-motion: reduce) { .carousel-track { scroll-behavior: auto; } .zoomable::after { transition: none; } }
