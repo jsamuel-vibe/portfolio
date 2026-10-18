@@ -297,3 +297,20 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .contact-main { grid-template-columns: minmax(0, 1fr); }
   .contact-email { font-size: 18px; overflow-wrap: anywhere; }
 }
+
+/* Optical tracking. Letter-spacing set on .page in em is converted to px at 16px and inherited,
+   so big text ended up looser than body text. Each style sets its own value instead, following
+   Inter's size-based tracking curve anchored to -4% at 16px. */
+:root {
+  --track-sm: -0.035em;    /* 13–14px */
+  --track-body: -0.04em;   /* 16px */
+  --track-md: -0.046em;    /* 18–20px */
+  --track-lg: -0.049em;    /* 24px */
+  --track-xl: -0.051em;    /* 30px and up */
+}
+.t-small, .meta dt, .stats dt, .media-caption, .ph-label, .dg-arrow, .dg-note, .btn, .rail-tip strong, .rail-tip span, .contact-note { letter-spacing: var(--track-sm); }
+.t-body, .t-h16, .meta dd, .footer-links a, .list, .compare { letter-spacing: var(--track-body); }
+.t-title, .contact-email { letter-spacing: var(--track-md); }
+.t-h24 { letter-spacing: var(--track-lg); }
+.t-display, .hero-title, .stat-num, .contact-title, .t-num, .footer-gosh .sign-text, .footer-big .big { letter-spacing: var(--track-xl); }
+.dg-label { letter-spacing: .04em; }
