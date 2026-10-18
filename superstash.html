@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Superstash · Samuel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="page">
+  <div class="container">
+
+    <nav class="topnav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span class="t-h16">Samuel</span>
+      </a>
+      <a class="chip" href="index.html#work">← All projects</a>
+    </nav>
+
+    <header class="project-intro">
+      <div class="project-intro-inner">
+        <div class="stack" style="gap:8px">
+          <h1 class="t-display">Superstash: save it, then actually find it again</h1>
+          <p class="t-body">Superstash is my tool for saving things I find online, like images, posts, quotes and articles, so I can find them later. My first version made saving very easy. That turned out to be the wrong goal, so I redesigned it to make saved things useful.</p>
+        </div>
+        <dl class="meta">
+          <div><dt>Type</dt><dd>Personal project</dd></div>
+          <div><dt>Timeline</dt><dd>Aug 26</dd></div>
+          <div><dt>Role</dt><dd>Design and build</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <section style="padding-top:96px">
+      <img class="media" src="assets/superstash-hero.jpg" alt="The Superstash home screen, showing saved images, notes and posts in one grid">
+    </section>
+
+    <section class="split" style="padding-top:clamp(96px,11.72vw,150px)">
+      <h2 class="t-h24 label-col">The problem</h2>
+      <div class="content-col">
+        <div class="stack" style="gap:20px">
+          <p class="t-body">When something online caught my eye, I had no single place to keep it. Things ended up spread across Pinterest, screenshots, Notion, my downloads folder and chat apps.</p>
+          <p class="t-body">Saving wasn’t the hard part. Finding things again was. I kept forgetting where I’d put them, so I kept relearning things I already knew.</p>
+        </div>
+        <h3 class="t-h16" style="margin-top:64px">Why other tools didn’t work for me</h3>
+        <div class="compare" style="margin-top:20px">
+          <div><span class="t-h16" style="line-height:20px">Notion</span><span class="t-body">Too many steps to save one thing</span></div>
+          <div><span class="t-h16" style="line-height:20px">mymind</span><span class="t-body">Great app, but too expensive for me</span></div>
+        </div>
+        <p class="t-body" style="margin-top:32px">So I decided to build my own: quick to save, easy to find.</p>
+      </div>
+    </section>
+
+    <section class="stack" style="padding-top:clamp(96px,13.28vw,170px);gap:32px">
+      <h2 class="t-h24">Limits</h2>
+      <div class="constraints">
+        <div class="tile">
+          <span class="t-num">#1</span>
+          <p class="t-body"><strong>Just me, after work.</strong> I couldn’t build and polish everything.</p>
+        </div>
+        <div class="tile">
+          <span class="t-num">#2</span>
+          <p class="t-body"><strong>Working beats pretty.</strong> I chose rough but working over polished but slow.</p>
+        </div>
+        <div class="tile">
+          <span class="t-num">#3</span>
+          <p class="t-body"><strong>Built to grow.</strong> I made choices I wouldn’t have to undo when adding features later.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="split" style="padding-top:clamp(96px,22.97vw,294px)">
+      <h2 class="t-h24 label-col" style="white-space:nowrap">What I decided</h2>
+      <div class="content-col" style="align-items:center;gap:57px">
+        <div class="stack" style="align-self:stretch;gap:42px">
+          <div class="stack" style="gap:16px">
+            <h3 class="t-h16"><span class="decision-num">01</span> I made saving one click. It backfired.</h3>
+            <div class="stack" style="gap:20px">
+              <p class="t-body">My first idea was to remove every step. A Save button appeared on any image I hovered over, so saving took one click.</p>
+              <p class="t-body">It worked too well. I saved everything, and my library became the same messy pile I was trying to escape. Easy saving didn’t make my saves useful.</p>
+            </div>
+          </div>
+          <div class="stack" style="gap:24px">
+            <figure class="media-figure">
+              <img class="media" src="assets/superstash-hover-save.jpg" alt="A Save button floating over an image on hover, saving it in one click" loading="lazy">
+              <figcaption class="media-caption">Before: a Save button on every image. One click and it was saved.</figcaption>
+            </figure>
+            <figure class="media-figure">
+              <video class="media" src="assets/superstash-flooded-library.mp4" poster="assets/superstash-flooded-library-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Scrolling through the flooded, unsorted Superstash library"></video>
+              <figcaption class="media-caption">The result: a library full of things I never meant to keep.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="stack" style="align-self:stretch;gap:42px">
+          <div class="stack" style="gap:16px">
+            <h3 class="t-h16"><span class="decision-num">02</span> I didn’t fix it right away</h3>
+            <p class="t-body">I knew the fix: make saving a little harder on purpose. But saving and finding things had to work first, so I put the fix on hold. Choosing what to leave for later was a decision too.</p>
+          </div>
+          <figure class="media diagram" aria-label="Diagram: saving and finding built first, two-click saving left for later">
+            <div class="dg-col">
+              <span class="dg-label">Built first</span>
+              <div class="dg-card"><span class="t-h16">Saving</span><span class="t-body">One-click save from the browser extension</span></div>
+              <div class="dg-card"><span class="t-h16">Finding</span><span class="t-body">AI tags and a short description on every save</span></div>
+            </div>
+            <span class="dg-arrow" aria-hidden="true">then →</span>
+            <div class="dg-col">
+              <span class="dg-label">Later</span>
+              <div class="dg-card is-later"><span class="t-h16">Two-click saving</span><span class="t-body">Right-click → Save to Superstash</span></div>
+              <span class="dg-note">The messy library could wait until the basics worked.</span>
+            </div>
+          </figure>
+        </div>
+        <div class="decisions-more" id="more-decisions">
+          <div class="stack" style="align-self:stretch;gap:42px">
+            <div class="stack" style="gap:16px">
+              <h3 class="t-h16"><span class="decision-num">03</span> Saving now takes two clicks <span class="decision-tag">(in progress)</span></h3>
+              <div class="stack" style="gap:20px">
+                <p class="t-body">Instead of a button on every image, you right-click and choose Save to Superstash. It’s one extra step, so saving becomes a choice instead of a habit.</p>
+                <p class="t-body">The catch: right-click is harder to discover, and phones don’t have it. This hasn’t shipped yet, and I’m still testing it.</p>
+              </div>
+            </div>
+            <video class="media" src="assets/superstash-right-click-save.mp4" poster="assets/superstash-right-click-save-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Right-clicking a Pinterest image, choosing Save to Superstash, and tagging the save"></video>
+          </div>
+          <div class="stack" style="align-self:stretch;gap:42px">
+            <div class="stack" style="gap:16px">
+              <h3 class="t-h16"><span class="decision-num">04</span> AI does the sorting</h3>
+              <p class="t-body">To make things easy to find, AI adds tags and a short description to every save. I wrote the prompts so it describes each save the way a person would. Nobody has to organise anything by hand. This part works best so far.</p>
+            </div>
+            <img class="media" src="assets/superstash-ai-tags.jpg" alt="A saved illustration in Superstash with its AI-written summary and tags: Illustration, Poster, Star, Typography, Blue, Yellow, Hand-Drawn, Playful" loading="lazy">
+          </div>
+        </div>
+        <button class="btn-soft" type="button" aria-controls="more-decisions" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
+      </div>
+    </section>
+
+    <section class="stack" style="padding-top:clamp(96px,23.44vw,300px);gap:32px">
+      <div class="stack" style="gap:12px;max-width:560px">
+        <h2 class="t-h24">How the home screen changed</h2>
+        <p class="t-body">Before building, I tried several layouts for the home screen in Figma. Here are three of them. All of them would have worked. I chose the one at the top of this page because it was the most flexible: I can add buttons and features without changing the whole structure, and it still stays minimal.</p>
+      </div>
+      <div class="versions">
+        <figure class="media-figure">
+          <img class="version-img" src="assets/superstash-home-v1.jpg" alt="Early home screen: a top bar with tag filters and Home and Trash tabs above the grid" loading="lazy">
+          <figcaption class="media-caption">Tag filters and Home / Trash tabs across the top</figcaption>
+        </figure>
+        <figure class="media-figure">
+          <img class="version-img" src="assets/superstash-home-v2.jpg" alt="Early home screen: an icon sidebar, an Add new card in the grid, and sort and view options" loading="lazy">
+          <figcaption class="media-caption">Icon sidebar, an Add new card in the grid, sort and view options</figcaption>
+        </figure>
+        <figure class="media-figure">
+          <img class="version-img" src="assets/superstash-home-v3.jpg" alt="Early home screen: a text sidebar and a large Search your stash heading above the grid" loading="lazy">
+          <figcaption class="media-caption">Text sidebar with a large search heading</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="stack" style="padding-top:clamp(96px,29.14vw,373px);gap:120px">
+      <div class="split" style="gap:48px">
+        <div class="stack" style="flex:0 1 283px;gap:16px">
+          <h2 class="t-h24" style="white-space:nowrap">What I got wrong</h2>
+          <p class="t-body">This was my first UX project. These mistakes changed how I work.</p>
+        </div>
+        <div class="stack" style="flex:0 1 462px;gap:64px">
+          <div class="stack" style="gap:8px">
+            <div class="mistake-head">
+              <span class="t-num">#1</span>
+              <h3 class="t-h16">I started with screens</h3>
+            </div>
+            <p class="t-body">I spent a long time on the UI and kept coming up with new ideas. But I hadn’t decided what the product needed to do, so I often didn’t know what to work on next.</p>
+          </div>
+          <div class="stack" style="gap:8px">
+            <div class="mistake-head">
+              <span class="t-num">#2</span>
+              <h3 class="t-h16">I designed an app, not a solution</h3>
+            </div>
+            <p class="t-body">I wanted to build an app, so I kept adding screens. The real work was the core problem: saving things and finding them again.</p>
+          </div>
+          <div class="stack" style="gap:8px">
+            <div class="mistake-head">
+              <span class="t-num">#3</span>
+              <h3 class="t-h16">How I fixed it</h3>
+            </div>
+            <p class="t-body">I stopped designing and built the basics first, with help from AI coding tools. Polish can come later.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tile" style="padding:24px 16px;display:flex;flex-wrap:wrap;gap:24px">
+        <h3 class="t-h24" style="flex:1 1 300px">What I do now</h3>
+        <p class="t-body" style="flex:1 1 300px">I set the goal and the main flow before any UI, build the basics before polishing, and give every project a deadline. That’s how I shipped my next project, a WhatsApp campaign tool, in two weeks.</p>
+      </div>
+    </section>
+
+    <section class="split" style="padding-top:clamp(96px,23.44vw,300px)">
+      <h2 class="t-h24" style="flex:1 1 280px">What I learned</h2>
+      <div class="stack" style="flex:0 1 462px;gap:20px">
+        <p style="font-weight:300;font-size:16px;line-height:20px;text-wrap:pretty"><span style="opacity:.6">I’m the only user so far, so there are no numbers yet. The biggest lesson: </span>easy and good are not the same thing.</p>
+        <p class="t-body">I made saving easy because that was my biggest complaint. But removing steps at the start just moved the problem further down the line. I only noticed because I used the tool every day.</p>
+      </div>
+    </section>
+
+    <section class="stack" style="padding-top:clamp(96px,25.78vw,330px);gap:40px">
+      <h2 class="t-h24">What’s next</h2>
+      <div class="next-grid">
+        <div>
+          <h3 class="t-h16">Ship two-click saving</h3>
+          <p class="t-body">Then check whether my library stays useful.</p>
+        </div>
+        <div>
+          <h3 class="t-h16">Test with 5 people</h3>
+          <p class="t-body">People who save a lot online, to make sure it’s not just my problem.</p>
+        </div>
+        <div>
+          <h3 class="t-h16">Group saves by tag</h3>
+          <p class="t-body">Turn the tags AI already adds into projects automatically.</p>
+        </div>
+        <div>
+          <h3 class="t-h16">Make saving work on phones</h3>
+          <p class="t-body">Phones have no right-click, so this needs a different gesture.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:clamp(96px,11.72vw,150px)">
+      <a class="next-project" href="whatsapp-campaigns.html">
+        <div class="stack" style="gap:8px">
+          <span class="t-small" style="opacity:.6">Next project</span>
+          <span class="t-display">WhatsApp campaign tool</span>
+        </div>
+        <span class="chip">View case study →</span>
+      </a>
+    </section>
+
+    <footer class="footer-gosh">
+      <div class="rule"></div>
+      <div class="sign">
+        <span class="sign-text">Gosh!! I love design</span>
+        <span class="sign-heart" aria-hidden="true">♥</span>
+      </div>
+      <nav class="footer-links">
+        <a href="https://www.linkedin.com/in/samuel-joseph8" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/Samuel-Joseph-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </footer>
+
+  </div>
+</main>
+<script src="case-study.js"></script>
+</body>
+</html>
