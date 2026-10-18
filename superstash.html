@@ -6,7 +6,7 @@
 <title>Superstash · Samuel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
         <span class="brand-mark"></span>
         <span class="t-h16">Samuel</span>
       </a>
-      <a class="chip" href="index.html#work">← All projects</a>
+      <a class="btn btn-secondary btn-sm" href="index.html#work"><span class="btn-icon" aria-hidden="true">←</span>All projects</a>
     </nav>
 
     <header class="project-intro">
@@ -35,11 +35,11 @@
       </div>
     </header>
 
-    <section style="padding-top:96px">
+    <section class="sec-tight">
       <img class="media" src="assets/superstash-hero.jpg" alt="The Superstash home screen, showing saved images, notes and posts in one grid">
     </section>
 
-    <section class="split" style="padding-top:clamp(96px,11.72vw,150px)">
+    <section class="split sec">
       <h2 class="t-h24 label-col">The problem</h2>
       <div class="content-col">
         <div class="stack" style="gap:20px">
@@ -55,7 +55,7 @@
       </div>
     </section>
 
-    <section class="stack" style="padding-top:clamp(96px,13.28vw,170px);gap:32px">
+    <section class="stack sec" style="gap:var(--head-gap)">
       <h2 class="t-h24">Limits</h2>
       <div class="constraints">
         <div class="tile">
@@ -73,7 +73,7 @@
       </div>
     </section>
 
-    <section class="split" style="padding-top:clamp(96px,22.97vw,294px)">
+    <section class="split sec">
       <h2 class="t-h24 label-col" style="white-space:nowrap">What I decided</h2>
       <div class="content-col" style="align-items:center;gap:57px">
         <div class="stack" style="align-self:stretch;gap:42px">
@@ -133,11 +133,11 @@
             <img class="media" src="assets/superstash-ai-tags.jpg" alt="A saved illustration in Superstash with its AI-written summary and tags: Illustration, Poster, Star, Typography, Blue, Yellow, Hand-Drawn, Playful" loading="lazy">
           </div>
         </div>
-        <button class="btn-soft" type="button" aria-controls="more-decisions" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
+        <button class="btn btn-secondary" type="button" aria-controls="more-decisions" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
       </div>
     </section>
 
-    <section class="stack" style="padding-top:clamp(96px,23.44vw,300px);gap:32px">
+    <section class="stack sec" style="gap:var(--head-gap)">
       <div class="stack" style="gap:12px;max-width:560px">
         <h2 class="t-h24">How the home screen changed</h2>
         <p class="t-body">Before building, I tried several layouts for the home screen in Figma. Here are three of them. All of them would have worked. I chose the one at the top of this page because it was the most flexible: I can add buttons and features without changing the whole structure, and it still stays minimal.</p>
@@ -158,7 +158,7 @@
       </div>
     </section>
 
-    <section class="stack" style="padding-top:clamp(96px,29.14vw,373px);gap:120px">
+    <section class="stack sec" style="gap:var(--block-gap)">
       <div class="split" style="gap:48px">
         <div class="stack" style="flex:0 1 283px;gap:16px">
           <h2 class="t-h24" style="white-space:nowrap">What I got wrong</h2>
@@ -194,15 +194,15 @@
       </div>
     </section>
 
-    <section class="split" style="padding-top:clamp(96px,23.44vw,300px)">
+    <section class="split sec">
       <h2 class="t-h24" style="flex:1 1 280px">What I learned</h2>
       <div class="stack" style="flex:0 1 462px;gap:20px">
-        <p style="font-weight:300;font-size:16px;line-height:20px;text-wrap:pretty"><span style="opacity:.6">I’m the only user so far, so there are no numbers yet. The biggest lesson: </span>easy and good are not the same thing.</p>
+        <p class="t-body">I’m the only user so far, so there are no numbers yet. The biggest lesson: <strong>easy and good are not the same thing.</strong></p>
         <p class="t-body">I made saving easy because that was my biggest complaint. But removing steps at the start just moved the problem further down the line. I only noticed because I used the tool every day.</p>
       </div>
     </section>
 
-    <section class="stack" style="padding-top:clamp(96px,25.78vw,330px);gap:40px">
+    <section class="stack sec" style="gap:var(--head-gap)">
       <h2 class="t-h24">What’s next</h2>
       <div class="next-grid">
         <div>
@@ -224,13 +224,14 @@
       </div>
     </section>
 
-    <section style="padding-top:clamp(96px,11.72vw,150px)">
+    <section class="sec">
       <a class="next-project" href="whatsapp-campaigns.html">
-        <div class="stack" style="gap:8px">
-          <span class="t-small" style="opacity:.6">Next project</span>
+        <div class="next-text">
+          <span class="t-small muted">Next project</span>
           <span class="t-display">WhatsApp campaign tool</span>
+          <span class="btn btn-primary">View case study<span class="btn-icon" aria-hidden="true">→</span></span>
         </div>
-        <span class="chip">View case study →</span>
+        <div class="next-preview"><img src="assets/wa-screen.jpg" alt="" loading="lazy"></div>
       </a>
     </section>
 
@@ -248,6 +249,6 @@
 
   </div>
 </main>
-<script src="case-study.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

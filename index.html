@@ -6,7 +6,7 @@
 <title>Samuel, Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,23 +14,21 @@
   <div class="container">
 
     <section class="hero">
-      <div class="hero-inner">
-        <div class="stack" style="gap:16px">
-          <div class="avatar"></div>
-          <h1>Hi, I’m Samuel. I design products, and I build them too.</h1>
-        </div>
-        <p class="t-body">I come from marketing, so I design with both the user and the business in mind. A tool I designed and built is now how my company runs its WhatsApp campaigns.</p>
+      <div class="hero-main">
+        <div class="avatar"></div>
+        <h1 class="hero-title">Hi, I’m Samuel. I design products, and I build them too.</h1>
       </div>
+      <p class="t-body hero-sub">I come from marketing, so I design with both the user and the business in mind. A tool I designed and built is now how my company runs its WhatsApp campaigns.</p>
     </section>
 
-    <section id="work" class="stack" style="padding-top:clamp(96px,11.72vw,150px);gap:48px">
+    <section id="work" class="stack sec" style="gap:var(--head-gap)">
       <div class="section-heading"><h2 class="t-title">Case studies</h2></div>
       <div class="features">
         <a class="feature" href="whatsapp-campaigns.html">
           <div class="feature-text">
             <h3 class="t-title">WhatsApp campaign tool</h3>
             <p class="t-body">I pitched, designed and built my company’s campaign tool in two weeks. It replaced a paid tool, and every campaign gets 8%+ replies.</p>
-            <span class="chip">View case study</span>
+            <span class="btn btn-primary">View case study<span class="btn-icon" aria-hidden="true">→</span></span>
           </div>
           <div class="feature-media"><img class="media" src="assets/wa-hero.jpg" alt="The WhatsApp campaign tool: number warm-up and a list of past campaigns" loading="lazy"></div>
         </a>
@@ -38,7 +36,7 @@
           <div class="feature-text">
             <h3 class="t-title">Superstash</h3>
             <p class="t-body">A place to save what inspires you and find it again. My first version made saving too easy, and I learned that easy isn’t the same as useful.</p>
-            <span class="chip">View case study</span>
+            <span class="btn btn-primary">View case study<span class="btn-icon" aria-hidden="true">→</span></span>
           </div>
           <div class="feature-media"><img class="media" src="assets/superstash-hero.jpg" alt="The Superstash home screen: a grid of saved images, notes and posts" loading="lazy"></div>
         </a>
@@ -65,7 +63,7 @@
     </section>
     -->
 
-    <section class="stack" style="padding-top:clamp(96px,13.2vw,169px);align-items:center;gap:69px">
+    <section class="stack sec" style="align-items:center;gap:var(--head-gap)">
       <h2 class="t-display">About me</h2>
       <div class="split" style="width:100%">
         <p class="t-body half">I studied business (BBA, St. Joseph’s University, Bangalore, 2024) and work as a marketing executive at Cretile. Marketing taught me to start with the person using the product and the goal behind it, then find the problem that’s worth solving.</p>
@@ -87,5 +85,6 @@
 
   </div>
 </main>
+<script src="site.js"></script>
 </body>
 </html>

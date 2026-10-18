@@ -6,7 +6,7 @@
 <title>WhatsApp campaign tool · Samuel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
         <span class="brand-mark"></span>
         <span class="t-h16">Samuel</span>
       </a>
-      <a class="chip" href="index.html#work">← All projects</a>
+      <a class="btn btn-secondary btn-sm" href="index.html#work"><span class="btn-icon" aria-hidden="true">←</span>All projects</a>
     </nav>
 
     <header class="project-intro">
@@ -35,11 +35,11 @@
       </div>
     </header>
 
-    <section style="padding-top:96px">
+    <section class="sec-tight">
       <img class="media" src="assets/wa-hero.jpg" alt="The Campaigns screen: number warm-up progress at the top and a list of past campaigns with recipients, sent and failed counts">
     </section>
 
-    <section style="padding-top:64px">
+    <section class="sec-tight">
       <dl class="stats">
         <div><dt>Cost</dt><dd class="stat-num">₹0<span class="stat-unit">/mo</span></dd><dd class="t-body">The old tool cost ₹1,000 a month</dd></div>
         <div><dt>Reach</dt><dd class="stat-num">4,000+</dd><dd class="t-body">Contacts reached across 5–10 campaigns</dd></div>
@@ -47,14 +47,14 @@
       </dl>
     </section>
 
-    <section class="split" style="padding-top:clamp(96px,11.72vw,150px)">
+    <section class="split sec">
       <h2 class="t-h24 label-col">The problem</h2>
       <div class="content-col">
         <p class="t-body">We were paying ₹1,000 a month for an outside WhatsApp campaign tool. I pitched building our own, then designed and built it.</p>
       </div>
     </section>
 
-    <section class="stack" style="padding-top:clamp(96px,13.28vw,170px);gap:32px">
+    <section class="stack sec" style="gap:var(--head-gap)">
       <h2 class="t-h24">Limits</h2>
       <div class="constraints">
         <div class="tile">
@@ -72,7 +72,7 @@
       </div>
     </section>
 
-    <section class="split" style="padding-top:clamp(96px,22.97vw,294px)">
+    <section class="split sec">
       <h2 class="t-h24 label-col">What I built, what I cut</h2>
       <div class="content-col" style="gap:32px">
         <p class="t-body">I listed what the team really needed and cut everything else, so all two weeks went into the parts that mattered.</p>
@@ -98,7 +98,7 @@
       </div>
     </section>
 
-    <section class="split" style="padding-top:clamp(96px,22.97vw,294px)">
+    <section class="split sec">
       <h2 class="t-h24 label-col" style="white-space:nowrap">What I decided</h2>
       <div class="content-col" style="align-items:center;gap:57px">
         <div class="stack" style="align-self:stretch;gap:42px">
@@ -143,11 +143,11 @@
             <img class="media-strip" src="assets/wa-warmup.jpg" alt="Number warm-up panel: daily limit steps from 200 up to 100,000, today's allowance spread across 9:00 to 19:00, WhatsApp quality green" loading="lazy">
           </div>
         </div>
-        <button class="btn-soft" type="button" aria-controls="more-flows" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
+        <button class="btn btn-secondary" type="button" aria-controls="more-flows" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
       </div>
     </section>
 
-    <section class="stack" style="padding-top:clamp(96px,29.14vw,373px);gap:120px">
+    <section class="stack sec" style="gap:var(--block-gap)">
       <div class="split" style="gap:48px">
         <div class="stack" style="flex:0 1 283px;gap:16px">
           <h2 class="t-h24" style="white-space:nowrap">What I learned</h2>
@@ -183,13 +183,14 @@
       </div>
     </section>
 
-    <section style="padding-top:clamp(96px,11.72vw,150px)">
+    <section class="sec">
       <a class="next-project" href="superstash.html">
-        <div class="stack" style="gap:8px">
-          <span class="t-small" style="opacity:.6">Next project</span>
+        <div class="next-text">
+          <span class="t-small muted">Next project</span>
           <span class="t-display">Superstash</span>
+          <span class="btn btn-primary">View case study<span class="btn-icon" aria-hidden="true">→</span></span>
         </div>
-        <span class="chip">View case study →</span>
+        <div class="next-preview"><img src="assets/superstash-screen.jpg" alt="" loading="lazy"></div>
       </a>
     </section>
 
@@ -207,6 +208,6 @@
 
   </div>
 </main>
-<script src="case-study.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
