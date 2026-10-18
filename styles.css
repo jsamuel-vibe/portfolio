@@ -3,9 +3,9 @@
    --section-gap between sections, --block-gap between big blocks inside one,
    --head-gap between a section heading and its content. */
 :root {
-  --bg: rgb(245, 243, 242);
-  --surface: rgb(239, 236, 235);
-  --surface-alt: rgb(237, 234, 232);
+  --bg: rgb(255, 255, 255);
+  --surface: #F3F3F6;
+  --surface-alt: rgb(239, 239, 241);
   --white: rgb(255, 255, 255);
   --ink: rgb(17, 17, 17);
   --ink-hover: rgb(48, 48, 48);
@@ -191,7 +191,7 @@ a:hover .btn-icon:first-child, .btn:hover .btn-icon:first-child { transform: tra
 }
 .next-text { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 40px; align-self: center; }
 .next-text .btn { margin-top: 12px; }
-.next-preview { align-self: end; border-top-left-radius: var(--radius); overflow: hidden; box-shadow: 0 0 0 1px var(--hairline), 0 12px 40px rgba(40, 30, 25, .14); transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
+.next-preview { align-self: end; border-top-left-radius: var(--radius); overflow: hidden; box-shadow: 0 0 0 1px var(--hairline), 0 12px 40px rgba(0, 0, 0, .1); transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
 .next-preview img { display: block; width: 100%; aspect-ratio: 16 / 9.5; object-fit: cover; object-position: left top; }
 .next-project:hover .next-preview { transform: translateY(-6px); }
 
