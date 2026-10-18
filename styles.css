@@ -370,3 +370,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .lb-caption { padding-bottom: 72px; }
 }
 @media (prefers-reduced-motion: reduce) { .carousel-track { scroll-behavior: auto; } .zoomable::after { transition: none; } }
+
+/* What I learned: each mistake paired with what changed */
+.lessons { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hairline); }
+.lesson { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 48px; padding: 28px 0; border-bottom: 1px solid var(--hairline); }
+.lesson-wrong { display: flex; flex-direction: column; gap: 10px; }
+.lesson-now { display: flex; flex-direction: column; gap: 10px; padding-left: 20px; border-left: 2px solid var(--ink); align-self: start; }
+.lesson-now .t-body { color: var(--ink); }
+.lesson-label { font-weight: 500; font-size: 12px; line-height: 1; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: 9px; }
+.lesson-close { max-width: 620px; }
+.inline-link { color: var(--ink); font-weight: 500; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 1px; }
+.inline-link span { display: inline-block; transition: transform .25s cubic-bezier(.2, .7, .2, 1); }
+.inline-link:hover span { transform: translateX(3px); }
+@media (max-width: 640px) {
+  .lesson { grid-template-columns: minmax(0, 1fr); padding: 24px 0; }
+  .lesson-label { padding-top: 0; }
+}
