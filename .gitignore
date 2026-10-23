@@ -1,3 +1,4 @@
 publish/
 *.zip
 .claude/
+.superpowers/
