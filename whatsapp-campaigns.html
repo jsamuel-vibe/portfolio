@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-case-view="3">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +32,17 @@
       </a>
       <a class="btn btn-secondary btn-sm" href="index.html#work"><span class="btn-icon" aria-hidden="true">←</span>All projects</a>
     </nav>
+
+    <aside class="case-viewer" aria-label="Temporary case study comparison">
+      <div class="case-viewer-inner">
+        <span class="case-viewer-label">Temporary comparison</span>
+        <div class="case-viewer-options" data-case-view-switcher aria-label="Case study presentation">
+          <button type="button" data-case-view-choice="1" aria-pressed="false"><span>1</span><span>Editorial</span></button>
+          <button type="button" data-case-view-choice="2" aria-pressed="false"><span>2</span><span>Character</span></button>
+          <button type="button" data-case-view-choice="3" aria-pressed="true"><span>3</span><span>Hybrid</span></button>
+        </div>
+      </div>
+    </aside>
 
     <header class="project-intro">
       <div class="project-intro-inner">
@@ -229,6 +240,7 @@
 
   </div>
 </main>
+<script type="module" src="case-study-view.mjs"></script>
 <script src="site.js"></script>
 </body>
 </html>
