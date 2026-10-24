@@ -704,14 +704,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 [data-case-view="2"] .wa-hero::after {
   content: "?";
   position: absolute;
-  right: 34%;
+  left: 52%;
   bottom: -44px;
   color: var(--wa-accent);
   -webkit-text-stroke: 2px var(--wa-ink);
   font-size: 250px;
   font-weight: 700;
   line-height: 1;
-  transform: rotate(8deg);
+  transform: translateX(-50%) rotate(8deg);
   pointer-events: none;
 }
 [data-case-view="2"] .wa-hero-copy, [data-case-view="2"] .wa-meta { position: relative; z-index: 1; }
@@ -776,7 +776,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   [data-case-view] .wa-proof-grid,
   [data-case-view] .wa-reflection { grid-template-columns: minmax(0, 1fr); }
   [data-case-view="2"] .wa-hero { min-height: 0; }
-  [data-case-view="2"] .wa-hero::after { right: -24px; bottom: -70px; opacity: .55; }
+  [data-case-view="2"] .wa-hero::after {
+    left: auto;
+    right: 14px;
+    bottom: -30px;
+    font-size: 130px;
+    opacity: .72;
+    transform: rotate(8deg);
+  }
   .wa-story-beats, .wa-decision-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .wa-story-card:last-child { grid-column: 1 / -1; }
   .wa-system-map { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; }
