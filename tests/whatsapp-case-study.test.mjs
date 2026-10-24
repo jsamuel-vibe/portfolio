@@ -8,21 +8,28 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const html = await readFile(resolve(root, 'whatsapp-campaigns.html'), 'utf8');
 const css = await readFile(resolve(root, 'styles.css'), 'utf8');
 
-test('positions the project as product design work', () => {
+test('opens with the product, its value, and Samuel’s role', () => {
   assert.match(html, /Product designer and builder/i);
-  assert.match(html, /The reason I started building disappeared before I finished\./i);
+  assert.match(html, /A sales platform built around how Cretile actually works\./i);
+  assert.match(html, /manage WhatsApp contacts, launch campaigns, handle replies and create AI-assisted follow-ups/i);
   assert.match(html, /live internal product/i);
 });
 
-test('contains every approved narrative section', () => {
-  for (const id of ['story', 'turning-point', 'reframe', 'shipped', 'decisions', 'automation', 'today', 'direction', 'reflection']) {
+test('contains the simplified, independently understandable narrative sections', () => {
+  for (const id of ['overview', 'at-a-glance', 'need', 'strategy', 'shipped', 'decisions', 'automation', 'today', 'direction', 'reflection']) {
     assert.match(html, new RegExp(`id=["']${id}["']`), `missing #${id}`);
   }
 });
 
+test('does not make the failed assumption the case-study narrative', () => {
+  assert.doesNotMatch(html, /The reason I started building disappeared/i);
+  assert.doesNotMatch(html, /wrong assumption|assumption that failed|cost-saving idea/i);
+  assert.doesNotMatch(html, /roughly 4,000 leads|₹3,500/i);
+});
+
 test('keeps live work separate from future direction', () => {
-  assert.match(html, /What exists today/i);
-  assert.match(html, /Proposed direction/i);
+  assert.match(html, /Live today/i);
+  assert.match(html, /Next direction[^<]*not yet built/i);
   assert.match(html, /Website enquiry[\s\S]*Lead record[\s\S]*Qualification/i);
 });
 
@@ -71,6 +78,12 @@ test('defines all three visual treatments', () => {
   for (const view of ['1', '2', '3']) {
     assert.match(css, new RegExp(`\\[data-case-view=["']${view}["']\\]`), `missing view ${view} styles`);
   }
+});
+
+test('uses forward movement instead of the removed uncertainty motif', () => {
+  const characterHero = css.match(/\[data-case-view="2"\] \.wa-hero::after \{[\s\S]*?\}/)?.[0] ?? '';
+  assert.match(characterHero, /content:\s*"→"/);
+  assert.doesNotMatch(characterHero, /content:\s*"\?"/);
 });
 
 test('includes mobile and reduced-motion treatment rules', () => {
