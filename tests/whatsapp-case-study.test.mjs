@@ -8,41 +8,49 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const html = await readFile(resolve(root, 'whatsapp-campaigns.html'), 'utf8');
 const css = await readFile(resolve(root, 'styles.css'), 'utf8');
 
-test('opens with the product, its value, and Samuel’s role', () => {
-  assert.match(html, /Product designer and builder/i);
-  assert.match(html, /A sales platform built around how Cretile actually works\./i);
-  assert.match(html, /manage WhatsApp contacts, launch campaigns, handle replies and create AI-assisted follow-ups/i);
-  assert.match(html, /live internal product/i);
+test('uses the portfolio case-study type system', () => {
+  assert.match(html, /class=["'][^"']*project-intro-inner/);
+  assert.match(html, /<h1 class=["']t-display["']/);
+  assert.ok((html.match(/class=["'][^"']*t-h24/g) || []).length >= 6);
+  assert.ok((html.match(/class=["'][^"']*t-body/g) || []).length >= 8);
 });
 
-test('contains the simplified, independently understandable narrative sections', () => {
-  for (const id of ['overview', 'at-a-glance', 'need', 'strategy', 'shipped', 'decisions', 'automation', 'today', 'direction', 'reflection']) {
+test('publishes one editorial presentation without comparison machinery', () => {
+  assert.doesNotMatch(html, /data-case-view|case-viewer|case-study-view\.mjs/);
+  assert.doesNotMatch(html, /wa-person|wa-claude|Temporary comparison/);
+  assert.doesNotMatch(css, /data-case-view|\.case-viewer|\.wa-character-scene/);
+});
+
+test('contains only the streamlined narrative sections', () => {
+  for (const id of ['overview', 'problem', 'strategy', 'shipped', 'decisions', 'automation', 'direction', 'takeaway']) {
     assert.match(html, new RegExp(`id=["']${id}["']`), `missing #${id}`);
+  }
+  for (const removed of ['at-a-glance', 'need', 'today', 'reflection']) {
+    assert.doesNotMatch(html, new RegExp(`id=["']${removed}["']`), `still contains #${removed}`);
   }
 });
 
-test('does not make the failed assumption the case-study narrative', () => {
-  assert.doesNotMatch(html, /The reason I started building disappeared/i);
-  assert.doesNotMatch(html, /wrong assumption|assumption that failed|cost-saving idea/i);
-  assert.doesNotMatch(html, /roughly 4,000 leads|₹3,500/i);
+test('keeps the case study concise', () => {
+  const caseStudy = html.slice(html.indexOf('<header'), html.indexOf('<section class="sec">'));
+  const visibleText = caseStudy
+    .replace(/<script[\s\S]*?<\/script>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[^;]+;/g, ' ')
+    .trim();
+  const words = visibleText.split(/\s+/).filter(Boolean);
+  assert.ok(words.length <= 560, `case study has ${words.length} visible words`);
 });
 
-test('keeps live work separate from future direction', () => {
-  assert.match(html, /Live today/i);
+test('keeps the live product separate from the next direction', () => {
+  assert.match(html, /What shipped/i);
   assert.match(html, /Next direction[^<]*not yet built/i);
-  assert.match(html, /Website enquiry[\s\S]*Lead record[\s\S]*Qualification/i);
+  assert.match(html, /Website enquiry[\s\S]*Qualification/i);
 });
 
 test('does not publish rejected or unsupported claims', () => {
-  for (const claim of [/₹0\s*\/\s*mo/i, /4,000\+/, /5[–-]10 campaigns/i, /8%\+/, /Interakt[^.]{0,80}sell/i, /loophole/i]) {
+  for (const claim of [/₹0\s*\/\s*mo/i, /4,000\+/, /5[–-]10 campaigns/i, /8%\+/, /Interakt[^.]{0,80}sell/i, /loophole/i, /wrong assumption|cost-saving idea/i]) {
     assert.doesNotMatch(html, claim);
   }
-});
-
-test('contains all three comparison controls and the hybrid default', () => {
-  assert.match(html, /data-case-view=["']3["']/);
-  assert.equal((html.match(/data-case-view-choice=/g) || []).length, 3);
-  assert.match(html, /Temporary comparison/);
 });
 
 test('all local image, video, stylesheet, and script paths exist', async () => {
@@ -53,44 +61,16 @@ test('all local image, video, stylesheet, and script paths exist', async () => {
   await Promise.all(sources.map((source) => access(resolve(root, source))));
 });
 
-test('provides semantic visual hooks for story, explanation and proof', () => {
-  for (const className of ['wa-story-beats', 'wa-character-scene', 'wa-system-map', 'wa-proof-grid', 'wa-decision-grid', 'wa-reflection']) {
-    assert.match(html, new RegExp(`class=["'][^"']*${className}`), `missing .${className}`);
-  }
-});
-
-test('marks decorative vectors as hidden and labels the explanatory journey', () => {
-  const decorativeSvgs = [...html.matchAll(/<svg[^>]*class=["'][^"']*(?:wa-person|wa-claude)[^"']*["'][^>]*>/g)];
-  assert.ok(decorativeSvgs.length >= 2);
-  decorativeSvgs.forEach(([svg]) => assert.match(svg, /aria-hidden=["']true["']/));
-  assert.match(html, /aria-label=["']Proposed journey from website enquiry to qualification["']/);
-});
-
-test('keeps explanatory captions next to every shipped product medium', () => {
+test('keeps captions with each product-design example', () => {
   for (const asset of ['wa-hero.jpg', 'wa-preview.mp4', 'wa-audience.jpg', 'wa-undo.mp4', 'wa-warmup.jpg']) {
     const index = html.indexOf(asset);
     assert.notEqual(index, -1, `missing ${asset}`);
-    assert.match(html.slice(index, index + 700), /(?:figcaption|wa-media-note)/, `missing caption near ${asset}`);
+    assert.match(html.slice(index, index + 700), /figcaption/, `missing caption near ${asset}`);
   }
 });
 
-test('defines all three visual treatments', () => {
-  for (const view of ['1', '2', '3']) {
-    assert.match(css, new RegExp(`\\[data-case-view=["']${view}["']\\]`), `missing view ${view} styles`);
-  }
-});
-
-test('uses forward movement instead of the removed uncertainty motif', () => {
-  const characterHero = css.match(/\[data-case-view="2"\] \.wa-hero::after \{[\s\S]*?\}/)?.[0] ?? '';
-  assert.match(characterHero, /content:\s*"→"/);
-  assert.doesNotMatch(characterHero, /content:\s*"\?"/);
-});
-
-test('includes mobile and reduced-motion treatment rules', () => {
+test('retains responsive and reduced-motion support', () => {
   assert.match(css, /@media\s*\(max-width:\s*900px\)/);
   assert.match(css, /@media\s*\(max-width:\s*640px\)/);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
-  assert.match(css, /\.case-viewer/);
-  assert.match(css, /\.wa-character-scene/);
-  assert.match(css, /\.wa-system-map/);
 });
