@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WhatsApp campaign tool · Samuel</title>
-<meta name="description" content="I pitched, designed and built my company’s WhatsApp campaign tool in two weeks. It replaced a paid tool, and every campaign gets 8%+ replies.">
+<title>Cretile sales platform · Samuel Joseph, Product Designer</title>
+<meta name="description" content="I began building Cretile's WhatsApp tool for the wrong reason. When that assumption failed, I reframed it as the first module of an internal sales platform.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Samuel Joseph">
-<meta property="og:title" content="WhatsApp campaign tool · Samuel">
-<meta property="og:description" content="I pitched, designed and built my company’s WhatsApp campaign tool in two weeks. It replaced a paid tool, and every campaign gets 8%+ replies.">
+<meta property="og:title" content="Cretile sales platform · Samuel Joseph">
+<meta property="og:description" content="A candid 0→1 product design case study about a failed assumption, a strategic pivot and a live internal messaging product.">
 <meta property="og:url" content="https://jsamuel-vibe.github.io/portfolio/whatsapp-campaigns.html">
 <meta property="og:image" content="https://jsamuel-vibe.github.io/portfolio/assets/og-wa.jpg">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="wa-case">
 <main class="page">
   <div class="container">
 
@@ -44,165 +44,233 @@
       </div>
     </aside>
 
-    <header class="project-intro">
-      <div class="project-intro-inner">
-        <div class="stack" style="gap:8px">
-          <h1 class="t-display">A WhatsApp campaign tool, built in two weeks</h1>
-          <p class="t-body">I pitched, designed and built my company’s WhatsApp campaign tool on my own. It replaced a paid tool, and the marketing team now uses it for every campaign.</p>
-        </div>
-        <dl class="meta">
-          <div><dt>Type</dt><dd>In-house tool</dd></div>
-          <div><dt>Timeline</dt><dd>2 weeks</dd></div>
-          <div><dt>Team</dt><dd>Just me</dd></div>
-        </dl>
+    <header class="project-intro wa-hero" id="story">
+      <div class="wa-hero-copy">
+        <span class="wa-kicker">Cretile · 0→1 internal product</span>
+        <h1>The reason I started building disappeared before I finished.</h1>
+        <p class="t-body">I began with a cost-saving idea. When the assumption failed, I had to decide whether the product still deserved to exist.</p>
       </div>
+      <dl class="wa-meta">
+        <div><dt>Role</dt><dd>Product designer and builder</dd></div>
+        <div><dt>Responsibilities</dt><dd>Product strategy, workflow design, interaction design, prototyping and development</dd></div>
+        <div><dt>Timeline</dt><dd>Two weeks for the first version</dd></div>
+        <div><dt>Users</dt><dd>Campaign operator and salesperson</dd></div>
+        <div><dt>Status</dt><dd>Live internal product</dd></div>
+      </dl>
     </header>
 
-    <section class="sec-tight">
-      <img class="media" src="assets/wa-hero.jpg" alt="The Campaigns screen: number warm-up progress at the top and a list of past campaigns with recipients, sent and failed counts">
-    </section>
-
-    <section class="sec-tight">
-      <dl class="stats">
-        <div><dt>Cost</dt><dd class="stat-num">₹0<span class="stat-unit">/mo</span></dd><dd class="t-body">The old tool cost ₹1,000 a month</dd></div>
-        <div><dt>Reach</dt><dd class="stat-num">4,000+</dd><dd class="t-body">Contacts reached across 5–10 campaigns</dd></div>
-        <div><dt>Replies</dt><dd class="stat-num">8%+</dd><dd class="t-body">Reply rate on every campaign so far</dd></div>
-      </dl>
-    </section>
-
-    <section class="split sec">
-      <h2 class="t-h24 label-col">The problem</h2>
-      <div class="content-col">
-        <p class="t-body">We were paying ₹1,000 a month for an outside WhatsApp campaign tool. I pitched building our own, then designed and built it.</p>
+    <section class="wa-section" aria-labelledby="short-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">Long story short</span>
+        <h2 id="short-title">The project changed once the original reason for building it fell apart.</h2>
+      </div>
+      <div class="wa-story-beats">
+        <article class="wa-story-card">
+          <span>01</span>
+          <h3>Forced reset</h3>
+          <p class="t-body">Cretile lost access to its Meta account. A new number meant rebuilding the campaign setup anyway.</p>
+        </article>
+        <article class="wa-story-card">
+          <span>02</span>
+          <h3>Wrong assumption</h3>
+          <p class="t-body">I believed our provider was adding roughly ₹3,500 to every campaign. After development began, I learned Meta was charging it.</p>
+        </article>
+        <article class="wa-story-card">
+          <span>03</span>
+          <h3>New direction</h3>
+          <p class="t-body">The cost argument disappeared, but a larger opportunity remained: a system Cretile could shape around its own sales workflow.</p>
+        </article>
       </div>
     </section>
 
-    <section class="stack sec" style="gap:var(--head-gap)">
-      <h2 class="t-h24">Limits</h2>
-      <div class="constraints">
-        <div class="tile">
-          <span class="t-num">#1</span>
-          <p class="t-body"><strong>Two weeks, no more.</strong> We had already cancelled the old tool, so we couldn’t send any campaigns until mine was ready.</p>
-        </div>
-        <div class="tile">
-          <span class="t-num">#2</span>
-          <p class="t-body"><strong>Just me.</strong> No developers and no budget. Design, frontend and backend were all mine.</p>
-        </div>
-        <div class="tile">
-          <span class="t-num">#3</span>
-          <p class="t-body"><strong>My day job didn’t stop.</strong> I still had all my marketing work to do.</p>
-        </div>
+    <section class="wa-section wa-context" aria-labelledby="situation-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">The situation</span>
+        <h2 id="situation-title">A lost account created a chance to reconsider the whole setup.</h2>
+      </div>
+      <div class="wa-copy-grid">
+        <p class="t-body">I ran Cretile’s WhatsApp campaigns. Lead data lived in Excel, so each campaign began with another export as new contacts were added.</p>
+        <p class="t-body">Interakt itself was not difficult to use. The question was whether reconnecting a new number to another monthly tool was the right long-term decision.</p>
       </div>
     </section>
 
-    <section class="split sec">
-      <h2 class="t-h24 label-col">What I built, what I cut</h2>
-      <div class="content-col" style="gap:32px">
-        <p class="t-body">I listed what the team really needed and cut everything else, so all two weeks went into the parts that mattered.</p>
-        <div class="constraints">
-          <div class="tile">
-            <span class="t-h16">Built</span>
-            <ul class="list t-body">
-              <li>Uploading contacts</li>
-              <li>Creating campaigns</li>
-              <li>Inbox</li>
-            </ul>
-          </div>
-          <div class="tile">
-            <span class="t-h16">Cut</span>
-            <ul class="list t-body">
-              <li>Multiple user roles</li>
-              <li>Analytics</li>
-              <li>Visual polish</li>
-              <li>Automations</li>
-            </ul>
-          </div>
-        </div>
+    <section class="wa-section wa-turning-point" id="turning-point" aria-labelledby="turning-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">The assumption that failed</span>
+        <h2 id="turning-title">I started building around a business case I had misunderstood.</h2>
+      </div>
+      <div class="wa-pivot-card">
+        <p class="wa-pivot-before">With roughly 4,000 leads, I believed building internally would remove about ₹3,500 in campaign charges.</p>
+        <span class="wa-pivot-mark" aria-hidden="true">→</span>
+        <p class="wa-pivot-after">Then I checked the pricing more carefully with Claude: Meta charged for the messages, not Interakt.</p>
+      </div>
+      <blockquote>Building our own interface would not make that cost disappear.</blockquote>
+      <p class="t-body wa-narrow">That left an uncomfortable question: if the product was not meaningfully cheaper, why should Cretile own it?</p>
+    </section>
+
+    <section class="wa-section wa-reframe" id="reframe" aria-labelledby="reframe-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">Reframing the product</span>
+        <h2 id="reframe-title">Ownership would matter only if the system could behave differently.</h2>
+      </div>
+      <div class="wa-reframe-grid">
+        <article class="wa-reframe-card wa-reframe-card-muted">
+          <span>Not enough</span>
+          <h3>Recreate Interakt</h3>
+          <p class="t-body">The same campaign workflow in a product we owned was not a meaningful advantage.</p>
+        </article>
+        <article class="wa-reframe-card wa-reframe-card-accent">
+          <span>The opportunity</span>
+          <h3>Build around Cretile</h3>
+          <p class="t-body">Treat WhatsApp as the first working module of one system for leads, campaigns, replies, ownership, qualification and follow-up.</p>
+        </article>
       </div>
     </section>
 
-    <section class="split sec">
-      <h2 class="t-h24 label-col" style="white-space:nowrap">What I decided</h2>
-      <div class="content-col" style="align-items:center;gap:57px">
-        <div class="stack" style="align-self:stretch;gap:42px">
-          <div class="stack" style="gap:16px">
-            <h3 class="t-h16"><span class="decision-num">01</span> Every upload needs a tag</h3>
-            <p class="t-body">You have to tag contacts when you upload them. That way they’re already grouped when you choose who gets a campaign.</p>
-          </div>
-        </div>
-        <div class="stack" style="align-self:stretch;gap:42px">
-          <div class="stack" style="gap:16px">
-            <h3 class="t-h16"><span class="decision-num">02</span> See the message before you send it</h3>
-            <p class="t-body">You build a campaign step by step, with a live preview next to the form. You see exactly what people will get.</p>
-          </div>
-          <video class="media" src="assets/wa-preview.mp4" poster="assets/wa-preview-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Picking a template in the campaign builder while the live preview on the right fills in"></video>
-        </div>
-        <div class="decisions-more" id="more-flows">
-          <div class="stack" style="align-self:stretch;gap:42px">
-            <div class="stack" style="gap:16px">
-              <h3 class="t-h16"><span class="decision-num">03</span> Opted-out contacts are locked</h3>
-              <p class="t-body">Before sending, the tool shows who is left out and why. People who opted out are locked and can’t be added back, so no one gets a message after asking to stop.</p>
-            </div>
-            <img class="media" src="assets/wa-audience.jpg" alt="The audience step: 4270 contacts will receive this, 182 left out because they opted out" loading="lazy">
-          </div>
-          <div class="stack" style="align-self:stretch;gap:42px">
-            <div class="stack" style="gap:16px">
-              <h3 class="t-h16"><span class="decision-num">04</span> A few seconds to undo</h3>
-              <p class="t-body">Nothing goes out the moment you press Send. A countdown appears with an Undo button, so there’s time to catch the wrong audience or a typo.</p>
-            </div>
-            <video class="media" src="assets/wa-undo.mp4" poster="assets/wa-undo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Pressing Send shows a countdown message with an Undo button"></video>
-          </div>
-          <div class="stack" style="align-self:stretch;gap:42px">
-            <div class="stack" style="gap:16px">
-              <h3 class="t-h16"><span class="decision-num">05</span> The inbox shows who you can still reply to</h3>
-              <p class="t-body">WhatsApp only lets you reply freely within 24 hours of someone’s last message. The inbox shows that window on each chat, so the team knows who they can still answer.</p>
-            </div>
-          </div>
-          <div class="stack" style="align-self:stretch;gap:42px">
-            <div class="stack" style="gap:16px">
-              <h3 class="t-h16"><span class="decision-num">06</span> Send slowly to stay safe</h3>
-              <p class="t-body">Sending thousands of messages at once can get a number blocked by Meta. So the tool starts at 200 messages a day and steps up slowly, spreads sends across the day, and stops on its own if Meta sends a warning. It all runs by itself, so nobody has to manage it.</p>
-            </div>
-            <img class="media-strip" src="assets/wa-warmup.jpg" alt="Number warm-up panel: daily limit steps from 200 up to 100,000, today's allowance spread across 9:00 to 19:00, WhatsApp quality green" loading="lazy">
-          </div>
-        </div>
-        <button class="btn btn-secondary" type="button" aria-controls="more-flows" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
+    <section class="wa-section wa-shipped" id="shipped" aria-labelledby="shipped-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">What shipped in two weeks</span>
+        <h2 id="shipped-title">A working campaign and inbox system—not the whole platform.</h2>
+        <p class="t-body">I already understood the operator workflow because I created the campaigns myself. The first version focused on the parts required to run them safely.</p>
+      </div>
+      <figure class="media-figure wa-media-frame">
+        <img class="media" src="assets/wa-hero.jpg" alt="The live campaign screen showing number warm-up status and previous campaigns">
+        <figcaption class="media-caption">The live system combines number health, campaign history and delivery status in one view.</figcaption>
+      </figure>
+      <div class="wa-capability-grid" aria-label="Capabilities in the live product">
+        <span>Contacts and tags</span>
+        <span>Campaign creation</span>
+        <span>Message preview</span>
+        <span>Audience protection</span>
+        <span>Number warm-up</span>
+        <span>Inbox and analytics</span>
       </div>
     </section>
 
-    <section class="stack sec" style="gap:var(--block-gap)">
-      <div class="split" style="gap:48px">
-        <div class="stack" style="flex:0 1 283px;gap:16px">
-          <h2 class="t-h24" style="white-space:nowrap">What I learned</h2>
-          <p class="t-body">Three lessons from a hard deadline.</p>
-        </div>
-        <div class="stack" style="flex:0 1 462px;gap:64px">
-          <div class="stack" style="gap:8px">
-            <div class="mistake-head">
-              <span class="t-num">#1</span>
-              <h3 class="t-h16">Finish first, polish later</h3>
-            </div>
-            <p class="t-body">I had to stop judging the screens by how they look. I still don’t like the UI, and I know it can be better. But holding back is the only reason it shipped on time.</p>
-          </div>
-          <div class="stack" style="gap:8px">
-            <div class="mistake-head">
-              <span class="t-num">#2</span>
-              <h3 class="t-h16">Plan the time</h3>
-            </div>
-            <p class="t-body">I now set a timeline at the start of every project. Each part gets enough time, and I don’t overdo any of it like I did with Superstash.</p>
-          </div>
-          <div class="stack" style="gap:8px">
-            <div class="mistake-head">
-              <span class="t-num">#3</span>
-              <h3 class="t-h16">Write things down</h3>
-            </div>
-            <p class="t-body">I didn’t write down my thinking or the use cases I had in mind while designing. I wish I had.</p>
-          </div>
-        </div>
+    <section class="wa-section" id="decisions" aria-labelledby="decisions-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">Selected design decisions</span>
+        <h2 id="decisions-title">Most of the design work was about preventing expensive mistakes.</h2>
       </div>
-      <div class="tile" style="padding:24px 16px;display:flex;flex-wrap:wrap;gap:24px">
-        <h3 class="t-h24" style="flex:1 1 300px">Where it is now</h3>
-        <p class="t-body" style="flex:1 1 300px">It’s the company’s main campaign tool, and I still run every campaign on it.</p>
+      <div class="wa-decision-grid">
+        <article class="wa-decision">
+          <span class="wa-decision-number">01</span>
+          <h3>Tag at the point of entry</h3>
+          <p class="t-body">Every imported contact needs a tag, so an audience already has structure when a campaign is created.</p>
+        </article>
+        <article class="wa-decision wa-decision-media">
+          <div>
+            <span class="wa-decision-number">02</span>
+            <h3>See the message before sending</h3>
+            <p class="t-body">The message changes beside the form, letting the operator check what a person will receive before continuing.</p>
+          </div>
+          <figure class="media-figure wa-media-frame">
+            <video class="media" src="assets/wa-preview.mp4" poster="assets/wa-preview-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Picking a template while the WhatsApp preview updates beside the form"></video>
+            <figcaption class="media-caption">The final message stays visible while the campaign is assembled.</figcaption>
+          </figure>
+        </article>
+        <article class="wa-decision wa-decision-media">
+          <div>
+            <span class="wa-decision-number">03</span>
+            <h3>Opt-outs stay locked</h3>
+            <p class="t-body">A person who asks to stop remains visible for accountability but cannot be accidentally added back.</p>
+          </div>
+          <figure class="media-figure wa-media-frame">
+            <img class="media" src="assets/wa-audience.jpg" alt="Audience review showing contacts excluded because they opted out" loading="lazy">
+            <figcaption class="media-caption">Opted-out contacts remain visible, with the reason for exclusion, but cannot re-enter the audience.</figcaption>
+          </figure>
+        </article>
+        <article class="wa-decision wa-decision-media">
+          <div>
+            <span class="wa-decision-number">04</span>
+            <h3>A few seconds to undo</h3>
+            <p class="t-body">Sending waits briefly so the operator can catch the wrong audience or a typo.</p>
+          </div>
+          <figure class="media-figure wa-media-frame">
+            <video class="media" src="assets/wa-undo.mp4" poster="assets/wa-undo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A send countdown with an Undo action"></video>
+            <figcaption class="media-caption">A short countdown creates one last chance to stop the campaign.</figcaption>
+          </figure>
+        </article>
+        <article class="wa-decision">
+          <span class="wa-decision-number">05</span>
+          <h3>Make the reply window visible</h3>
+          <p class="t-body">The inbox shows whether WhatsApp’s 24-hour free-reply window is still open, so the salesperson knows when a normal response is allowed.</p>
+        </article>
+        <article class="wa-decision wa-decision-media">
+          <div>
+            <span class="wa-decision-number">06</span>
+            <h3>Warm the number without babysitting it</h3>
+            <p class="t-body">Sending starts slowly, increases over time and stops if Meta reports a warning.</p>
+          </div>
+          <figure class="media-figure wa-media-frame">
+            <img class="media-strip" src="assets/wa-warmup.jpg" alt="Number warm-up showing the current daily limit, schedule and WhatsApp quality" loading="lazy">
+            <figcaption class="media-caption">The system raises the daily limit gradually and watches number quality automatically.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="wa-section wa-automation" id="automation" aria-labelledby="automation-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">Where ownership became useful</span>
+        <h2 id="automation-title">Claude watched the replies when I could not.</h2>
+      </div>
+      <div class="wa-proof-grid">
+        <div class="wa-automation-story">
+          <p class="t-body">In one campaign, I asked people to choose between four kinds of support. Each answer needed a different follow-up.</p>
+          <p class="t-body">Instead of watching the inbox and opening every conversation, I asked Claude to monitor the replies and send the matching response.</p>
+        </div>
+        <aside class="wa-live-card wa-live-card-accent" aria-label="Automation outcome">
+          <strong>≈40</strong>
+          <span>option-based follow-ups handled while I was away</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wa-section wa-today" id="today" aria-labelledby="today-title">
+      <div class="wa-section-heading">
+        <span class="wa-section-label">What exists today</span>
+        <h2 id="today-title">A live product with two real roles—and an honest limitation.</h2>
+      </div>
+      <div class="wa-today-grid">
+        <article class="wa-live-card">
+          <span>Campaign operator</span>
+          <h3>I add contacts, create campaigns and run them.</h3>
+        </article>
+        <article class="wa-live-card">
+          <span>Salesperson</span>
+          <h3>One salesperson uses the inbox to reply.</h3>
+        </article>
+        <article class="wa-live-card wa-live-card-wide">
+          <span>The limitation</span>
+          <h3>The basic campaign workflow is not yet clearly better than Interakt.</h3>
+          <p class="t-body">The most promising advantage is the ability to create Cretile-specific automations because Cretile owns the system.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wa-section wa-direction" id="direction" aria-labelledby="direction-title">
+      <span class="wa-section-label">Proposed direction · Not yet built</span>
+      <h2 id="direction-title">From website enquiry to a qualified conversation</h2>
+      <p class="t-body wa-narrow">The next opportunity is not another campaign feature. It is connecting the full sales journey. I developed this direction by examining our workflow, speaking with the salesperson and founders, exploring it with Claude and aligning the team around a shared structure.</p>
+      <ol class="wa-system-map" aria-label="Proposed journey from website enquiry to qualification">
+        <li><span>01</span><strong>Website enquiry</strong></li>
+        <li><span>02</span><strong>Lead record</strong></li>
+        <li><span>03</span><strong>Brochure delivery</strong></li>
+        <li><span>04</span><strong>WhatsApp conversation</strong></li>
+        <li><span>05</span><strong>Salesperson ownership</strong></li>
+        <li><span>06</span><strong>Qualification</strong></li>
+      </ol>
+    </section>
+
+    <section class="wa-section wa-reflection" id="reflection" aria-labelledby="reflection-title">
+      <div>
+        <span class="wa-section-label">What changed in my thinking</span>
+        <h2 id="reflection-title">Owning a product is not an advantage by itself.</h2>
+      </div>
+      <div class="wa-reflection-copy">
+        <p class="t-body">I should have verified the pricing model before I started building. But being wrong exposed a better test for the product: ownership is useful only when it lets the system behave differently.</p>
+        <p class="t-body">The most meaningful difference so far did not come from rebuilding the campaign screens. It came when Claude became part of the product workflow itself.</p>
       </div>
     </section>
 
