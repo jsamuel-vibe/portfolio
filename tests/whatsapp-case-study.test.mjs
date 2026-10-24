@@ -21,13 +21,27 @@ test('publishes one editorial presentation without comparison machinery', () => 
   assert.doesNotMatch(css, /data-case-view|\.case-viewer|\.wa-character-scene/);
 });
 
-test('contains only the streamlined narrative sections', () => {
-  for (const id of ['overview', 'problem', 'strategy', 'shipped', 'decisions', 'automation', 'direction', 'takeaway']) {
+test('moves through the case study from context to problems, solutions, and direction', () => {
+  const sections = ['overview', 'summary', 'problem', 'scope', 'confidence', 'automation', 'rules', 'product', 'direction', 'takeaway'];
+
+  for (const id of sections) {
     assert.match(html, new RegExp(`id=["']${id}["']`), `missing #${id}`);
   }
-  for (const removed of ['at-a-glance', 'need', 'today', 'reflection']) {
+
+  const positions = sections.map((id) => html.indexOf(`id="${id}"`));
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'case-study sections are out of narrative order');
+
+  for (const removed of ['at-a-glance', 'need', 'today', 'reflection', 'strategy', 'shipped', 'decisions']) {
     assert.doesNotMatch(html, new RegExp(`id=["']${removed}["']`), `still contains #${removed}`);
   }
+});
+
+test('uses varied editorial compositions instead of a repeated screenshot list', () => {
+  assert.match(html, /class=["'][^"']*wa-summary-grid/);
+  assert.match(html, /class=["'][^"']*wa-process/);
+  assert.match(html, /class=["'][^"']*wa-media-pair/);
+  assert.match(html, /class=["'][^"']*wa-response-map/);
+  assert.match(html, /class=["'][^"']*wa-product-board/);
 });
 
 test('keeps the case study concise', () => {
@@ -42,7 +56,7 @@ test('keeps the case study concise', () => {
 });
 
 test('keeps the live product separate from the next direction', () => {
-  assert.match(html, /What shipped/i);
+  assert.match(html, /The product today/i);
   assert.match(html, /Next direction[^<]*not yet built/i);
   assert.match(html, /Website enquiry[\s\S]*Qualification/i);
 });
@@ -73,4 +87,8 @@ test('retains responsive and reduced-motion support', () => {
   assert.match(css, /@media\s*\(max-width:\s*900px\)/);
   assert.match(css, /@media\s*\(max-width:\s*640px\)/);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+});
+
+test('does not ship tool-output truncation artifacts in the stylesheet', () => {
+  assert.doesNotMatch(css, /tokens truncated/i);
 });
