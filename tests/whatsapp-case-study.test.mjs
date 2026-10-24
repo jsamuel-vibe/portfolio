@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const html = await readFile(resolve(root, 'whatsapp-campaigns.html'), 'utf8');
+const css = await readFile(resolve(root, 'styles.css'), 'utf8');
 
 test('positions the project as product design work', () => {
   assert.match(html, /Product designer and builder/i);
@@ -64,4 +65,19 @@ test('keeps explanatory captions next to every shipped product medium', () => {
     assert.notEqual(index, -1, `missing ${asset}`);
     assert.match(html.slice(index, index + 700), /(?:figcaption|wa-media-note)/, `missing caption near ${asset}`);
   }
+});
+
+test('defines all three visual treatments', () => {
+  for (const view of ['1', '2', '3']) {
+    assert.match(css, new RegExp(`\\[data-case-view=["']${view}["']\\]`), `missing view ${view} styles`);
+  }
+});
+
+test('includes mobile and reduced-motion treatment rules', () => {
+  assert.match(css, /@media\s*\(max-width:\s*900px\)/);
+  assert.match(css, /@media\s*\(max-width:\s*640px\)/);
+  assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+  assert.match(css, /\.case-viewer/);
+  assert.match(css, /\.wa-character-scene/);
+  assert.match(css, /\.wa-system-map/);
 });

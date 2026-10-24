@@ -640,3 +640,174 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .wa-reflection .wa-section-label { margin-bottom: 16px; }
 .wa-reflection-copy { display: flex; flex-direction: column; gap: 20px; }
 .wa-reflection .t-body { color: var(--wa-ink); }
+
+/* WhatsApp treatment 1: editorial and diagram-led */
+[data-case-view="1"] .wa-case { --wa-accent: #d8ff50; --wa-paper: #f7f5ef; }
+[data-case-view="1"] .wa-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+  gap: 64px;
+  align-items: end;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--wa-ink);
+}
+[data-case-view="1"] .wa-hero h1 { font-size: clamp(44px, 7vw, 82px); line-height: .96; letter-spacing: -.065em; }
+[data-case-view="1"] .wa-kicker { color: var(--wa-ink); }
+[data-case-view="1"] .wa-story-card {
+  min-height: 280px;
+  border-radius: 0;
+  border-top: 1px solid var(--wa-ink);
+  background: transparent;
+  box-shadow: none;
+  padding: 18px 0 0;
+}
+[data-case-view="1"] .wa-pivot-card p { border-radius: 0; border-top: 3px solid var(--wa-ink); background: transparent; padding-inline: 0; }
+[data-case-view="1"] .wa-pivot-after { border-color: var(--wa-coral); }
+[data-case-view="1"] .wa-character-scene { grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--wa-line); }
+[data-case-view="1"] .wa-character-panel {
+  min-height: 150px;
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  border-radius: 0;
+  border-bottom: 1px solid var(--wa-line);
+  background: transparent;
+  padding: 16px 0;
+}
+[data-case-view="1"] .wa-character-panel p { grid-column: 2; max-width: none; border: 0; border-radius: 0; box-shadow: none; background: transparent; font-size: 20px; }
+[data-case-view="1"] .wa-character-panel svg { grid-column: 1; grid-row: 1; position: static; transform: none; width: 120px; height: 120px; }
+[data-case-view="1"] .wa-character-panel > span { grid-column: 3; position: static; }
+[data-case-view="1"] .wa-reframe-card { border-radius: 0; border-top: 1px solid var(--wa-ink); background: transparent; padding-inline: 0; }
+[data-case-view="1"] .wa-reframe-card-accent { border-top-width: 4px; border-color: var(--wa-accent); }
+[data-case-view="1"] .wa-decision { border-radius: 0; border-top: 1px solid var(--wa-ink); background: transparent; box-shadow: none; padding-inline: 0; }
+[data-case-view="1"] .wa-live-card { border-radius: 0; }
+[data-case-view="1"] .wa-direction { background: var(--wa-paper); color: var(--wa-ink); border-radius: 0; padding: 48px; }
+[data-case-view="1"] .wa-reflection { border-radius: 0; border-top: 4px solid var(--wa-ink); background: transparent; padding-inline: 0; }
+
+/* WhatsApp treatment 2: character-led story */
+[data-case-view="2"] .wa-case { --wa-paper: #fff2d8; --wa-panel: #fffaf0; --wa-accent: #ddff4f; }
+[data-case-view="2"] .wa-case .page { background: #fffdf7; }
+[data-case-view="2"] .wa-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(250px, .75fr);
+  gap: 48px;
+  padding: clamp(32px, 6vw, 64px);
+  border: 2px solid var(--wa-ink);
+  border-radius: 28px;
+  background: var(--wa-paper);
+  box-shadow: 8px 8px 0 var(--wa-ink);
+}
+[data-case-view="2"] .wa-hero::after {
+  content: "?";
+  position: absolute;
+  right: 34%;
+  bottom: -44px;
+  color: var(--wa-accent);
+  -webkit-text-stroke: 2px var(--wa-ink);
+  font-size: 250px;
+  font-weight: 700;
+  line-height: 1;
+  transform: rotate(8deg);
+  pointer-events: none;
+}
+[data-case-view="2"] .wa-hero-copy, [data-case-view="2"] .wa-meta { position: relative; z-index: 1; }
+[data-case-view="2"] .wa-hero h1 { max-width: 700px; font-size: clamp(42px, 7vw, 76px); line-height: .96; }
+[data-case-view="2"] .wa-story-card {
+  border: 2px solid var(--wa-ink);
+  background: white;
+  box-shadow: 5px 5px 0 var(--wa-ink);
+  transform: rotate(-.7deg);
+}
+[data-case-view="2"] .wa-story-card:nth-child(2) { transform: translateY(24px) rotate(.8deg); background: var(--wa-coral); }
+[data-case-view="2"] .wa-story-card:nth-child(3) { transform: rotate(.4deg); background: var(--wa-accent); }
+[data-case-view="2"] .wa-character-scene { gap: 10px; transform: rotate(-.35deg); }
+[data-case-view="2"] .wa-character-panel { border: 2px solid var(--wa-ink); box-shadow: 5px 5px 0 var(--wa-ink); }
+[data-case-view="2"] .wa-character-panel:nth-child(2) { transform: translateY(28px) rotate(.8deg); }
+[data-case-view="2"] .wa-pivot-card p { border: 2px solid var(--wa-ink); box-shadow: 5px 5px 0 var(--wa-ink); }
+[data-case-view="2"] .wa-reframe-card, [data-case-view="2"] .wa-decision, [data-case-view="2"] .wa-live-card {
+  border: 2px solid var(--wa-ink);
+  box-shadow: 5px 5px 0 var(--wa-ink);
+  background: white;
+}
+[data-case-view="2"] .wa-reframe-card-accent, [data-case-view="2"] .wa-live-card-accent { background: var(--wa-accent); }
+[data-case-view="2"] .wa-live-card-wide { background: var(--wa-ink); }
+[data-case-view="2"] .wa-direction { border: 2px solid var(--wa-ink); box-shadow: 8px 8px 0 var(--wa-ink); background: var(--wa-blue); }
+[data-case-view="2"] .wa-system-map li { background: white; box-shadow: 3px 3px 0 var(--wa-ink); }
+[data-case-view="2"] .wa-reflection { border: 2px solid var(--wa-ink); box-shadow: 8px 8px 0 var(--wa-ink); }
+
+/* WhatsApp treatment 3: hybrid story system */
+[data-case-view="3"] .wa-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+  gap: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--wa-ink);
+  color: white;
+}
+[data-case-view="3"] .wa-hero-copy { padding: clamp(32px, 6vw, 64px); }
+[data-case-view="3"] .wa-hero h1 { font-size: clamp(44px, 7vw, 80px); line-height: .94; letter-spacing: -.065em; }
+[data-case-view="3"] .wa-hero .wa-kicker { color: var(--wa-accent); }
+[data-case-view="3"] .wa-hero .t-body { color: rgba(255,255,255,.66); }
+[data-case-view="3"] .wa-meta { padding: clamp(28px, 4vw, 40px); background: var(--wa-accent); color: var(--wa-ink); }
+[data-case-view="3"] .wa-story-card:nth-child(2), [data-case-view="3"] .wa-live-card-accent { background: var(--wa-accent); color: var(--wa-ink); }
+[data-case-view="3"] .wa-story-card:nth-child(3) { background: var(--wa-ink); color: white; }
+[data-case-view="3"] .wa-story-card:nth-child(3) .t-body { color: rgba(255,255,255,.66); }
+[data-case-view="3"] .wa-reframe-card-muted { background: var(--wa-ink); color: white; }
+[data-case-view="3"] .wa-reframe-card-muted .t-body { color: rgba(255,255,255,.66); }
+[data-case-view="3"] .wa-proof-grid { grid-template-columns: minmax(0, 1.35fr) minmax(240px, .65fr); }
+[data-case-view="3"] .wa-direction { background: var(--wa-paper); }
+[data-case-view="3"] .wa-system-map li:nth-child(2), [data-case-view="3"] .wa-system-map li:nth-child(4) { background: white; }
+[data-case-view="3"] .wa-reflection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+  gap: 48px;
+  padding: clamp(32px, 6vw, 64px);
+  border-radius: 28px;
+  background: var(--wa-accent);
+}
+
+@media (max-width: 900px) {
+  [data-case-view] .wa-hero,
+  [data-case-view] .wa-proof-grid,
+  [data-case-view] .wa-reflection { grid-template-columns: minmax(0, 1fr); }
+  [data-case-view="2"] .wa-hero { min-height: 0; }
+  [data-case-view="2"] .wa-hero::after { right: -24px; bottom: -70px; opacity: .55; }
+  .wa-story-beats, .wa-decision-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .wa-story-card:last-child { grid-column: 1 / -1; }
+  .wa-system-map { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; }
+  .wa-decision-media { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .case-viewer { top: 8px; margin-top: 16px; }
+  .case-viewer-inner { width: 100%; justify-content: space-between; border-radius: 18px; padding-left: 12px; }
+  .case-viewer-options button { width: 34px; justify-content: center; padding: 0; }
+  .case-viewer-options button span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .wa-hero { padding-top: 40px; }
+  [data-case-view="1"] .wa-hero, [data-case-view="2"] .wa-hero, [data-case-view="3"] .wa-hero { border-radius: 20px; }
+  [data-case-view="1"] .wa-hero { gap: 36px; }
+  [data-case-view="1"] .wa-character-panel { grid-template-columns: 88px minmax(0, 1fr); }
+  [data-case-view="1"] .wa-character-panel svg { width: 88px; height: 88px; }
+  [data-case-view="1"] .wa-character-panel p { font-size: 16px; }
+  [data-case-view="1"] .wa-character-panel > span { grid-column: 2; }
+  [data-case-view="2"] .wa-hero { padding: 28px 22px 48px; box-shadow: 5px 5px 0 var(--wa-ink); }
+  [data-case-view="2"] .wa-story-card:nth-child(2), [data-case-view="2"] .wa-character-panel:nth-child(2) { transform: none; }
+  [data-case-view="3"] .wa-meta { gap: 14px; }
+  .wa-story-beats, .wa-character-scene, .wa-decision-grid, .wa-system-map, .wa-copy-grid, .wa-reframe-grid, .wa-today-grid { grid-template-columns: minmax(0, 1fr); }
+  .wa-story-card:last-child, .wa-live-card-wide { grid-column: auto; }
+  .wa-pivot-card { grid-template-columns: minmax(0, 1fr); }
+  .wa-pivot-mark { transform: rotate(90deg); justify-self: center; }
+  .wa-decision-media { grid-column: auto; padding: 18px; }
+  .wa-capability-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wa-system-map li:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -21px; }
+  .wa-direction, .wa-reflection { padding: 28px 22px; border-radius: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-viewer button, .wa-character-panel, .wa-decision, .wa-media-frame, .wa-story-card { transition: none !important; animation: none !important; }
+}
