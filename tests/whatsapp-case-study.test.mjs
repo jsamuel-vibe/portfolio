@@ -44,3 +44,24 @@ test('all local image, video, stylesheet, and script paths exist', async () => {
     .map((source) => source.split(/[?#]/)[0]);
   await Promise.all(sources.map((source) => access(resolve(root, source))));
 });
+
+test('provides semantic visual hooks for story, explanation and proof', () => {
+  for (const className of ['wa-story-beats', 'wa-character-scene', 'wa-system-map', 'wa-proof-grid', 'wa-decision-grid', 'wa-reflection']) {
+    assert.match(html, new RegExp(`class=["'][^"']*${className}`), `missing .${className}`);
+  }
+});
+
+test('marks decorative vectors as hidden and labels the explanatory journey', () => {
+  const decorativeSvgs = [...html.matchAll(/<svg[^>]*class=["'][^"']*(?:wa-person|wa-claude)[^"']*["'][^>]*>/g)];
+  assert.ok(decorativeSvgs.length >= 2);
+  decorativeSvgs.forEach(([svg]) => assert.match(svg, /aria-hidden=["']true["']/));
+  assert.match(html, /aria-label=["']Proposed journey from website enquiry to qualification["']/);
+});
+
+test('keeps explanatory captions next to every shipped product medium', () => {
+  for (const asset of ['wa-hero.jpg', 'wa-preview.mp4', 'wa-audience.jpg', 'wa-undo.mp4', 'wa-warmup.jpg']) {
+    const index = html.indexOf(asset);
+    assert.notEqual(index, -1, `missing ${asset}`);
+    assert.match(html.slice(index, index + 700), /(?:figcaption|wa-media-note)/, `missing caption near ${asset}`);
+  }
+});
