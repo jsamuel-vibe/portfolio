@@ -22,7 +22,7 @@ test('publishes one editorial presentation without comparison machinery', () => 
 });
 
 test('moves from firsthand context to strategy, use cases, and direction', () => {
-  const sections = ['overview', 'summary', 'scenarios', 'strategy', 'audience', 'launch', 'reply-state', 'analytics', 'follow-up', 'product', 'direction', 'takeaway'];
+  const sections = ['overview', 'scenarios', 'strategy', 'audience', 'launch', 'reply-state', 'analytics', 'follow-up', 'product', 'direction', 'takeaway'];
 
   for (const id of sections) {
     assert.match(html, new RegExp(`id=["']${id}["']`), `missing #${id}`);
@@ -31,14 +31,17 @@ test('moves from firsthand context to strategy, use cases, and direction', () =>
   const positions = sections.map((id) => html.indexOf(`id="${id}"`));
   assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'case-study sections are out of narrative order');
 
-  for (const removed of ['at-a-glance', 'need', 'today', 'reflection', 'problem', 'scope', 'confidence', 'automation', 'rules', 'constraints', 'shipped', 'decisions']) {
+  for (const removed of ['summary', 'at-a-glance', 'need', 'today', 'reflection', 'problem', 'scope', 'confidence', 'automation', 'rules', 'constraints', 'shipped', 'decisions']) {
     assert.doesNotMatch(html, new RegExp(`id=["']${removed}["']`), `still contains #${removed}`);
   }
 });
 
-test('maps the jobs before presenting selected product decisions', () => {
-  assert.match(html, /class=["'][^"']*wa-job-map/);
-  assert.match(html, /Scenario mapping/i);
+test('introduces the product decisions with one contextual scenario section', () => {
+  const scenarios = html.slice(html.indexOf('id="scenarios"'), html.indexOf('id="strategy"'));
+  assert.match(scenarios, /class=["'][^"']*wa-job-map/);
+  assert.match(scenarios, /Before designing/i);
+  assert.match(scenarios, /I was already creating campaigns/i);
+  assert.equal((scenarios.match(/<small>/g) || []).length, 5, 'each scenario needs a plain-language explanation');
   assert.equal((html.match(/class=["'][^"']*wa-decision/g) || []).length, 5);
   assert.ok(html.indexOf('id="scenarios"') < html.indexOf('id="audience"'));
 });
@@ -82,7 +85,6 @@ test('grounds the reconstructed automation flow in existing product evidence', (
 });
 
 test('uses varied editorial compositions instead of a repeated screenshot list', () => {
-  assert.match(html, /class=["'][^"']*wa-summary-grid/);
   assert.match(html, /class=["'][^"']*wa-process/);
   assert.match(html, /class=["'][^"']*wa-choice-grid/);
   assert.match(html, /class=["'][^"']*wa-job-map/);
@@ -101,7 +103,7 @@ test('keeps the case study concise', () => {
     .replace(/&[^;]+;/g, ' ')
     .trim();
   const words = visibleText.split(/\s+/).filter(Boolean);
-  assert.ok(words.length <= 560, `case study has ${words.length} visible words`);
+  assert.ok(words.length <= 650, `case study has ${words.length} visible words`);
 });
 
 test('keeps the live product separate from the next direction', () => {
