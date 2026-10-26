@@ -104,8 +104,8 @@
       <div class="wa-section-head">
         <span class="wa-eyebrow">Use case 01 · Campaign operator</span>
         <h2 class="t-h24">Launch the right campaign with confidence.</h2>
-        <div class="wa-job"><span>Job to be done</span><p>When launching a campaign, I need to know who receives what and keep a way back, so I can send confidently.</p></div>
-        <p class="t-body wa-built"><strong>What I built.</strong> Audience review, visible opt-outs, live message preview and a brief undo window.</p>
+        <div class="wa-job"><span>Job to be done</span><p>Before launching, I need to verify the audience and message—and keep a way back.</p></div>
+        <p class="t-body wa-built"><strong>Built.</strong> Audience review, preview, opt-outs and undo.</p>
       </div>
       <div class="wa-media-pair">
         <figure class="media-figure">
@@ -121,7 +121,16 @@
         <video class="media" src="assets/wa-undo.mp4" poster="assets/wa-undo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A send countdown with an Undo action"></video>
         <figcaption class="media-caption"><strong>Keep a way back.</strong> Send stays reversible briefly.</figcaption>
       </figure>
-      <p class="wa-rationale"><span>Why this approach</span>Confidence must build before the final click.</p>
+      <div class="wa-principle-grid" aria-label="Design principles behind the campaign launch flow">
+        <article class="wa-principle">
+          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.5 11.5-11 14C9.5 26.5 5 22 5 15V7l11-4Z"/><path d="m11 16 3 3 7-7"/></svg>
+          <div><span>Principle</span><h3>Error prevention</h3><p>Review the audience and message before sending.</p></div>
+        </article>
+        <article class="wa-principle">
+          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 9 5 14l5 5"/><path d="M6 14h11c6 0 10 3 10 8 0 3-1.5 5-4 7"/></svg>
+          <div><span>Principle</span><h3>User control and freedom</h3><p>Undo makes the final action reversible.</p></div>
+        </article>
+      </div>
       <p class="wa-outcome"><span>What changed</span>The team is more relaxed at launch.</p>
     </section>
 
@@ -129,8 +138,8 @@
       <div class="wa-section-head">
         <span class="wa-eyebrow">Use case 02 · Campaign operator</span>
         <h2 class="t-h24">Keep follow-ups moving while I’m away.</h2>
-        <div class="wa-job"><span>Job to be done</span><p>When replies arrive, I need the relevant follow-up to go out without depending on me being online.</p></div>
-        <p class="t-body wa-built"><strong>What I built.</strong> Claude matches each selected service to its follow-up.</p>
+        <div class="wa-job"><span>Job to be done</span><p>When replies arrive, the right follow-up should not depend on me being online.</p></div>
+        <p class="t-body wa-built"><strong>Built.</strong> Claude matches choices to follow-ups.</p>
       </div>
       <figure class="media-figure">
         <div class="wa-response-map" role="img" aria-label="A lead selects an option, Claude matches it, and the relevant follow-up is sent">
@@ -140,17 +149,26 @@
           <span class="wa-map-arrow" aria-hidden="true">→</span>
           <div class="wa-response-card"><span>Cretile</span><strong>Follow-up sent</strong></div>
         </div>
-        <figcaption class="media-caption">One campaign handled roughly 40 follow-ups while I was away.</figcaption>
+        <figcaption class="media-caption"><strong>Simplified reconstruction.</strong> One campaign handled roughly 40 follow-ups while I was away.</figcaption>
       </figure>
-      <p class="wa-rationale"><span>Why this approach</span>The mapping was simple, so I skipped a rules builder.</p>
+      <figure class="media-figure wa-campaign-proof">
+        <div class="wa-crop-frame"><img src="assets/wa-screen.jpg" alt="The campaign list containing the four-option service campaign" loading="lazy"></div>
+        <figcaption class="media-caption"><strong>Product evidence.</strong> The four-option campaign inside the live campaign list.</figcaption>
+      </figure>
+      <div class="wa-principle-grid is-single">
+        <article class="wa-principle">
+          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="9" r="3"/><circle cx="25" cy="9" r="3"/><circle cx="16" cy="24" r="3"/><path d="m9.5 11 4.5 9M22.5 11 18 20M10 9h12"/></svg>
+          <div><span>Principle</span><h3>Cognitive offloading</h3><p>The system remembers which follow-up each choice needs.</p></div>
+        </article>
+      </div>
     </section>
 
     <section class="sec wa-editorial wa-use-case" id="constraints">
       <div class="wa-section-head">
         <span class="wa-eyebrow">Use case 03 · Campaign operator and sales</span>
         <h2 class="t-h24">Act without memorizing WhatsApp’s rules.</h2>
-        <div class="wa-job"><span>Job to be done</span><p>When sending or replying, we need to know what WhatsApp allows before acting.</p></div>
-        <p class="t-body wa-built"><strong>What I built.</strong> Warm-up, quality warnings and reply-window status shown in context.</p>
+        <div class="wa-job"><span>Job to be done</span><p>Before acting, we need to know what WhatsApp allows.</p></div>
+        <p class="t-body wa-built"><strong>Built.</strong> Warm-up, quality and reply status in context.</p>
       </div>
       <figure class="media-figure">
         <div class="wa-rule-board">
@@ -159,7 +177,16 @@
         </div>
         <figcaption class="media-caption">Number health and reply eligibility stay visible.</figcaption>
       </figure>
-      <p class="wa-rationale"><span>Why this approach</span>Constraints matter before an unavailable or risky action.</p>
+      <div class="wa-principle-grid" aria-label="Design principles behind visible WhatsApp constraints">
+        <article class="wa-principle">
+          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Z"/><circle cx="16" cy="16" r="4"/></svg>
+          <div><span>Principle</span><h3>Visibility of system status</h3><p>Show eligibility and limits before action.</p></div>
+        </article>
+        <article class="wa-principle">
+          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 6h16v20H8z"/><path d="M12 11h8M12 16h8M12 21h5"/></svg>
+          <div><span>Principle</span><h3>Recognition rather than recall</h3><p>Keep WhatsApp rules inside the workflow.</p></div>
+        </article>
+      </div>
     </section>
 
     <section class="sec wa-editorial" id="product">

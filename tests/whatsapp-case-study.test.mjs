@@ -36,11 +36,30 @@ test('moves from firsthand context to strategy, use cases, and direction', () =>
   }
 });
 
-test('frames each product response as a job with rationale and evidence', () => {
+test('frames each product response as a job with principles and evidence', () => {
   assert.equal((html.match(/class=["'][^"']*wa-use-case/g) || []).length, 3);
   assert.equal((html.match(/class=["'][^"']*wa-job/g) || []).length, 3);
   assert.equal((html.match(/class=["'][^"']*wa-built/g) || []).length, 3);
-  assert.equal((html.match(/class=["'][^"']*wa-rationale/g) || []).length, 3);
+  assert.ok((html.match(/class=["'][^"']*wa-principle(?:\s|["'])/g) || []).length >= 4);
+  assert.ok((html.match(/class=["'][^"']*wa-principle-icon/g) || []).length >= 4);
+
+  for (const principle of [
+    'Error prevention',
+    'User control and freedom',
+    'Cognitive offloading',
+    'Visibility of system status',
+    'Recognition rather than recall'
+  ]) {
+    assert.match(html, new RegExp(principle, 'i'), `missing ${principle}`);
+  }
+});
+
+test('grounds the reconstructed automation flow in existing product evidence', () => {
+  const followUp = html.slice(html.indexOf('id="follow-up"'), html.indexOf('id="constraints"'));
+  assert.match(followUp, /Simplified reconstruction/i);
+  assert.match(followUp, /wa-screen\.jpg/);
+  assert.match(followUp, /class=["'][^"']*wa-campaign-proof/);
+  assert.match(followUp, /figcaption/);
 });
 
 test('uses varied editorial compositions instead of a repeated screenshot list', () => {
@@ -49,6 +68,8 @@ test('uses varied editorial compositions instead of a repeated screenshot list',
   assert.match(html, /class=["'][^"']*wa-choice-grid/);
   assert.match(html, /class=["'][^"']*wa-media-pair/);
   assert.match(html, /class=["'][^"']*wa-response-map/);
+  assert.match(html, /class=["'][^"']*wa-principle-grid/);
+  assert.match(html, /class=["'][^"']*wa-campaign-proof/);
   assert.match(html, /class=["'][^"']*wa-product-board/);
 });
 

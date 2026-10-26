@@ -453,8 +453,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   grid-template-columns: 112px 1fr;
   gap: 20px;
 }
-.wa-job span,
-.wa-rationale span {
+.wa-job span {
   color: var(--wa-accent);
   font-size: 12px;
   font-weight: 600;
@@ -464,19 +463,41 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 }
 .wa-job p { margin: 0; font-size: 16px; line-height: 1.5; letter-spacing: var(--track-body); }
 .wa-built strong { color: var(--ink); font-weight: 500; }
-.wa-rationale {
-  margin: 0;
-  padding: 18px 0;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
+.wa-principle-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.wa-principle-grid.is-single { grid-template-columns: minmax(0, 1fr); }
+.wa-principle {
+  min-height: 156px;
+  padding: 20px;
+  border: 1px solid var(--hairline);
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 20px;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.45;
-  letter-spacing: var(--track-body);
+  grid-template-columns: 40px 1fr;
+  align-items: start;
+  gap: 18px;
 }
+.wa-principle-icon {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--wa-accent-soft);
+  color: var(--wa-accent);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wa-principle div { display: flex; flex-direction: column; gap: 7px; }
+.wa-principle span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.wa-principle h3 { margin: 0; font-size: 16px; font-weight: 500; line-height: 1.3; }
+.wa-principle p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .wa-process {
   list-style: none;
   margin: 0;
@@ -603,6 +624,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   text-align: center;
 }
 .wa-map-arrow { color: var(--muted); font-size: 14px; }
+.wa-campaign-proof .wa-crop-frame { height: 280px; overflow: hidden; background: var(--surface); }
+.wa-campaign-proof img { width: 100%; height: 100%; object-fit: cover; object-position: center 77%; }
 .wa-rule-board { padding: 24px; background: var(--surface); display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 16px; align-items: stretch; }
 .wa-rule-board .media-strip { align-self: center; box-shadow: 0 8px 24px rgba(17, 17, 17, .08); }
 .wa-status-card { padding: 18px; background: var(--white); display: flex; flex-direction: column; gap: 10px; justify-content: center; }
@@ -637,6 +660,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 @media (max-width: 640px) {
   .wa-summary-grid,
   .wa-choice-grid,
+  .wa-principle-grid,
   .wa-process,
   .wa-scope-flow,
   .wa-media-pair,
@@ -644,8 +668,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .wa-rule-board { grid-template-columns: minmax(0, 1fr); }
   .wa-summary-grid article { min-height: 0; }
   .wa-choice-grid article { min-height: 132px; }
-  .wa-job,
-  .wa-rationale { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .wa-job { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .wa-principle { min-height: 0; }
   .wa-process { padding: 16px; }
   .wa-process li { min-height: 92px; }
   .wa-process li:not(:last-child)::after { right: 50%; top: auto; bottom: -12px; transform: translateX(50%) rotate(90deg); }
@@ -657,6 +681,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .wa-outcome { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .wa-response-map { padding: 20px; }
   .wa-map-arrow { justify-self: center; transform: rotate(90deg); }
+  .wa-campaign-proof .wa-crop-frame { height: 200px; }
   .wa-rule-board { padding: 16px; }
   .wa-status-card { min-height: 150px; }
   .wa-product-board { padding: 20px 20px 14px; }
