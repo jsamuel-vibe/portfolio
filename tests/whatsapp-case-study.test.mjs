@@ -22,7 +22,7 @@ test('publishes one editorial presentation without comparison machinery', () => 
 });
 
 test('moves from firsthand context to strategy, use cases, and direction', () => {
-  const sections = ['overview', 'summary', 'problem', 'strategy', 'launch', 'follow-up', 'constraints', 'product', 'direction', 'takeaway'];
+  const sections = ['overview', 'summary', 'scenarios', 'strategy', 'audience', 'launch', 'reply-state', 'analytics', 'follow-up', 'product', 'direction', 'takeaway'];
 
   for (const id of sections) {
     assert.match(html, new RegExp(`id=["']${id}["']`), `missing #${id}`);
@@ -31,15 +31,28 @@ test('moves from firsthand context to strategy, use cases, and direction', () =>
   const positions = sections.map((id) => html.indexOf(`id="${id}"`));
   assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'case-study sections are out of narrative order');
 
-  for (const removed of ['at-a-glance', 'need', 'today', 'reflection', 'scope', 'confidence', 'automation', 'rules', 'shipped', 'decisions']) {
+  for (const removed of ['at-a-glance', 'need', 'today', 'reflection', 'problem', 'scope', 'confidence', 'automation', 'rules', 'constraints', 'shipped', 'decisions']) {
     assert.doesNotMatch(html, new RegExp(`id=["']${removed}["']`), `still contains #${removed}`);
   }
 });
 
-test('frames each product response as a job with principles and evidence', () => {
-  assert.equal((html.match(/class=["'][^"']*wa-use-case/g) || []).length, 3);
-  assert.equal((html.match(/class=["'][^"']*wa-job/g) || []).length, 3);
-  assert.equal((html.match(/class=["'][^"']*wa-built/g) || []).length, 3);
+test('maps the jobs before presenting selected product decisions', () => {
+  assert.match(html, /class=["'][^"']*wa-job-map/);
+  assert.match(html, /Scenario mapping/i);
+  assert.equal((html.match(/class=["'][^"']*wa-decision/g) || []).length, 5);
+  assert.ok(html.indexOf('id="scenarios"') < html.indexOf('id="audience"'));
+});
+
+test('shows the flexible audience paths as a consequential design decision', () => {
+  const audience = html.slice(html.indexOf('id="audience"'), html.indexOf('id="launch"'));
+  assert.match(audience, /class=["'][^"']*wa-audience-paths/);
+  assert.match(audience, /Reusable group/i);
+  assert.match(audience, /One-off group/i);
+  assert.match(audience, /Direct manipulation/i);
+  assert.match(audience, /Flexibility and efficiency of use/i);
+});
+
+test('ties selected product decisions to principles and evidence', () => {
   assert.ok((html.match(/class=["'][^"']*wa-principle(?:\s|["'])/g) || []).length >= 4);
   assert.ok((html.match(/class=["'][^"']*wa-principle-icon/g) || []).length >= 4);
 
@@ -48,28 +61,35 @@ test('frames each product response as a job with principles and evidence', () =>
     'User control and freedom',
     'Cognitive offloading',
     'Visibility of system status',
-    'Recognition rather than recall'
+    'Actionable feedback'
   ]) {
     assert.match(html, new RegExp(principle, 'i'), `missing ${principle}`);
   }
 });
 
+test('uses campaign results to support a next action', () => {
+  const analytics = html.slice(html.indexOf('id="analytics"'), html.indexOf('id="follow-up"'));
+  assert.match(analytics, /wa-analytics\.png/);
+  assert.match(analytics, /resend/i);
+  assert.match(analytics, /inform the team/i);
+});
+
 test('grounds the reconstructed automation flow in existing product evidence', () => {
-  const followUp = html.slice(html.indexOf('id="follow-up"'), html.indexOf('id="constraints"'));
+  const followUp = html.slice(html.indexOf('id="follow-up"'), html.indexOf('id="product"'));
   assert.match(followUp, /Simplified reconstruction/i);
-  assert.match(followUp, /wa-screen\.jpg/);
-  assert.match(followUp, /class=["'][^"']*wa-campaign-proof/);
-  assert.match(followUp, /figcaption/);
+  assert.match(followUp, /roughly 40 follow-ups/i);
+  assert.match(followUp, /Cognitive offloading/i);
 });
 
 test('uses varied editorial compositions instead of a repeated screenshot list', () => {
   assert.match(html, /class=["'][^"']*wa-summary-grid/);
   assert.match(html, /class=["'][^"']*wa-process/);
   assert.match(html, /class=["'][^"']*wa-choice-grid/);
+  assert.match(html, /class=["'][^"']*wa-job-map/);
+  assert.match(html, /class=["'][^"']*wa-audience-paths/);
   assert.match(html, /class=["'][^"']*wa-media-pair/);
   assert.match(html, /class=["'][^"']*wa-response-map/);
   assert.match(html, /class=["'][^"']*wa-principle-grid/);
-  assert.match(html, /class=["'][^"']*wa-campaign-proof/);
   assert.match(html, /class=["'][^"']*wa-product-board/);
 });
 
@@ -105,7 +125,7 @@ test('all local image, video, stylesheet, and script paths exist', async () => {
 });
 
 test('keeps captions with each product-design example', () => {
-  for (const asset of ['wa-hero.jpg', 'wa-preview.mp4', 'wa-audience.jpg', 'wa-undo.mp4', 'wa-warmup.jpg']) {
+  for (const asset of ['wa-hero.jpg', 'wa-preview.mp4', 'wa-audience.jpg', 'wa-undo.mp4', 'wa-analytics.png']) {
     const index = html.indexOf(asset);
     assert.notEqual(index, -1, `missing ${asset}`);
     assert.match(html.slice(index, index + 700), /figcaption/, `missing caption near ${asset}`);

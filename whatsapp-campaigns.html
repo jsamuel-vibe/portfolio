@@ -53,32 +53,29 @@
     <section class="sec wa-editorial" id="summary">
       <div class="wa-section-head">
         <span class="wa-eyebrow">Long story short</span>
-        <h2 class="t-h24">I turned a scattered process into Cretile’s first sales-platform module.</h2>
+        <h2 class="t-h24">I mapped the work, chose key moments and built the first module.</h2>
       </div>
       <div class="wa-summary-grid">
-        <article><span class="t-num">01</span><h3 class="t-h16">Product strategy</h3><p class="t-body">Scoped one workflow within a larger platform.</p></article>
-        <article><span class="t-num">02</span><h3 class="t-h16">Experience design</h3><p class="t-body">Made bulk sends safer and constraints visible.</p></article>
-        <article><span class="t-num">03</span><h3 class="t-h16">Design and build</h3><p class="t-body">Shipped the product with Claude automation.</p></article>
+        <article><span class="t-num">01</span><h3 class="t-h16">Map</h3><p class="t-body">List the jobs campaigns create.</p></article>
+        <article><span class="t-num">02</span><h3 class="t-h16">Decide</h3><p class="t-body">Focus on consequential moments.</p></article>
+        <article><span class="t-num">03</span><h3 class="t-h16">Ship</h3><p class="t-body">Build the complete first loop.</p></article>
       </div>
     </section>
 
-    <section class="sec wa-editorial" id="problem">
+    <section class="sec wa-editorial" id="scenarios">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">How I found the problem</span>
-        <h2 class="t-h24">Every campaign meant piecing the workflow together again.</h2>
-        <p class="t-body">I ran campaigns and mapped replies with sales, so the friction was visible: changing Excel exports, repeated audience setup and follow-ups that waited for someone to be online.</p>
+        <span class="wa-eyebrow">Scenario mapping</span>
+        <h2 class="t-h24">I started with the ways a campaign could happen.</h2>
+        <p class="t-body">From running campaigns and working with sales, I mapped the jobs the product needed to support.</p>
       </div>
-      <figure class="media-figure">
-        <ol class="wa-process" aria-label="The previous campaign workflow">
-          <li><span>01</span><strong>Export Excel</strong></li>
-          <li><span>02</span><strong>Rebuild audience</strong></li>
-          <li><span>03</span><strong>Launch</strong></li>
-          <li><span>04</span><strong>Watch replies</strong></li>
-          <li><span>05</span><strong>Follow up</strong></li>
-        </ol>
-        <figcaption class="media-caption">Campaigns moved forward. Their context kept breaking between steps.</figcaption>
-      </figure>
-      <blockquote class="wa-question">How might we bring this work into one system without building the entire sales platform?</blockquote>
+      <div class="wa-job-map" aria-label="Campaign jobs considered before designing">
+        <article><span>01</span><strong>Choose an audience</strong></article>
+        <article><span>02</span><strong>Launch safely</strong></article>
+        <article><span>03</span><strong>Manage replies</strong></article>
+        <article><span>04</span><strong>Learn and retry</strong></article>
+        <article><span>05</span><strong>Automate</strong></article>
+      </div>
+      <p class="wa-method-note"><strong>Method</strong> Scenario exploration—not formal user research.</p>
     </section>
 
     <section class="sec wa-editorial" id="strategy">
@@ -91,21 +88,38 @@
         <article><span>Option A</span><h3 class="t-h16">Reconnect the tool</h3><p class="t-body">Restore the same workflow.</p></article>
         <article class="is-chosen"><span>Chosen</span><h3 class="t-h16">Build the first module</h3><p>Own the workflow and future automation.</p></article>
       </div>
-      <figure class="media-figure wa-scope-board">
-        <ol class="wa-scope-flow" aria-label="The first complete product workflow">
-          <li>Import contacts</li><li>Tag an audience</li><li>Preview and send</li><li>Receive replies</li><li>Follow up</li>
-        </ol>
-        <div class="wa-later"><span>Later</span><p>Enquiry capture, ownership and qualification</p></div>
-        <figcaption class="media-caption">One complete campaign loop first.</figcaption>
-      </figure>
     </section>
 
-    <section class="sec wa-editorial wa-use-case" id="launch">
+    <section class="sec wa-editorial wa-decision" id="audience">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 01 · Campaign operator</span>
+        <span class="wa-eyebrow">Use case 01 · Choose an audience</span>
+        <h2 class="t-h24">A one-off campaign should not require inventing a tag.</h2>
+        <p class="t-body">Interakt pushed every group through the same setup. I kept tags for reusable audiences and added direct selection for exceptions.</p>
+      </div>
+      <figure class="media-figure wa-audience-board">
+        <div class="wa-audience-before">
+          <span>Previous one-off flow</span>
+          <ol class="wa-process" aria-label="Previous steps for creating a one-off audience">
+            <li><span>01</span><strong>Upload</strong></li><li><span>02</span><strong>Add tag</strong></li><li><span>03</span><strong>Select tag</strong></li><li><span>04</span><strong>Campaign</strong></li>
+          </ol>
+        </div>
+        <div class="wa-audience-paths">
+          <article><span>Reusable group</span><strong>Filter or tag</strong><i>→</i><strong>Select group</strong></article>
+          <article><span>One-off group</span><strong>Hand-pick contacts</strong><i>→</i><strong>Create campaign</strong></article>
+        </div>
+        <figcaption class="media-caption">Two paths, chosen by the job—not by the database structure.</figcaption>
+      </figure>
+      <div class="wa-principle-grid">
+        <article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h20M6 16h20M6 24h20"/><circle cx="11" cy="8" r="3"/><circle cx="21" cy="16" r="3"/><circle cx="14" cy="24" r="3"/></svg><div><span>Principle</span><h3>Flexibility and efficiency of use</h3></div></article>
+        <article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="m10 5 12 11-7 1 4 8-4 2-4-8-5 5Z"/></svg><div><span>Principle</span><h3>Direct manipulation</h3></div></article>
+      </div>
+    </section>
+
+    <section class="sec wa-editorial wa-decision" id="launch">
+      <div class="wa-section-head">
+        <span class="wa-eyebrow">Use case 02 · Launch safely</span>
         <h2 class="t-h24">Launch the right campaign with confidence.</h2>
-        <div class="wa-job"><span>Job to be done</span><p>Before launching, I need to verify the audience and message—and keep a way back.</p></div>
-        <p class="t-body wa-built"><strong>Built.</strong> Audience review, preview, opt-outs and undo.</p>
+        <p class="t-body">Preview and opt-out checks prevent mistakes; Undo keeps the final action reversible.</p>
       </div>
       <div class="wa-media-pair">
         <figure class="media-figure">
@@ -124,22 +138,50 @@
       <div class="wa-principle-grid" aria-label="Design principles behind the campaign launch flow">
         <article class="wa-principle">
           <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.5 11.5-11 14C9.5 26.5 5 22 5 15V7l11-4Z"/><path d="m11 16 3 3 7-7"/></svg>
-          <div><span>Principle</span><h3>Error prevention</h3><p>Review the audience and message before sending.</p></div>
+          <div><span>Principle</span><h3>Error prevention</h3></div>
         </article>
         <article class="wa-principle">
           <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 9 5 14l5 5"/><path d="M6 14h11c6 0 10 3 10 8 0 3-1.5 5-4 7"/></svg>
-          <div><span>Principle</span><h3>User control and freedom</h3><p>Undo makes the final action reversible.</p></div>
+          <div><span>Principle</span><h3>User control and freedom</h3></div>
         </article>
       </div>
       <p class="wa-outcome"><span>What changed</span>The team is more relaxed at launch.</p>
     </section>
 
-    <section class="sec wa-editorial wa-use-case" id="follow-up">
+    <section class="sec wa-editorial wa-decision" id="reply-state">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 02 · Campaign operator</span>
+        <span class="wa-eyebrow">Use case 03 · Manage replies</span>
+        <h2 class="t-h24">A closed reply window should look closed.</h2>
+        <p class="t-body">The interface separates an open conversation from one that now requires an approved template.</p>
+      </div>
+      <figure class="media-figure">
+        <div class="wa-state-compare">
+          <article class="is-open"><span>Window open</span><div><i></i><p>Write a reply…</p><button type="button" tabindex="-1">Send</button></div></article>
+          <article class="is-closed"><span>Window closed</span><div><strong>The 24-hour reply window has closed.</strong><p>Use an approved WhatsApp template.</p><button type="button" tabindex="-1">Choose template</button></div></article>
+        </div>
+        <figcaption class="media-caption">The state changes before the salesperson tries an unavailable action.</figcaption>
+      </figure>
+      <div class="wa-principle-grid is-single"><article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Z"/><circle cx="16" cy="16" r="4"/></svg><div><span>Principle</span><h3>Visibility of system status</h3></div></article></div>
+    </section>
+
+    <section class="sec wa-editorial wa-decision" id="analytics">
+      <div class="wa-section-head">
+        <span class="wa-eyebrow">Use case 04 · Learn and retry</span>
+        <h2 class="t-h24">Results should lead to the next action.</h2>
+        <p class="t-body">The report helps me inform the team who was reached and resend to failed contacts.</p>
+      </div>
+      <figure class="media-figure wa-analytics-board">
+        <img class="media" src="assets/wa-analytics.png" alt="Campaign report separating accepted, delivered, read, replied and failed messages" loading="lazy">
+        <figcaption class="media-caption">Delivery states stay separate; failures remain actionable.</figcaption>
+      </figure>
+      <div class="wa-principle-grid is-single"><article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 25V14M16 25V7M26 25V11"/><path d="m6 10 7-5 6 4 7-6"/></svg><div><span>Principle</span><h3>Actionable feedback</h3></div></article></div>
+    </section>
+
+    <section class="sec wa-editorial wa-decision" id="follow-up">
+      <div class="wa-section-head">
+        <span class="wa-eyebrow">Use case 05 · Automate</span>
         <h2 class="t-h24">Keep follow-ups moving while I’m away.</h2>
-        <div class="wa-job"><span>Job to be done</span><p>When replies arrive, the right follow-up should not depend on me being online.</p></div>
-        <p class="t-body wa-built"><strong>Built.</strong> Claude matches choices to follow-ups.</p>
+        <p class="t-body">Claude matches each selected option to the relevant response.</p>
       </div>
       <figure class="media-figure">
         <div class="wa-response-map" role="img" aria-label="A lead selects an option, Claude matches it, and the relevant follow-up is sent">
@@ -151,40 +193,10 @@
         </div>
         <figcaption class="media-caption"><strong>Simplified reconstruction.</strong> One campaign handled roughly 40 follow-ups while I was away.</figcaption>
       </figure>
-      <figure class="media-figure wa-campaign-proof">
-        <div class="wa-crop-frame"><img src="assets/wa-screen.jpg" alt="The campaign list containing the four-option service campaign" loading="lazy"></div>
-        <figcaption class="media-caption"><strong>Product evidence.</strong> The four-option campaign inside the live campaign list.</figcaption>
-      </figure>
       <div class="wa-principle-grid is-single">
         <article class="wa-principle">
           <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="9" r="3"/><circle cx="25" cy="9" r="3"/><circle cx="16" cy="24" r="3"/><path d="m9.5 11 4.5 9M22.5 11 18 20M10 9h12"/></svg>
-          <div><span>Principle</span><h3>Cognitive offloading</h3><p>The system remembers which follow-up each choice needs.</p></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="sec wa-editorial wa-use-case" id="constraints">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 03 · Campaign operator and sales</span>
-        <h2 class="t-h24">Act without memorizing WhatsApp’s rules.</h2>
-        <div class="wa-job"><span>Job to be done</span><p>Before acting, we need to know what WhatsApp allows.</p></div>
-        <p class="t-body wa-built"><strong>Built.</strong> Warm-up, quality and reply status in context.</p>
-      </div>
-      <figure class="media-figure">
-        <div class="wa-rule-board">
-          <img class="media-strip" src="assets/wa-warmup.jpg" alt="Number warm-up showing the daily limit, schedule and WhatsApp quality" loading="lazy">
-          <div class="wa-status-card"><span>Reply status</span><strong>Window open</strong></div>
-        </div>
-        <figcaption class="media-caption">Number health and reply eligibility stay visible.</figcaption>
-      </figure>
-      <div class="wa-principle-grid" aria-label="Design principles behind visible WhatsApp constraints">
-        <article class="wa-principle">
-          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Z"/><circle cx="16" cy="16" r="4"/></svg>
-          <div><span>Principle</span><h3>Visibility of system status</h3><p>Show eligibility and limits before action.</p></div>
-        </article>
-        <article class="wa-principle">
-          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 6h16v20H8z"/><path d="M12 11h8M12 16h8M12 21h5"/></svg>
-          <div><span>Principle</span><h3>Recognition rather than recall</h3><p>Keep WhatsApp rules inside the workflow.</p></div>
+          <div><span>Principle</span><h3>Cognitive offloading</h3></div>
         </article>
       </div>
     </section>
