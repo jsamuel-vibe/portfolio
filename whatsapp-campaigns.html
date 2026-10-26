@@ -56,112 +56,121 @@
         <h2 class="t-h24">I turned a scattered process into Cretile’s first sales-platform module.</h2>
       </div>
       <div class="wa-summary-grid">
-        <article><span class="t-num">01</span><h3 class="t-h16">Product strategy</h3><p class="t-body">Scoped the first useful workflow within a larger platform.</p></article>
+        <article><span class="t-num">01</span><h3 class="t-h16">Product strategy</h3><p class="t-body">Scoped one workflow within a larger platform.</p></article>
         <article><span class="t-num">02</span><h3 class="t-h16">Experience design</h3><p class="t-body">Made bulk sends safer and constraints visible.</p></article>
-        <article><span class="t-num">03</span><h3 class="t-h16">Design and build</h3><p class="t-body">Shipped the product with Claude reply automation.</p></article>
+        <article><span class="t-num">03</span><h3 class="t-h16">Design and build</h3><p class="t-body">Shipped the product with Claude automation.</p></article>
       </div>
     </section>
 
     <section class="sec wa-editorial" id="problem">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">The starting point</span>
+        <span class="wa-eyebrow">How I found the problem</span>
         <h2 class="t-h24">Every campaign meant piecing the workflow together again.</h2>
-        <p class="t-body">Interakt worked. The friction sat around it: changing Excel exports, repeated audience setup and replies that depended on someone being online.</p>
-        <p class="t-body">Losing access to our Meta account forced a new setup—and a chance to rethink the workflow.</p>
+        <p class="t-body">I ran campaigns and mapped replies with sales, so the friction was visible: changing Excel exports, repeated audience setup and follow-ups that waited for someone to be online.</p>
       </div>
       <figure class="media-figure">
         <ol class="wa-process" aria-label="The previous campaign workflow">
-          <li><span>01</span><strong>Export Excel</strong><small>Latest leads</small></li>
-          <li><span>02</span><strong>Rebuild audience</strong><small>Every campaign</small></li>
-          <li><span>03</span><strong>Launch</strong><small>In another tool</small></li>
-          <li><span>04</span><strong>Watch replies</strong><small>Stay available</small></li>
-          <li><span>05</span><strong>Follow up</strong><small>One by one</small></li>
+          <li><span>01</span><strong>Export Excel</strong></li>
+          <li><span>02</span><strong>Rebuild audience</strong></li>
+          <li><span>03</span><strong>Launch</strong></li>
+          <li><span>04</span><strong>Watch replies</strong></li>
+          <li><span>05</span><strong>Follow up</strong></li>
         </ol>
-        <figcaption class="media-caption">The work moved forward, but its context did not move with it.</figcaption>
+        <figcaption class="media-caption">Campaigns moved forward. Their context kept breaking between steps.</figcaption>
       </figure>
       <blockquote class="wa-question">How might we bring this work into one system without building the entire sales platform?</blockquote>
     </section>
 
-    <section class="sec wa-editorial" id="scope">
+    <section class="sec wa-editorial" id="strategy">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">Choosing the first slice</span>
-        <h2 class="t-h24">I designed one complete loop before expanding the platform.</h2>
-        <p class="t-body">Founders and sales aligned on the larger direction. Version one only had to close one loop: I create campaigns; a salesperson replies.</p>
+        <span class="wa-eyebrow">Product strategy</span>
+        <h2 class="t-h24">Replacing a campaign tool was not enough reason to build.</h2>
+        <p class="t-body">Losing our Meta account forced a new number—and a choice.</p>
+      </div>
+      <div class="wa-choice-grid" aria-label="Two product directions considered">
+        <article><span>Option A</span><h3 class="t-h16">Reconnect the tool</h3><p class="t-body">Restore the same workflow.</p></article>
+        <article class="is-chosen"><span>Chosen</span><h3 class="t-h16">Build the first module</h3><p>Own the workflow and future automation.</p></article>
       </div>
       <figure class="media-figure wa-scope-board">
         <ol class="wa-scope-flow" aria-label="The first complete product workflow">
           <li>Import contacts</li><li>Tag an audience</li><li>Preview and send</li><li>Receive replies</li><li>Follow up</li>
         </ol>
         <div class="wa-later"><span>Later</span><p>Enquiry capture, ownership and qualification</p></div>
-        <figcaption class="media-caption">A narrow scope, but a complete working loop.</figcaption>
+        <figcaption class="media-caption">One complete campaign loop first.</figcaption>
       </figure>
     </section>
 
-    <section class="sec wa-editorial" id="confidence">
+    <section class="sec wa-editorial wa-use-case" id="launch">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">Problem 01 · Campaign confidence</span>
-        <h2 class="t-h24">The final click felt heavier than the rest of the flow.</h2>
-        <p class="t-body">Campaign launches made me nervous; the wrong audience or message would be public immediately. Confidence had to build before the final click.</p>
+        <span class="wa-eyebrow">Use case 01 · Campaign operator</span>
+        <h2 class="t-h24">Launch the right campaign with confidence.</h2>
+        <div class="wa-job"><span>Job to be done</span><p>When launching a campaign, I need to know who receives what and keep a way back, so I can send confidently.</p></div>
+        <p class="t-body wa-built"><strong>What I built.</strong> Audience review, visible opt-outs, live message preview and a brief undo window.</p>
       </div>
       <div class="wa-media-pair">
         <figure class="media-figure">
           <video class="media" src="assets/wa-preview.mp4" poster="assets/wa-preview-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Selecting a template while the WhatsApp preview updates"></video>
-          <figcaption class="media-caption"><strong>Check the message.</strong> See the final WhatsApp while assembling the campaign.</figcaption>
+          <figcaption class="media-caption"><strong>Check the message.</strong> Preview the final WhatsApp.</figcaption>
         </figure>
         <figure class="media-figure">
           <img class="media" src="assets/wa-audience.jpg" alt="Audience review showing contacts excluded because they opted out" loading="lazy">
-          <figcaption class="media-caption"><strong>Check the audience.</strong> Keep opt-outs visible but unselectable.</figcaption>
+          <figcaption class="media-caption"><strong>Check the audience.</strong> See who is excluded and why.</figcaption>
         </figure>
       </div>
       <figure class="media-figure wa-wide-moment">
         <video class="media" src="assets/wa-undo.mp4" poster="assets/wa-undo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A send countdown with an Undo action"></video>
-        <figcaption class="media-caption"><strong>Keep a way back.</strong> The send stays reversible for a few seconds.</figcaption>
+        <figcaption class="media-caption"><strong>Keep a way back.</strong> Send stays reversible briefly.</figcaption>
       </figure>
-      <p class="wa-outcome"><span>What changed</span>The team is more relaxed because launching no longer feels instantly final.</p>
+      <p class="wa-rationale"><span>Why this approach</span>Confidence must build before the final click.</p>
+      <p class="wa-outcome"><span>What changed</span>The team is more relaxed at launch.</p>
     </section>
 
-    <section class="sec wa-editorial" id="automation">
+    <section class="sec wa-editorial wa-use-case" id="follow-up">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">Problem 02 · Response timing</span>
-        <h2 class="t-h24">Replies arrived on the lead’s schedule, not mine.</h2>
-        <p class="t-body">One campaign offered four service options, each needing a different response. Manually, I had to watch every reply and answer one by one.</p>
+        <span class="wa-eyebrow">Use case 02 · Campaign operator</span>
+        <h2 class="t-h24">Keep follow-ups moving while I’m away.</h2>
+        <div class="wa-job"><span>Job to be done</span><p>When replies arrive, I need the relevant follow-up to go out without depending on me being online.</p></div>
+        <p class="t-body wa-built"><strong>What I built.</strong> Claude matches each selected service to its follow-up.</p>
       </div>
       <figure class="media-figure">
         <div class="wa-response-map" role="img" aria-label="A lead selects an option, Claude matches it, and the relevant follow-up is sent">
-          <div class="wa-response-card"><span>Lead replies</span><div class="wa-option-row"><i>A</i><i>B</i><i>C</i><i>D</i></div></div>
+          <div class="wa-response-card"><span>Lead choice</span><div class="wa-option-row"><i>A</i><i>B</i><i>C</i><i>D</i></div></div>
           <span class="wa-map-arrow" aria-hidden="true">→</span>
-          <div class="wa-response-card is-claude"><span>Claude matches</span><strong>Choice → response</strong></div>
+          <div class="wa-response-card is-claude"><span>Claude matches</span><strong>Choice → reply</strong></div>
           <span class="wa-map-arrow" aria-hidden="true">→</span>
-          <div class="wa-response-card"><span>Cretile replies</span><strong>Relevant follow-up</strong></div>
+          <div class="wa-response-card"><span>Cretile</span><strong>Follow-up sent</strong></div>
         </div>
-        <figcaption class="media-caption">In one campaign, the workflow handled roughly 40 matching follow-ups while I was away.</figcaption>
+        <figcaption class="media-caption">One campaign handled roughly 40 follow-ups while I was away.</figcaption>
       </figure>
+      <p class="wa-rationale"><span>Why this approach</span>The mapping was simple, so I skipped a rules builder.</p>
     </section>
 
-    <section class="sec wa-editorial" id="rules">
+    <section class="sec wa-editorial wa-use-case" id="constraints">
       <div class="wa-section-head">
-        <span class="wa-eyebrow">Problem 03 · Platform constraints</span>
-        <h2 class="t-h24">WhatsApp’s rules could not stay behind the interface.</h2>
-        <p class="t-body">New numbers warm up gradually, Meta can flag quality, and normal replies close after 24 hours. These limits appear where decisions happen.</p>
+        <span class="wa-eyebrow">Use case 03 · Campaign operator and sales</span>
+        <h2 class="t-h24">Act without memorizing WhatsApp’s rules.</h2>
+        <div class="wa-job"><span>Job to be done</span><p>When sending or replying, we need to know what WhatsApp allows before acting.</p></div>
+        <p class="t-body wa-built"><strong>What I built.</strong> Warm-up, quality warnings and reply-window status shown in context.</p>
       </div>
       <figure class="media-figure">
         <div class="wa-rule-board">
           <img class="media-strip" src="assets/wa-warmup.jpg" alt="Number warm-up showing the daily limit, schedule and WhatsApp quality" loading="lazy">
-          <div class="wa-status-card"><span>Reply status</span><strong>Window open</strong><p>Shows whether a normal reply is still available.</p></div>
+          <div class="wa-status-card"><span>Reply status</span><strong>Window open</strong></div>
         </div>
         <figcaption class="media-caption">Number health and reply eligibility stay visible.</figcaption>
       </figure>
+      <p class="wa-rationale"><span>Why this approach</span>Constraints matter before an unavailable or risky action.</p>
     </section>
 
     <section class="sec wa-editorial" id="product">
       <div class="wa-section-head">
         <span class="wa-eyebrow">The product today</span>
-        <h2 class="t-h24">One place to launch a campaign and continue the conversation.</h2>
-        <p class="t-body">The live release joins contacts, campaigns, delivery analytics and inbox safeguards. I run campaigns; one salesperson replies.</p>
+        <h2 class="t-h24">One place to launch campaigns and continue conversations.</h2>
+        <p class="t-body">The live release joins contacts, campaigns, analytics and inbox safeguards for me and one salesperson.</p>
       </div>
       <figure class="media-figure wa-product-board">
         <img class="media" src="assets/wa-hero.jpg" alt="The live campaign screen showing number warm-up status and previous campaigns" loading="lazy">
-        <figcaption class="media-caption">The first working module of a broader internal sales platform.</figcaption>
+        <figcaption class="media-caption">Cretile's first sales-platform module.</figcaption>
       </figure>
     </section>
 
@@ -169,7 +178,7 @@
       <div class="wa-section-head">
         <span class="wa-eyebrow">Next direction · not yet built</span>
         <h2 class="t-h24">Carry lead context forward from the first enquiry.</h2>
-        <p class="t-body">Next, the website, WhatsApp and sales ownership can share context automatically.</p>
+        <p class="t-body">Next, the website, WhatsApp and sales can share lead context.</p>
       </div>
       <ol class="wa-flow" aria-label="Proposed journey from website enquiry to qualification">
         <li><span>01</span><strong>Website enquiry</strong></li>
@@ -184,7 +193,7 @@
     <section class="split sec" id="takeaway">
       <h2 class="t-h24 label-col">What I learned</h2>
       <div class="content-col">
-        <p class="t-body">Owning a product matters when the team can shape it around how work actually happens. This release proves that with one complete workflow.</p>
+        <p class="t-body">A custom product earns its place by capturing how the team works—not by recreating an existing tool.</p>
       </div>
     </section>
 

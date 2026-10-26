@@ -421,6 +421,62 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   gap: 12px;
 }
 .wa-summary-grid .t-num { font-size: 24px; }
+.wa-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.wa-choice-grid article {
+  min-height: 156px;
+  padding: 20px;
+  border: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.wa-choice-grid article > span {
+  margin-bottom: auto;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.wa-choice-grid .is-chosen { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.wa-choice-grid .is-chosen > span,
+.wa-choice-grid .is-chosen > p { color: rgba(255, 255, 255, .64); }
+.wa-choice-grid .is-chosen > p { margin: 0; font-size: 16px; line-height: 24px; letter-spacing: var(--track-body); }
+.wa-use-case .wa-section-head { max-width: 760px; }
+.wa-job {
+  margin-top: 8px;
+  padding: 20px;
+  background: var(--wa-accent-soft);
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 20px;
+}
+.wa-job span,
+.wa-rationale span {
+  color: var(--wa-accent);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.wa-job p { margin: 0; font-size: 16px; line-height: 1.5; letter-spacing: var(--track-body); }
+.wa-built strong { color: var(--ink); font-weight: 500; }
+.wa-rationale {
+  margin: 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: var(--track-body);
+}
 .wa-process {
   list-style: none;
   margin: 0;
@@ -580,12 +636,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 
 @media (max-width: 640px) {
   .wa-summary-grid,
+  .wa-choice-grid,
   .wa-process,
   .wa-scope-flow,
   .wa-media-pair,
   .wa-response-map,
   .wa-rule-board { grid-template-columns: minmax(0, 1fr); }
   .wa-summary-grid article { min-height: 0; }
+  .wa-choice-grid article { min-height: 132px; }
+  .wa-job,
+  .wa-rationale { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .wa-process { padding: 16px; }
   .wa-process li { min-height: 92px; }
   .wa-process li:not(:last-child)::after { right: 50%; top: auto; bottom: -12px; transform: translateX(50%) rotate(90deg); }

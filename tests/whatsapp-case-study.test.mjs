@@ -21,8 +21,8 @@ test('publishes one editorial presentation without comparison machinery', () => 
   assert.doesNotMatch(css, /data-case-view|\.case-viewer|\.wa-character-scene/);
 });
 
-test('moves through the case study from context to problems, solutions, and direction', () => {
-  const sections = ['overview', 'summary', 'problem', 'scope', 'confidence', 'automation', 'rules', 'product', 'direction', 'takeaway'];
+test('moves from firsthand context to strategy, use cases, and direction', () => {
+  const sections = ['overview', 'summary', 'problem', 'strategy', 'launch', 'follow-up', 'constraints', 'product', 'direction', 'takeaway'];
 
   for (const id of sections) {
     assert.match(html, new RegExp(`id=["']${id}["']`), `missing #${id}`);
@@ -31,14 +31,22 @@ test('moves through the case study from context to problems, solutions, and dire
   const positions = sections.map((id) => html.indexOf(`id="${id}"`));
   assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'case-study sections are out of narrative order');
 
-  for (const removed of ['at-a-glance', 'need', 'today', 'reflection', 'strategy', 'shipped', 'decisions']) {
+  for (const removed of ['at-a-glance', 'need', 'today', 'reflection', 'scope', 'confidence', 'automation', 'rules', 'shipped', 'decisions']) {
     assert.doesNotMatch(html, new RegExp(`id=["']${removed}["']`), `still contains #${removed}`);
   }
+});
+
+test('frames each product response as a job with rationale and evidence', () => {
+  assert.equal((html.match(/class=["'][^"']*wa-use-case/g) || []).length, 3);
+  assert.equal((html.match(/class=["'][^"']*wa-job/g) || []).length, 3);
+  assert.equal((html.match(/class=["'][^"']*wa-built/g) || []).length, 3);
+  assert.equal((html.match(/class=["'][^"']*wa-rationale/g) || []).length, 3);
 });
 
 test('uses varied editorial compositions instead of a repeated screenshot list', () => {
   assert.match(html, /class=["'][^"']*wa-summary-grid/);
   assert.match(html, /class=["'][^"']*wa-process/);
+  assert.match(html, /class=["'][^"']*wa-choice-grid/);
   assert.match(html, /class=["'][^"']*wa-media-pair/);
   assert.match(html, /class=["'][^"']*wa-response-map/);
   assert.match(html, /class=["'][^"']*wa-product-board/);
