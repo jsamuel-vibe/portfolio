@@ -1,5 +1,10 @@
 # Cretile Case Study Section-by-Section Implementation Plan
 
+**Superseded on 2026-10-29:** The approved two-page text-and-imagery narrative
+is implemented through `2026-10-29-cretile-two-page-story.md`. The diagram-led
+tasks and inline deep-story approach below are historical, not instructions
+for the current pages.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Rebuild the Cretile case study into the approved visual, problem-led narrative while pausing after every page section for Samuel's review.
@@ -9,6 +14,12 @@
 **Tech Stack:** Semantic HTML5, CSS, existing vanilla JavaScript, Node.js built-in test runner.
 
 **Spec:** `docs/superpowers/specs/2026-10-28-cretile-case-study-narrative.md`
+
+**2026-10-29 amendment:** Samuel requested a complete product overview before
+the optional deeper design narrative. The spec's Current Overview Direction
+records this later instruction and takes precedence over the chapter order
+below. The implemented overview is ready for visual review; do not treat the
+remaining legacy deep-story sections as rewritten or approved by this change.
 
 ## Global Constraints
 

@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20261029-overview">
 </head>
 <body>
 <main class="page">
@@ -48,7 +48,9 @@
     </header>
 
     <section class="sec-tight">
-      <img class="media" src="assets/superstash-hero.jpg" alt="The Superstash home screen, showing saved images, notes and posts in one grid">
+      <div class="interface-stage"><div class="interface-viewport">
+        <img class="media" src="assets/superstash-screen.jpg" alt="The Superstash home screen, showing saved images, notes and posts in one grid">
+      </div></div>
     </section>
 
     <section class="split sec">
@@ -98,11 +100,15 @@
           </div>
           <div class="stack" style="gap:24px">
             <figure class="media-figure">
-              <img class="media" src="assets/superstash-hover-save.jpg" alt="A Save button floating over an image on hover, saving it in one click" loading="lazy">
+              <div class="interface-stage"><div class="interface-viewport">
+                <img class="media" src="assets/superstash-hover-save-clean.webp" alt="A Save button floating over an image on hover, saving it in one click" loading="lazy">
+              </div></div>
               <figcaption class="media-caption">Before: a Save button on every image. One click and it was saved.</figcaption>
             </figure>
             <figure class="media-figure">
-              <video class="media" src="assets/superstash-flooded-library.mp4" poster="assets/superstash-flooded-library-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Scrolling through the flooded, unsorted Superstash library"></video>
+              <div class="interface-stage"><div class="interface-viewport">
+                <video class="media" src="assets/superstash-flooded-library-clean.mp4" poster="assets/superstash-flooded-library-poster-clean.webp" autoplay muted loop playsinline preload="metadata" aria-label="Scrolling through the flooded, unsorted Superstash library"></video>
+              </div></div>
               <figcaption class="media-caption">The result: a library full of things I never meant to keep.</figcaption>
             </figure>
           </div>
@@ -135,14 +141,18 @@
                 <p class="t-body">The catch: right-click is harder to discover, and phones don’t have it. This hasn’t shipped yet, and I’m still testing it.</p>
               </div>
             </div>
-            <video class="media" src="assets/superstash-right-click-save.mp4" poster="assets/superstash-right-click-save-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Right-clicking a Pinterest image, choosing Save to Superstash, and tagging the save"></video>
+            <div class="interface-stage"><div class="interface-viewport">
+              <video class="media" src="assets/superstash-right-click-save-clean.mp4" poster="assets/superstash-right-click-save-poster-clean.webp" autoplay muted loop playsinline preload="metadata" aria-label="Right-clicking a Pinterest image, choosing Save to Superstash, and tagging the save"></video>
+            </div></div>
           </div>
           <div class="stack" style="align-self:stretch;gap:42px">
             <div class="stack" style="gap:16px">
               <h3 class="t-h16"><span class="decision-num">04</span> AI does the sorting</h3>
               <p class="t-body">To make things easy to find, AI adds tags and a short description to every save. I wrote the prompts so it describes each save the way a person would. Nobody has to organise anything by hand. This part works best so far.</p>
             </div>
-            <img class="media" src="assets/superstash-ai-tags.jpg" alt="A saved illustration in Superstash with its AI-written summary and tags: Illustration, Poster, Star, Typography, Blue, Yellow, Hand-Drawn, Playful" loading="lazy">
+            <div class="interface-stage"><div class="interface-viewport">
+              <img class="media" src="assets/superstash-ai-tags-clean.webp" alt="A saved illustration in Superstash with its AI-written summary and tags: Illustration, Poster, Star, Typography, Blue, Yellow, Hand-Drawn, Playful" loading="lazy">
+            </div></div>
           </div>
         </div>
         <button class="btn btn-secondary" type="button" aria-controls="more-decisions" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
@@ -157,26 +167,34 @@
       <div class="carousel" data-carousel>
         <div class="carousel-track" tabindex="0" aria-label="Home screen versions, scroll sideways">
           <figure class="carousel-slide media-figure">
-            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="Version 1: Tag filters and Home / Trash tabs across the top" aria-label="Open version 1 full screen">
-              <img class="media" src="assets/superstash-home-v1.jpg" alt="Early home screen: a top bar with tag filters and Home and Trash tabs above the grid" loading="lazy">
+            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="Version 1: Tag filters and Home / Trash tabs across the top" aria-label="Open version 1 full screen">
+              <span class="interface-viewport">
+                <img class="media" src="assets/superstash-home-v1-clean.webp" alt="Early home screen: a top bar with tag filters and Home and Trash tabs above the grid" loading="lazy">
+              </span>
             </button>
             <figcaption class="media-caption"><strong>Version 1</strong> · Tag filters and Home / Trash tabs across the top</figcaption>
           </figure>
           <figure class="carousel-slide media-figure">
-            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="Version 2: Icon sidebar, an Add new card in the grid, sort and view options" aria-label="Open version 2 full screen">
-              <img class="media" src="assets/superstash-home-v2.jpg" alt="Early home screen: an icon sidebar, an Add new card in the grid, and sort and view options" loading="lazy">
+            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="Version 2: Icon sidebar, an Add new card in the grid, sort and view options" aria-label="Open version 2 full screen">
+              <span class="interface-viewport">
+                <img class="media" src="assets/superstash-home-v2-clean.webp" alt="Early home screen: an icon sidebar, an Add new card in the grid, and sort and view options" loading="lazy">
+              </span>
             </button>
             <figcaption class="media-caption"><strong>Version 2</strong> · Icon sidebar, an Add new card in the grid, sort and view options</figcaption>
           </figure>
           <figure class="carousel-slide media-figure">
-            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="Version 3: Text sidebar with a large search heading" aria-label="Open version 3 full screen">
-              <img class="media" src="assets/superstash-home-v3.jpg" alt="Early home screen: a text sidebar and a large Search your stash heading above the grid" loading="lazy">
+            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="Version 3: Text sidebar with a large search heading" aria-label="Open version 3 full screen">
+              <span class="interface-viewport">
+                <img class="media" src="assets/superstash-home-v3-clean.webp" alt="Early home screen: a text sidebar and a large Search your stash heading above the grid" loading="lazy">
+              </span>
             </button>
             <figcaption class="media-caption"><strong>Version 3</strong> · Text sidebar with a large search heading</figcaption>
           </figure>
           <figure class="carousel-slide media-figure">
-            <button class="zoomable" type="button" data-lightbox="home-versions" data-caption="The one I built: Flexible enough to add features without changing the structure" aria-label="Open the one i built full screen">
-              <img class="media" src="assets/superstash-hero.jpg" alt="The home screen I built: icon sidebar, search bar and a grid of saves" loading="lazy">
+            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="The one I built: Flexible enough to add features without changing the structure" aria-label="Open the one i built full screen">
+              <span class="interface-viewport">
+                <img class="media" src="assets/superstash-screen.jpg" alt="The home screen I built: icon sidebar, search bar and a grid of saves" loading="lazy">
+              </span>
             </button>
             <figcaption class="media-caption"><strong>The one I built</strong> · Flexible enough to add features without changing the structure</figcaption>
           </figure>
@@ -258,7 +276,7 @@
           <span class="t-display">WhatsApp campaign tool</span>
           <span class="btn btn-primary">View case study<span class="btn-icon" aria-hidden="true">→</span></span>
         </div>
-        <div class="next-preview"><img src="assets/wa-screen.jpg" alt="" loading="lazy"></div>
+        <div class="next-preview interface-stage"><div class="interface-viewport"><img src="assets/wa-workspace-redacted.webp" alt="" loading="lazy"></div></div>
       </a>
     </section>
 

@@ -19,211 +19,37 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20261029-controls">
+<link rel="stylesheet" href="cretile-overview.css?v=20261029-controls">
 </head>
-<body class="wa-case">
-<main class="page">
-  <div class="container">
-
-    <nav class="topnav">
-      <a class="brand" href="index.html">
-        <span class="brand-mark"></span>
-        <span class="t-h16">Samuel</span>
-      </a>
-      <a class="btn btn-secondary btn-sm" href="index.html#work"><span class="btn-icon" aria-hidden="true">←</span>All projects</a>
-    </nav>
-
-    <header class="project-intro" id="overview">
-      <div class="project-intro-inner">
-        <div class="wa-kickers" aria-label="Project details">
-          <span>Product design</span><span>0→1 internal product</span><span>Live</span>
-        </div>
-        <div class="stack" style="gap:10px">
-          <h1 class="t-display">Bringing Cretile’s WhatsApp sales workflow into one place</h1>
-          <p class="t-body">I designed and built Cretile’s internal tool for safer campaigns and timely follow-ups.</p>
-        </div>
-        <dl class="meta">
-          <div><dt>Timeline</dt><dd>Two weeks</dd></div>
-          <div><dt>Role</dt><dd>Product designer and builder</dd></div>
-          <div><dt>Team</dt><dd>Founders and sales</dd></div>
-        </dl>
-      </div>
-    </header>
-
-    <section class="sec wa-editorial" id="scenarios">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Before designing</span>
-        <h2 class="t-h24">I mapped the situations our team would face before deciding what to build.</h2>
-        <p class="t-body">I was already creating campaigns at Cretile, so I started with the work surrounding them. Sometimes I needed a reusable audience built with tags; other times, I only wanted to hand-pick a few contacts. Before launching, I needed to know the message and audience were correct. After launch, sales needed to see which conversations were still open, what happened to each message and what required follow-up.</p>
-        <p class="t-body">These situations became the structure for the first version.</p>
-      </div>
-      <div class="wa-job-map" aria-label="Campaign jobs considered before designing">
-        <article><span>01</span><strong>Build the right audience</strong><small>Reuse a tagged group or hand-pick contacts for one campaign.</small></article>
-        <article><span>02</span><strong>Send with confidence</strong><small>Review the message, audience and exclusions before launching.</small></article>
-        <article><span>03</span><strong>Continue conversations</strong><small>Show when sales can reply freely and when a template is required.</small></article>
-        <article><span>04</span><strong>Understand what happened</strong><small>Separate delivered, read, replied and failed messages—and make failures retryable.</small></article>
-        <article><span>05</span><strong>Automate predictable follow-ups</strong><small>Let Claude respond to known choices while I’m away.</small></article>
-      </div>
-    </section>
-
-    <section class="sec wa-editorial" id="strategy">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Product strategy</span>
-        <h2 class="t-h24">Replacing a campaign tool was not enough reason to build.</h2>
-        <p class="t-body">Losing our Meta account forced a new number—and a choice.</p>
-      </div>
-      <div class="wa-choice-grid" aria-label="Two product directions considered">
-        <article><span>Option A</span><h3 class="t-h16">Reconnect the tool</h3><p class="t-body">Restore the same workflow.</p></article>
-        <article class="is-chosen"><span>Chosen</span><h3 class="t-h16">Build the first module</h3><p>Own the workflow and future automation.</p></article>
-      </div>
-    </section>
-
-    <section class="sec wa-editorial wa-decision" id="audience">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 01 · Choose an audience</span>
-        <h2 class="t-h24">A one-off campaign should not require inventing a tag.</h2>
-        <p class="t-body">Interakt pushed every group through the same setup. I kept tags for reusable audiences and added direct selection for exceptions.</p>
-      </div>
-      <figure class="media-figure wa-audience-board">
-        <div class="wa-audience-before">
-          <span>Previous one-off flow</span>
-          <ol class="wa-process" aria-label="Previous steps for creating a one-off audience">
-            <li><span>01</span><strong>Upload</strong></li><li><span>02</span><strong>Add tag</strong></li><li><span>03</span><strong>Select tag</strong></li><li><span>04</span><strong>Campaign</strong></li>
-          </ol>
-        </div>
-        <div class="wa-audience-paths">
-          <article><span>Reusable group</span><strong>Filter or tag</strong><i>→</i><strong>Select group</strong></article>
-          <article><span>One-off group</span><strong>Hand-pick contacts</strong><i>→</i><strong>Create campaign</strong></article>
-        </div>
-        <figcaption class="media-caption">Two paths, chosen by the job—not by the database structure.</figcaption>
-      </figure>
-      <div class="wa-principle-grid">
-        <article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h20M6 16h20M6 24h20"/><circle cx="11" cy="8" r="3"/><circle cx="21" cy="16" r="3"/><circle cx="14" cy="24" r="3"/></svg><div><span>Principle</span><h3>Flexibility and efficiency of use</h3></div></article>
-        <article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="m10 5 12 11-7 1 4 8-4 2-4-8-5 5Z"/></svg><div><span>Principle</span><h3>Direct manipulation</h3></div></article>
-      </div>
-    </section>
-
-    <section class="sec wa-editorial wa-decision" id="launch">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 02 · Launch safely</span>
-        <h2 class="t-h24">Launch the right campaign with confidence.</h2>
-        <p class="t-body">Preview and opt-out checks prevent mistakes; Undo keeps the final action reversible.</p>
-      </div>
-      <div class="wa-media-pair">
-        <figure class="media-figure">
-          <video class="media" src="assets/wa-preview.mp4" poster="assets/wa-preview-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Selecting a template while the WhatsApp preview updates"></video>
-          <figcaption class="media-caption"><strong>Check the message.</strong> Preview the final WhatsApp.</figcaption>
-        </figure>
-        <figure class="media-figure">
-          <img class="media" src="assets/wa-audience.jpg" alt="Audience review showing contacts excluded because they opted out" loading="lazy">
-          <figcaption class="media-caption"><strong>Check the audience.</strong> See who is excluded and why.</figcaption>
-        </figure>
-      </div>
-      <figure class="media-figure wa-wide-moment">
-        <video class="media" src="assets/wa-undo.mp4" poster="assets/wa-undo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A send countdown with an Undo action"></video>
-        <figcaption class="media-caption"><strong>Keep a way back.</strong> Send stays reversible briefly.</figcaption>
-      </figure>
-      <div class="wa-principle-grid" aria-label="Design principles behind the campaign launch flow">
-        <article class="wa-principle">
-          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.5 11.5-11 14C9.5 26.5 5 22 5 15V7l11-4Z"/><path d="m11 16 3 3 7-7"/></svg>
-          <div><span>Principle</span><h3>Error prevention</h3></div>
-        </article>
-        <article class="wa-principle">
-          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 9 5 14l5 5"/><path d="M6 14h11c6 0 10 3 10 8 0 3-1.5 5-4 7"/></svg>
-          <div><span>Principle</span><h3>User control and freedom</h3></div>
-        </article>
-      </div>
-      <p class="wa-outcome"><span>What changed</span>The team is more relaxed at launch.</p>
-    </section>
-
-    <section class="sec wa-editorial wa-decision" id="reply-state">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 03 · Manage replies</span>
-        <h2 class="t-h24">A closed reply window should look closed.</h2>
-        <p class="t-body">The interface separates an open conversation from one that now requires an approved template.</p>
-      </div>
-      <figure class="media-figure">
-        <div class="wa-state-compare">
-          <article class="is-open"><span>Window open</span><div><i></i><p>Write a reply…</p><button type="button" tabindex="-1">Send</button></div></article>
-          <article class="is-closed"><span>Window closed</span><div><strong>The 24-hour reply window has closed.</strong><p>Use an approved WhatsApp template.</p><button type="button" tabindex="-1">Choose template</button></div></article>
-        </div>
-        <figcaption class="media-caption">The state changes before the salesperson tries an unavailable action.</figcaption>
-      </figure>
-      <div class="wa-principle-grid is-single"><article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Z"/><circle cx="16" cy="16" r="4"/></svg><div><span>Principle</span><h3>Visibility of system status</h3></div></article></div>
-    </section>
-
-    <section class="sec wa-editorial wa-decision" id="analytics">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 04 · Learn and retry</span>
-        <h2 class="t-h24">Results should lead to the next action.</h2>
-        <p class="t-body">The report helps me inform the team who was reached and resend to failed contacts.</p>
-      </div>
-      <figure class="media-figure wa-analytics-board">
-        <img class="media" src="assets/wa-analytics.png" alt="Campaign report separating accepted, delivered, read, replied and failed messages" loading="lazy">
-        <figcaption class="media-caption">Delivery states stay separate; failures remain actionable.</figcaption>
-      </figure>
-      <div class="wa-principle-grid is-single"><article class="wa-principle"><svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 25V14M16 25V7M26 25V11"/><path d="m6 10 7-5 6 4 7-6"/></svg><div><span>Principle</span><h3>Actionable feedback</h3></div></article></div>
-    </section>
-
-    <section class="sec wa-editorial wa-decision" id="follow-up">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Use case 05 · Automate</span>
-        <h2 class="t-h24">Keep follow-ups moving while I’m away.</h2>
-        <p class="t-body">Claude matches each selected option to the relevant response.</p>
-      </div>
-      <figure class="media-figure">
-        <div class="wa-response-map" role="img" aria-label="A lead selects an option, Claude matches it, and the relevant follow-up is sent">
-          <div class="wa-response-card"><span>Lead choice</span><div class="wa-option-row"><i>A</i><i>B</i><i>C</i><i>D</i></div></div>
-          <span class="wa-map-arrow" aria-hidden="true">→</span>
-          <div class="wa-response-card is-claude"><span>Claude matches</span><strong>Choice → reply</strong></div>
-          <span class="wa-map-arrow" aria-hidden="true">→</span>
-          <div class="wa-response-card"><span>Cretile</span><strong>Follow-up sent</strong></div>
-        </div>
-        <figcaption class="media-caption"><strong>Simplified reconstruction.</strong> One campaign handled roughly 40 follow-ups while I was away.</figcaption>
-      </figure>
-      <div class="wa-principle-grid is-single">
-        <article class="wa-principle">
-          <svg class="wa-principle-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="9" r="3"/><circle cx="25" cy="9" r="3"/><circle cx="16" cy="24" r="3"/><path d="m9.5 11 4.5 9M22.5 11 18 20M10 9h12"/></svg>
-          <div><span>Principle</span><h3>Cognitive offloading</h3></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="sec wa-editorial" id="product">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">The product today</span>
-        <h2 class="t-h24">One place to launch campaigns and continue conversations.</h2>
-        <p class="t-body">The live release joins contacts, campaigns, analytics and inbox safeguards for me and one salesperson.</p>
-      </div>
-      <figure class="media-figure wa-product-board">
-        <img class="media" src="assets/wa-hero.jpg" alt="The live campaign screen showing number warm-up status and previous campaigns" loading="lazy">
-        <figcaption class="media-caption">Cretile's first sales-platform module.</figcaption>
-      </figure>
-    </section>
-
-    <section class="sec wa-editorial" id="direction">
-      <div class="wa-section-head">
-        <span class="wa-eyebrow">Next direction · not yet built</span>
-        <h2 class="t-h24">Carry lead context forward from the first enquiry.</h2>
-        <p class="t-body">Next, the website, WhatsApp and sales can share lead context.</p>
-      </div>
-      <ol class="wa-flow" aria-label="Proposed journey from website enquiry to qualification">
-        <li><span>01</span><strong>Website enquiry</strong></li>
-        <li><span>02</span><strong>Lead record</strong></li>
-        <li><span>03</span><strong>Brochure delivery</strong></li>
-        <li><span>04</span><strong>WhatsApp</strong></li>
-        <li><span>05</span><strong>Sales owner</strong></li>
-        <li><span>06</span><strong>Qualification</strong></li>
-      </ol>
-    </section>
-
-    <section class="split sec" id="takeaway">
-      <h2 class="t-h24 label-col">What I learned</h2>
-      <div class="content-col">
-        <p class="t-body">A custom product earns its place by capturing how the team works—not by recreating an existing tool.</p>
-      </div>
-    </section>
-
+<body class="wa-case wa-overview" id="top">
+<a class="wa-skip" href="#overview">Skip to content</a>
+<main class="page"><div class="container">
+<nav class="topnav" aria-label="Project navigation"><a class="brand" href="index.html"><span class="brand-mark"></span><span class="t-h16">Samuel</span></a><div class="wa-nav-links"><a class="btn btn-secondary btn-sm" href="index.html#work">All projects <span aria-hidden="true">↗</span></a></div></nav>
+<header class="project-intro wa-project-opening" id="overview"><div class="project-intro-inner wa-opening-inner">
+<figure class="media-figure wa-story-media">
+  <div class="interface-stage"><div class="interface-viewport"><img class="media" src="assets/wa-workspace-redacted.webp" width="1140" height="600" alt="Cretile campaign workspace with campaign history, drafts and sending status" fetchpriority="high"></div></div>
+</figure>
+<div class="wa-opening-grid"><div class="wa-intro-copy"><div class="wa-title-block"><span class="wa-eyebrow">Product design · Internal product</span><h1 class="t-display">Cretile: bringing WhatsApp campaigns and customer replies into one internal product</h1><p class="t-body">I designed and built Cretile's first internal sales-platform module, used to run WhatsApp campaigns and respond to customers.</p></div>
+<div class="wa-summary"><h2 class="t-h16">Long story short</h2><div class="wa-summary-copy"><p class="t-body">We needed to restart WhatsApp campaigns after losing access to our old Meta account. We also wanted more control over a sales workflow spread across Excel and other tools.</p>
+<p class="t-body">I helped define the larger direction, then designed and built the first WhatsApp module. I explored workflows in existing marketing tools and with Claude, using everyday campaign tasks to decide how the parts should fit together. The live product connects contacts, campaigns, replies and reporting, with room to add company-specific automation.</p></div></div></div>
+<dl class="wa-project-details"><div><dt>Role</dt><dd>Product designer</dd></div><div><dt>Scope</dt><dd>Product definition, workflow design, UX/UI and development with Claude</dd></div><div><dt>Team</dt><dd>Founders and sales</dd></div><div><dt>Timeline</dt><dd>Two weeks for the first release</dd></div><div><dt>Status</dt><dd>Live internal product</dd></div></dl></div></div></header>
+<section class="sec wa-overview-section" id="outcomes"><div class="wa-section-head"><span class="wa-eyebrow">In use</span><h2 class="t-h24">What happened after launch.</h2></div><div class="wa-results-grid"><article><h3 class="t-h16">Campaigns and conversations in one product.</h3><p class="t-body">I run campaigns; a salesperson uses the inbox to reply. My colleague's feedback was that the app was easy to use.</p></article>
+<article><h3 class="t-h16">Roughly 40 follow-ups handled through Claude.</h3><p class="t-body">In one campaign, Claude sent the relevant follow-up when a person chose one of four support options, without me monitoring each reply as it arrived.</p></article>
+<article><h3 class="t-h16">About ₹15–27K a year in projected avoided provider charges.</h3><p class="t-body">An estimate based on three monthly campaigns to 4,000 contacts. This is not measured savings or a net return; Meta messaging charges, development and hosting costs still need to be paid.</p></article></div></section>
+<section class="sec wa-overview-section" id="preview"><div class="wa-section-head"><span class="wa-eyebrow">Product preview</span><h2 class="t-h24">Take a look inside the app.</h2><p class="t-body">Contacts, campaign creation, the inbox and campaign results. Choose a view or open a screenshot full screen.</p></div><div class="wa-preview-gallery" data-product-preview><div class="wa-preview-tabs" role="tablist" aria-label="Product screens and recordings"><button type="button" role="tab" id="preview-tab-workspace" aria-controls="preview-workspace" aria-selected="true" tabindex="0">Workspace</button>
+<button type="button" role="tab" id="preview-tab-contacts" aria-controls="preview-contacts" aria-selected="false" tabindex="-1">Contacts</button>
+<button type="button" role="tab" id="preview-tab-import" aria-controls="preview-import" aria-selected="false" tabindex="-1">Import</button>
+<button type="button" role="tab" id="preview-tab-campaign" aria-controls="preview-campaign" aria-selected="false" tabindex="-1">Campaign creation</button>
+<button type="button" role="tab" id="preview-tab-inbox" aria-controls="preview-inbox" aria-selected="false" tabindex="-1">Inbox</button>
+<button type="button" role="tab" id="preview-tab-results" aria-controls="preview-results" aria-selected="false" tabindex="-1">Results</button></div>
+<figure class="wa-preview-panel media-figure" role="tabpanel" id="preview-workspace" aria-labelledby="preview-tab-workspace" tabindex="0"><div class="wa-preview-surface"><img class="media" src="assets/wa-workspace-redacted.webp" width="1140" height="600" alt="Campaign workspace with campaign history, drafts and sending status" loading="lazy"></div><figcaption class="media-caption">The workspace brings campaign history, drafts and sending status together. Identifying labels are anonymised.</figcaption></figure>
+<figure class="wa-preview-panel media-figure" role="tabpanel" id="preview-contacts" aria-labelledby="preview-tab-contacts" tabindex="0"><div class="wa-preview-surface"><img class="media" src="assets/wa-contacts-story.webp" width="1900" height="1000" alt="Contacts with individual selection and Create campaign available" loading="lazy"></div><figcaption class="media-caption">Create a campaign from selected contacts. Names and phone numbers are anonymised.</figcaption></figure>
+<figure class="wa-preview-panel media-figure" role="tabpanel" id="preview-import" aria-labelledby="preview-tab-import" tabindex="0"><div class="wa-preview-surface"><img class="media" src="assets/wa-import-mapping-redacted.webp" width="1904" height="1016" alt="Import mapping with existing and new custom-field choices" loading="lazy"></div><figcaption class="media-caption">Match spreadsheet columns to useful contact fields. Source values are hidden for privacy.</figcaption></figure>
+<figure class="wa-preview-panel media-figure" role="tabpanel" id="preview-campaign" aria-labelledby="preview-tab-campaign" tabindex="0"><div class="wa-preview-surface"><video class="media" src="assets/wa-preview-clean.mp4" poster="assets/wa-preview-poster-clean.webp" width="1424" height="750" controls muted loop playsinline preload="metadata" aria-label="Template selection and the WhatsApp message preview"></video></div><figcaption class="media-caption">Template selection and message preview in the live campaign flow.</figcaption></figure>
+<figure class="wa-preview-panel media-figure" role="tabpanel" id="preview-inbox" aria-labelledby="preview-tab-inbox" tabindex="0"><div class="wa-preview-surface"><img class="media" src="assets/wa-inbox-redacted.webp" width="1900" height="1000" alt="Customer inbox with a closed reply window and approved-template action" loading="lazy"></div><figcaption class="media-caption">The salesperson can see the conversation and the available reply action. Private details are hidden.</figcaption></figure>
+<figure class="wa-preview-panel media-figure" role="tabpanel" id="preview-results" aria-labelledby="preview-tab-results" tabindex="0"><div class="wa-preview-surface"><img class="media" src="assets/wa-analytics-redacted.webp" width="1900" height="1000" alt="Campaign results with separate delivery states and resend action" loading="lazy"></div><figcaption class="media-caption">Results distinguish accepted, delivered, read, replied and failed messages.</figcaption></figure></div></section>
+<section class="sec wa-learn-more" id="learn-more"><div><span class="wa-eyebrow">The full case study</span><h2 class="t-h24">Why we built it, and how I approached the first release.</h2><p class="t-body">The starting problem, workflow exploration, product choices and what I learned.</p></div><a class="btn btn-primary" href="cretile-case-study.html">Learn More <span class="btn-icon" aria-hidden="true">→</span></a></section>
     <section class="sec">
       <a class="next-project" href="superstash.html">
         <div class="next-text">
@@ -231,7 +57,7 @@
           <span class="t-display">Superstash</span>
           <span class="btn btn-primary">View case study<span class="btn-icon" aria-hidden="true">→</span></span>
         </div>
-        <div class="next-preview"><img src="assets/superstash-screen.jpg" alt="" loading="lazy"></div>
+        <div class="next-preview interface-stage"><div class="interface-viewport"><img src="assets/superstash-screen.jpg" alt="" loading="lazy"></div></div>
       </a>
     </section>
 
@@ -256,8 +82,4 @@
       <p class="t-small muted contact-note">© 2026 Samuel Joseph</p>
     </footer>
 
-  </div>
-</main>
-<script src="site.js"></script>
-</body>
-</html>
+</div></main><script src="cretile-overview.js?v=20261029-controls"></script><script src="site.js?v=20261029-overview"></script></body></html>
