@@ -56,7 +56,7 @@ If the game named in `data-game` isn't registered, the stage leaves the element 
 
 - Full content width, `border-radius: 50%`, aspect ratio about 2.4:1 (roughly 1000×420 on desktop).
 - The game's still idle scene shows inside it, clipped by the oval. Nothing animates until it's clicked (changed after review: originally a self-playing demo).
-- A pill button centred near the top, over the crowd, reads **"⚽ Take a penalty"**. The label comes from a `data-label` attribute, so other games can set their own.
+- A pill button in the centre of the oval reads **"⚽ Take a penalty"**. The label comes from a `data-label` attribute, so other games can set their own.
 - The whole oval has `role="button"`, `tabindex="0"` and an `aria-label` ("Play a penalty shootout"). On hover, the cursor becomes a pointer and the oval scales to 1.01.
 
 ### Expanding
