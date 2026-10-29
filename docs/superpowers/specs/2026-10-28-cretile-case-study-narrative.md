@@ -1,634 +1,241 @@
-# Cretile Case Study Narrative and Page Design
+# Cretile Case Study — Narrative for Review
 
-**Date:** 2026-10-28
+**Updated:** 2026-10-29
 
-**Status:** Ready for Samuel's review
+**Status:** Approved copy implemented locally as an overview and separate full case-study page. Ready for Samuel's visual review; not published.
 
-**Supersedes:** The narrative and page order in `2026-10-23-whatsapp-case-study-redesign.md`
+**Scope:** Overview copy, full case-study copy and separate production notes.
 
-**Scope:** Final case-study copy, narrative order, and visual direction. No page implementation is included in this document.
+This revision supersedes the earlier feature-tour narrative, expandable design story and diagram-led visual direction in this document. It incorporates Samuel's latest account of scoping, workflow exploration, importing, audience selection and colleague feedback.
 
-## Purpose
+## Overview page copy
 
-The case study should show Samuel as a product designer who can recognize a business opportunity, understand an operational workflow, decide what deserves to be built, and turn that direction into a working first release.
+### Project title
 
-The story should not depend on a dramatic mistake, a long feature list, or inflated impact. Its strength is the progression of Samuel's thinking:
+Cretile: bringing WhatsApp campaigns and customer replies into one internal product
 
-1. A forced account reset created a decision point.
-2. The campaign workflow depended on repeated spreadsheet work and disconnected tools.
-3. The team believed an owned product could reduce that repetition, improve control, and become a foundation for future sales workflows.
-4. One part of the original business case—the expected message-cost saving—proved weaker than expected.
-5. Samuel refined the reason to continue, scoped the first complete workflow, and shipped it in two weeks.
-6. The first differentiated value appeared through Cretile-specific audience handling, safeguards, analytics, and Claude-powered follow-up.
+### Description
 
-## Reading Experience
-
-The page should feel editorial and visual. Each section has one job, and question-led transitions move the reader through the story.
-
-- The opening tells the reader what the product is.
-- The problem chapter proves why it was worth reconsidering the existing workflow.
-- The starting hypothesis explains what the team thought ownership could change.
-- The correction separates the initial assumption from what remained valuable.
-- The design process shows Samuel's actual reasoning rather than a generic UX framework.
-- The use cases demonstrate selected product decisions with real interface evidence.
-- The close states what is live, what remains unproven, and what comes next.
-
-The page must remain understandable when skimmed by reading only its questions, headings, captions, and highlighted statements.
-
----
-
-## 1. Project Opening
-
-### Visual
-
-Open with one large, clean product composition before any long explanation. The image should make it immediately clear that Cretile contains contacts, campaigns, an inbox, and campaign results.
-
-Preferred composition:
-
-- Campaign workspace as the main screen.
-- Smaller glimpses of Contacts and Inbox may sit behind or beside it.
-- Preserve the real interface rather than redesigning it for the portfolio.
-- Remove or obscure customer names, phone numbers, company information, and internal campaign names.
-- Do not crop important controls or place a heavy shadow around the screenshot.
-- Use a restrained green-tinted or neutral background so the product remains the focus.
-
-### Kicker
-
-`PRODUCT DESIGN · 0→1 INTERNAL PRODUCT · LIVE`
-
-### Title
-
-> Cretile: the first module of our internal sales platform
-
-### One-line description
-
-> A connected way to choose an audience, launch WhatsApp campaigns, manage replies and understand what happened.
-
-### Long story short
-
-> When we lost access to our Meta account, we had to start again with a new WhatsApp number. Instead of reconnecting the same tools, we used the moment to rethink a campaign workflow built around repeated Excel exports, uploads and scattered information.
->
-> I worked with the founders and sales team to define the larger product, then designed and built its first module in two weeks: one place to manage contacts, run campaigns, handle replies and understand the results.
+I designed and built Cretile's first internal sales-platform module, used to run WhatsApp campaigns and respond to customers.
 
 ### Project details
 
-| Label | Content |
-| --- | --- |
-| Role | Product designer |
-| Scope | Product strategy, workflow design, UX/UI, prototyping and development |
-| Team | Founders and sales |
-| Timeline | Two weeks for the first release |
-| Status | Live internal product |
+- **Role:** Product designer
+- **Responsibilities:** Product definition, workflow design, UX/UI and development with Claude
+- **Collaborators:** Founders and sales
+- **Timeline:** Two weeks for the first release
+- **Status:** Live; used by me and one salesperson
 
-### Purpose of this section
+### Long story short
 
-This is orientation, not the full story. It should tell a hiring manager what Samuel made and what he owned without forcing them to understand the business case yet.
+We needed to restart WhatsApp campaigns after losing access to our old Meta account. We also wanted more control over a sales workflow spread across Excel and other tools.
 
----
+I helped define the larger direction, then designed and built the first WhatsApp module. I explored workflows in existing marketing tools and with Claude, using everyday campaign tasks to decide how the parts should fit together. The live product connects contacts, campaigns, replies and reporting, with room to add company-specific automation.
 
-## 2. Why Start This Project?
+### In use
 
-### Question transition
+**Campaigns and conversations in one product.** I run campaigns; a salesperson uses the inbox to reply. My colleague's feedback was that the app was easy to use.
 
-> Why build our own tool instead of reconnecting Interakt?
+**Roughly 40 follow-ups handled through Claude.** In one campaign, Claude sent the relevant follow-up when a person chose one of four support options, without me monitoring each reply as it arrived.
 
-### Trigger
+**About ₹15–27K a year in projected avoided provider charges.** An estimate based on three monthly campaigns to 4,000 contacts. This is not measured savings or a net return; Meta messaging charges, development and hosting costs still need to be paid.
 
-#### Starting again created a decision point.
+### Product preview
 
-> After repeated attempts to recover our previous Meta account failed, we registered a new number. Reconnecting Interakt was the obvious path, but starting again gave us a reason to examine the workflow we were about to recreate.
+Contacts, campaign creation, the inbox and campaign results.
 
-### Core problem
+### Link
 
-#### Every campaign began by rebuilding the audience.
-
-> Our lead database lived in Excel and changed whenever new leads arrived. Interakt only knew about the contacts included in the last upload.
->
-> Before every campaign, I had to export the latest file, upload it again, organise the contacts and rebuild the audience. With leads arriving from our website, Google Ads, Meta Ads and LinkedIn, this was not an occasional inconvenience. It had become the workflow.
-
-Use this clarifying statement prominently:
-
-> Interakt was not difficult to use. The problem was that our lead data and campaign audience never stayed connected.
-
-### Primary visual: the repeating campaign loop
-
-Show the process as a horizontal or circular diagram:
-
-`Excel changes → Export → Upload → Tag → Build audience → Launch`
-
-A new lead entering Excel should visually return the operator to the beginning.
-
-Annotation:
-
-> The campaign audience stopped being current the moment the spreadsheet changed.
-
-### Supporting problem lenses
-
-Under the workflow visual, break the larger problem into four short dimensions.
-
-#### Connection
-
-The live lead database and the uploaded campaign audience did not stay in sync.
-
-#### Context
-
-Lead sources lived in different lists, so acquisition context had to be deliberately preserved when contacts moved into a campaign tool.
-
-#### Continuity
-
-Selecting an audience, sending the campaign, handling replies and understanding results felt like separate tasks rather than one workflow.
-
-#### Control
-
-The team could only add company-specific workflows and automation within the boundaries of a third-party product.
-
-### Human consequence
-
-#### The system was only current when I manually kept it current.
-
-> Every campaign depended on me remembering the latest file, rebuilding the audience, checking the send and being available when replies arrived.
-
-Visual option: a simple Samuel character carrying an updated spreadsheet between disconnected contact, campaign and inbox systems. The illustration should clarify dependency, not decorate the page.
+Learn More
 
 ---
 
-## 3. What We Expected to Change
+## Full case-study page copy
 
-### Question transition
+### Cretile: designing the first part of an internal sales platform
 
-> What did we believe building our own could change?
+I was already creating WhatsApp campaigns at Cretile when we decided to build our own product. My role covered defining the first release, designing its workflows and interface, and developing it with Claude.
 
-### Direction
+The larger ambition was an internal sales platform. The first version had a more immediate job: help us send campaigns and handle the conversations they generated.
 
-> We were not trying to recreate every feature in Interakt. We believed owning the workflow could connect work that was currently spread across spreadsheets, campaign tools and individual conversations.
+### Why we started
 
-### Transformation visual
+#### We had to restart campaigns. We also had a reason to reconsider the setup.
 
-Show the existing arrangement first:
+After several unsuccessful attempts to recover our old Meta account, we registered a new account and WhatsApp number. We had disconnected Interakt and needed to resume campaigns.
 
-`Excel files → repeated uploads → campaign tool → WhatsApp replies → separate results`
+There was a cost motivation too. A colleague told me WhatsApp messages were supposed to be free, so we initially believed building our own tool could remove the per-message fee as well as the subscription. After development began, I checked this with Claude and learned that Meta charged for the messages. Owning the tool would not make them free.
 
-Label the manual dependency:
+We continued because the plan was bigger than replacing a subscription. We wanted a product we could extend around Cretile's work, eventually connecting our Excel data and more of the sales process. I worked with the founders and sales to understand that direction and align on what to build.
 
-> Connected by the person running the campaign
+#### Our contact data still needed preparation before each campaign.
 
-Then show the intended product:
+Our leads lived in Excel, and the sheets changed as new people were added. Before a campaign, I would export the updated data and upload it to the campaign tool again.
 
-`Contacts → Campaigns → Inbox → Results`
+Choosing a particular audience could mean more preparation. In the Interakt workflow I used, a school-only campaign meant preparing a school-only file, uploading it and assigning a tag so I could select that group.
 
-Wrap the second flow within one Cretile boundary and leave an extension point for future automation.
+That experience gave me a practical starting point: understand how people would bring their data into the product and use it, rather than design campaign screens in isolation.
 
-### Expected differences
+### Defining the first release
 
-#### Less repeated work
+#### Start with the work we needed to resume.
 
-The latest contacts, their source and their campaign history could remain available without rebuilding the audience for every campaign.
+Building an entire CRM was too broad for our resources and our understanding of that wider product. WhatsApp campaigns were familiar work with an immediate need.
 
-#### More control
+We already had a way to send messages, but that setup had no inbox for customers' replies. Sending alone would leave the salesperson without a way to continue the conversation there.
 
-Cretile could own its customer data, campaign workflow and future automations instead of shaping its process around another product.
+I scoped the first version around importing and exporting contacts, creating campaigns, checking results, retrying failed messages and replying through an inbox. Once the objective and plan were aligned, I proposed two weeks for the first release, which the team agreed to.
 
-#### A product we could continue building
+Excel synchronisation remained outside the first version. Imported data could be used in the app, but changes to the source spreadsheet would still require another upload.
 
-WhatsApp campaigns would be the first complete module, not the final product. The same foundation could later support synced lead sources, sales workflows and Claude-powered automation.
+### Design process
 
-### Starting cost hypothesis
+#### I explored different workflows against the situations our team would face.
 
-> We also expected to reduce campaign costs by removing Interakt's monthly fee and message markup.
+I tried email and WhatsApp marketing products, including ConvertKit, Mailchimp and Interakt, to understand how they organised the work. With Claude, I generated multiple workflow options and considered which would be clearest for our use cases.
 
-This must be presented as an expectation at the beginning of the project, not as a measured result.
+As I compared them, I imagined my colleagues working through the app: what they would be trying to do, what information they would have and which steps would need explaining.
 
----
+Adding one contact, for example, should not require preparing a spreadsheet. I provided a manual-entry route alongside file upload. For larger imports, the challenge was different: preserve the useful information already in the sheet and make it available for later work.
 
-## 4. Correcting the Business Case
+### From spreadsheet to campaign audience
 
-### Question transition
+#### Importing contacts needed to preserve more than names and phone numbers.
 
-> Was the financial advantage as large as we expected?
+The mapping options in the Interakt workflow I used did not give me the flexibility I wanted for our sheets. Those sheets could contain information about the organisation, customer type or source of a lead.
 
-### Heading
+I designed the import flow so columns could be matched to standard fields or existing custom fields. If information did not fit those fields, the operator could create a new one. Unneeded columns could be left out, and a tag could identify the imported batch.
 
-#### Most of the message cost would remain.
+This let the team bring useful context into the product without being limited to a fixed set of fields.
 
-> We began with the belief that Interakt was responsible for most of the per-message fee. After development started, I used Claude to verify the pricing and learned that most of the charge came from Meta.
->
-> The monthly platform fee and a small markup could still be avoided, but the headline cost advantage was much smaller than we expected.
+#### Choosing recipients should not mean preparing another file.
 
-### Expectation-versus-reality visual
+For campaign creation, I provided an entire-audience option and a segment/tag option. An operator could choose an existing group, exclude another group or adjust individual recipients for that campaign without changing their contact records.
 
-Use a compact two-column comparison rather than a dramatic failure statement.
+The contacts page also supported selecting people directly and starting a campaign from that selection. A one-off audience did not have to become a permanent tag.
 
-| Expected | Learned |
-| --- | --- |
-| Owning the tool would remove most campaign costs. | Meta's delivery charge applies whether the campaign runs through Interakt or Cretile. |
-| Cost would be the main reason to build. | Workflow ownership and extensibility had to justify the product. |
+These choices addressed different situations: working with everyone, reusing a group and contacting a few specific people. The aim was to let the operator work with contacts already held in the app, rather than make a separate upload the starting point for every audience.
 
-### Decision
+### What shipped
 
-> That changed the test for the project. If ownership could not remove the messaging cost, it had to earn its place by reducing repeated work, connecting the sales workflow and supporting Cretile-specific automation.
+#### A campaign no longer ended at the send.
 
-### Refined product hypothesis
+The live product connects contact management, campaign creation, an inbox and reporting. I use it to create and run campaigns; one salesperson uses it to respond to customers.
 
-> If contacts, campaigns, replies and results live in one connected workflow, Cretile can reduce repeated campaign work today and build more of its sales process on the same foundation later.
+Campaign setup brings the audience, template and send time together. The inbox shows the conversation's reply-window status and the available next action. Reporting separates accepted, delivered, read, replied and failed messages, helping me tell the team what happened and retry contacts we could not reach.
 
-This is the bridge into the design process. The story should not suggest that the product temporarily became worthless or that Samuel continued only because development had already begun.
+### What owning the workflow enabled
 
----
+#### I could arrange the follow-up without monitoring every reply.
 
-## 5. Design Process
+One campaign asked people to choose from four ways Cretile could help. Each choice needed a different response.
 
-### Question transition
+I connected the app to Claude and asked it to send the relevant follow-up when someone selected an option. Roughly 40 people received a follow-up through that workflow.
 
-> How did I turn the direction into a first release?
+I do not have a measured time saving. The practical difference was that I did not need to stay available and open each conversation as replies arrived. It was a concrete example of adapting the product to a Cretile-specific task.
 
-### Introductory copy
+### What happened after launch
 
-> I did not begin with a list of screens. I began by understanding what the product needed to support, how the current work happened and which complete workflow we could realistically ship first.
+#### The product is in use, with encouraging early feedback.
 
-The process should be shown as four connected questions, not as a generic `Research → Ideate → Design` diagram.
+My colleague described the app as easy to use. That feedback is encouraging, but it is not a usability study or evidence of faster onboarding. I have not measured whether the campaign workflow is faster than Interakt.
 
-### 5.1 What did the product need to become?
+There is also a projected reduction in provider charges. Using the rates supplied for our estimate, three monthly campaigns to 4,000 contacts would avoid about ₹15–27K a year in subscription and message markup. Meta charges remain, and this estimate excludes development, maintenance and hosting costs. It is not a measured saving or proof that the product has paid for itself.
 
-> I spoke with the founders and salesperson about how sales currently worked, what they wanted the product to become and what would make it useful to the team. I proposed a connected internal sales platform, and we aligned on WhatsApp campaigns as its first working module.
+What I can point to today is a working product used for campaigns and replies, plus a follow-up workflow tailored to how we operate.
 
-Do not describe this as formal user research. It was stakeholder alignment, workflow understanding and product-direction work.
+### What comes next
 
-### 5.2 What jobs did the first module need to support?
+#### Connect the spreadsheet so updates do not need another upload.
 
-> Because I was already the person creating campaigns, I mapped the moments surrounding the send—not only the send itself.
+The next version should connect to our Excel source so new contacts can enter the app without another export and upload. That would address a repeated task the current release still leaves with the operator.
 
-Show five concise jobs:
+The longer-term direction is to connect more of Cretile's sales work in the same product. That remains a direction, not a claim about what has already shipped.
 
-1. **Choose the right audience** — reuse a meaningful group or select people for a one-off campaign.
-2. **Launch with confidence** — verify the message, audience and exclusions before sending.
-3. **Manage replies** — show sales what can be answered and when a template is required.
-4. **Learn and retry** — understand delivery outcomes and act on failures.
-5. **Automate predictable follow-up** — respond to known choices without requiring Samuel to remain online.
+### What I learned
 
-### 5.3 Which existing patterns were worth keeping?
+#### The larger vision helped define where to start.
 
-> I studied how Interakt and comparable products handled contact imports, tags, audience selection, templates, campaign results and inbox rules. I was less interested in copying their screens than understanding why each step existed, which situations it supported and where it created avoidable confusion.
+We wanted a broader internal platform, but the first release needed to do a smaller job completely. Building around campaigns and replies gave us a usable starting point while leaving the wider CRM for later.
 
-Use tags as the concrete example:
+I should have checked the pricing assumption before development began. The more useful evidence for continuing was what the product could support in practice: working with our existing data, connecting campaign tasks and enabling follow-up tailored to the team.
 
-> Tags were not only labels. They could preserve where a lead came from—such as the website, Google Ads, Meta Ads or LinkedIn—and turn that context into a reusable campaign audience. The design needed to keep that value while also supporting one-off selections that did not deserve a permanent tag.
-
-### 5.4 What could form a complete first release?
-
-> Once the objective and product direction were aligned, I proposed a two-week first release and the team agreed. The time constraint helped me prioritise a complete operating loop over a wider collection of features.
-
-Show the selected loop:
-
-`Contact → Audience → Campaign → Reply → Result`
-
-Show the main deferred capability separately:
-
-> Live Excel synchronisation was deliberately left for the next version. The first release could accept imported contacts, but an updated spreadsheet would still need to be uploaded again.
-
-### Process outcome
-
-> The result was a small but complete product boundary: one person could create and evaluate campaigns, while a salesperson could continue the conversations they generated.
+The next question is whether further development removes enough recurring work to justify the effort of owning and maintaining the product.
 
 ---
 
-## 6. Selected Product Decisions
+## Production notes — not website copy
 
-This chapter should not describe every button. It should show a small set of consequential moments across the complete workflow. Each use case follows the same reading pattern:
+### Reading and navigation
 
-`Job to be done → operational tension → design response → product evidence → principle or consequence`
+- Keep the overview as the short entry page: product image and brief, Long story short, in-use results, product preview, then **Learn More**.
+- Learn More must open a separate full case-study page, not expand content or scroll to a lower section of the overview.
+- Give the full case study a clear return link to the overview and access to all projects.
+- Remove the current five alternating feature chapters from the overview. Do not turn Undo, preview, reply status and other supporting controls into five replacement chapters on the full page.
+- Use the full-copy headings as a hierarchy, not as bordered question fields or search-bar graphics.
 
-### Use case 01: Choose an audience
+### Text and imagery
 
-#### Job to be done
+- Use the existing type scale, readable paragraphs, whitespace and restrained rules. Allow enough explanation for a section to make sense when entered midway.
+- Pair the narrative with real screenshots and recordings. No vector illustrations, infographic diagrams, process-card grids or fabricated interface reconstructions.
+- Use the selected sage landscape consistently where an interface frame is needed. Keep the overview preview gallery unframed, as previously requested.
+- Preserve natural media ratios and the complete interface. No clipped edges, heavy shadows or white decorative mats around the screenshot.
+- Keep standard controls visible in real product media without adding separate explanatory chapters.
+- Use captions for context, not to repeat the whole paragraph.
 
-> When I need to run a campaign, help me reach the right people without creating permanent structure for a temporary group.
+### Media placement
 
-#### Context
+1. **Opening and first-release scope:** use the actual campaign workspace. Caption: “The first release brings campaign work and customer replies into one internal product.”
+2. **Spreadsheet preparation:** explain in prose. Do not construct a fictional before-screen or a workflow diagram.
+3. **Import mapping:** a privacy-redacted excerpt from the 17:53 recording can show standard, existing and new custom-field mapping together. Caption: “Keep useful spreadsheet columns by mapping them to existing fields or creating a new one.”
+4. **Audience selection:** a redacted excerpt from the 17:59 recording can show entire-audience and segment/tag options, followed by the selected recipient state. Caption: “Choose an existing audience, then adjust recipients for this campaign.”
+5. **Direct selection:** the existing anonymised contacts screenshot can accompany the same narrative as secondary evidence, without another feature chapter.
+6. **What shipped:** pair a real inbox screenshot with the actual campaign report. A short campaign-creation clip can show the supporting preview and send controls in context.
+7. **Claude follow-up:** explain the real example in text. No genuine automation screenshot or chat has been supplied, so do not make a reconstruction or suggest one exists.
+8. **Next version:** prose is sufficient. Do not show an Excel-sync interface that has not been built.
 
-> In Interakt, a one-off group still required me to upload the contacts, add a custom tag and select that tag when creating the campaign. Tags were valuable for reusable audiences, but they became unnecessary setup when I only wanted to hand-pick a few contacts once.
+These are editorial placement instructions, not approved public exports. Existing media also needs a privacy check before reuse.
 
-#### Design response
+### Private evidence
 
-> I kept filters and tags for reusable audiences, then added direct selection for exceptions. The operator can select specific contacts and create a campaign from that selection without inventing a tag that has no future value.
+The recordings supplied on 2026-10-29 were reviewed locally as private references:
 
-#### Visual evidence
+- **17:53:30:** import setup, optional tagging, column mapping and review before import.
+- **17:59:18:** campaign creation, audience inclusion/exclusion, per-campaign recipient adjustments, template selection and final setup.
+- The accompanying campaign screenshot includes a phone number. Remove it before any public use.
+- Do not copy raw recordings or extracted reference frames into public assets or commit them. Any published excerpt needs deliberate redaction and review.
+- File-system dialogs, source filenames, customer names, phone numbers, emails, organisation names, internal group labels and private message content may need removal.
+- The recordings demonstrate custom-field mapping and tag-based campaign audiences separately. They do **not** establish automatic audience generation from every imported custom-field value. Do not claim that a School field automatically becomes a School segment.
 
-Use the contact-selection screenshots to show:
+### Evidence boundaries
 
-- individual selection;
-- `Select all` for a filtered result;
-- a visible selected count;
-- `Create campaign` as the next action.
+- Workflow exploration used existing products and Claude-generated alternatives; do not claim a formal comparative usability study.
+- Imagining colleagues' tasks is part of Samuel's design reasoning, not an observed usability-test result.
+- The feedback was that the app was easy to use. Do not invent a direct quotation, satisfaction score, successful onboarding trial or feedback-driven redesign.
+- Competitor limitations describe Samuel's experience with the setup he used, not a verified claim about every current Interakt plan or capability.
+- The send-only setup without an inbox was the interim setup after disconnecting Interakt. Do not imply Interakt lacked an inbox.
+- No measured time saving, conversion improvement, revenue increase or superiority over Interakt has been established.
+- Two weeks refers to the first release. Do not imply every subsequent capability, including the Claude workflow, shipped within that period.
+- Excel synchronisation is planned, not shipped. Do not claim the current product eliminates reuploads when the source sheet changes.
+- Avoid treating a desire for ownership as proof of improved privacy, lower total cost or business return.
 
-Caption:
+### Projection basis — internal calculation
 
-> Reusable audiences keep their structure. One-off audiences can remain one-off.
+The range uses Samuel's supplied pricing assumptions, not a current vendor quote:
 
-Principles: flexibility and efficiency of use; direct manipulation.
+- 3 campaigns per month × 4,000 contacts = 12,000 messages per month.
+- Assumed provider rate: ₹0.882–₹0.970 per message.
+- Assumed direct Meta rate: ₹0.8631 per message.
+- Assumed provider subscription: ₹1,000 per month.
+- Annual avoided subscription and markup: 12 × [₹1,000 + 12,000 × (provider rate − ₹0.8631)].
+- Result: ₹14,721.60–₹27,393.60 per year, rounded to about ₹15–27K.
+- This is a same-volume scenario, not evidence that three campaigns ran every month. It excludes development, maintenance and hosting and assumes the supplied rates apply to the same message category and destination, on a comparable tax basis.
+- Verify applicable rates and subscription terms before publication. Until then, keep the estimate explicitly conditional; do not describe it as money already saved.
 
-### Use case 02: Launch with confidence
+### Review checkpoint
 
-#### Job to be done
+Samuel approved this narrative and the two-page split. The overview is implemented in `whatsapp-campaigns.html`, with Learn More opening `cretile-case-study.html`. Both use plain text and real product media. New import, audience, inbox, workspace and report exports have privacy redactions; only the external dark capture border was trimmed. The original private recordings remain outside public assets.
 
-> Before I send a campaign to thousands of contacts, help me verify the message and audience—and give me a way back if I notice a mistake.
+Visual review is the current checkpoint. Deployment and the next case-study rewrite are separate steps. At Samuel's request, the hero caption and the two additional pricing footnotes have been removed from the pages. The cost projection remains explicitly labelled as a projection in the main copy; detailed calculation assumptions stay in these internal notes.
 
-#### Context
-
-> Launching a campaign made me nervous because the audience was large and the action was difficult to reverse. A confirmation dialog alone would still ask me to trust that I had configured everything correctly.
-
-#### Design response
-
-> The launch flow makes the final message visible, explains who will and will not receive it, protects opted-out contacts and keeps the send briefly reversible.
-
-Use three pieces of evidence without shadows or cropped controls:
-
-1. Template selection with the final WhatsApp preview.
-2. Audience review with exclusions and reasons.
-3. A complete undo state showing both the countdown and the action.
-
-Captions:
-
-> **Check the message.** See what the recipient will receive.
-
-> **Check the audience.** See who is excluded and why.
-
-> **Keep a way back.** Undo makes the final action briefly reversible.
-
-Principles: error prevention; user control and freedom.
-
-Observed consequence, stated carefully:
-
-> Having a way to back out made campaign launches feel less tense for the team.
-
-### Use case 03: Manage replies
-
-#### Job to be done
-
-> When sales opens a conversation, make it immediately clear whether a free-form reply is still allowed.
-
-#### Context
-
-> WhatsApp allows free-form replies only within the 24-hour customer-service window. An open and closed conversation cannot look identical because the available action has changed.
-
-#### Design response
-
-> The inbox exposes the reply-window status beside the conversation. When the window closes, the composer is replaced with an explanation and the approved-template action.
-
-Use the real inbox screenshot, privacy-redacted, and annotate:
-
-- the closed status;
-- the explanation;
-- the template action.
-
-Caption:
-
-> The interface changes before the salesperson attempts an unavailable action.
-
-Principle: visibility of system status.
-
-### Use case 04: Learn and retry
-
-#### Job to be done
-
-> After a campaign ends, show me what happened and what needs action next.
-
-#### Context
-
-> A single sent count cannot explain whether WhatsApp accepted a message, whether it reached a phone, whether it was read or whether the person replied.
-
-#### Design response
-
-> The report keeps accepted, delivered, read, replied and failed states separate. I can tell the team who was contacted, inspect who did not receive the message and retry the failed group without rebuilding the campaign.
-
-Use the campaign analytics screenshot with annotations around:
-
-- distinct delivery states;
-- the explanation of accepted versus delivered;
-- resend to failed contacts.
-
-Caption:
-
-> Campaign results lead to the next action instead of ending at a dashboard.
-
-Principle: actionable feedback.
-
-### Use case 05: Automate predictable follow-up
-
-#### Job to be done
-
-> When a lead chooses one of several known options, send the relevant next step without requiring me to monitor every reply.
-
-#### Context
-
-> One campaign asked people to choose from four ways Cretile could help. Each option required a different follow-up. Handling it manually meant staying available and opening every conversation as replies arrived.
-
-#### Design response
-
-> Because Cretile owns the workflow, I connected the product to Claude. Claude monitored the selected option and sent the matching follow-up while I was away.
-
-Show a simple response map:
-
-`Lead selects an option → Claude matches the response → Cretile sends the follow-up`
-
-Evidence:
-
-> Roughly 40 people received the relevant follow-up through this workflow.
-
-Caption:
-
-> This was the first moment ownership enabled behaviour tailored to how Cretile works.
-
-Principle: cognitive offloading.
-
----
-
-## 7. What Exists Today
-
-### Question transition
-
-> What did the first release make possible?
-
-### Heading
-
-#### One place to launch campaigns and continue the conversations they create.
-
-> The live release connects contacts, campaign creation, audience safeguards, message previews, the inbox and campaign results. I use it to create and run campaigns, while one salesperson uses it to reply.
-
-> The basic campaign workflow is not yet proven to be faster or more effective than Interakt. Its clearest advantage is that Cretile owns the system and can create workflows and automations around the way the team actually operates.
-
-### Product visual
-
-Use one large, uncropped live-product screen with a short caption:
-
-> Cretile's first live sales-platform module.
-
-### Evidence strip
-
-Avoid a large metric wall. If numerical evidence is shown, limit it to two verified facts:
-
-- **Two weeks** — aligned objective to working first release.
-- **~40 follow-ups** — handled through the first Claude-assisted campaign workflow.
-
-Projected cost savings should not appear as a headline outcome. If included at all, place them in a small business-case note with the assumptions and with Meta charges explicitly excluded.
-
----
-
-## 8. Next Version
-
-### Question transition
-
-> Where does the workflow still break?
-
-### Heading
-
-#### The contact list still has to be uploaded again when Excel changes.
-
-> The first release connects the work after contacts enter Cretile, but it does not yet keep the Excel source synchronised. The next version should connect the source directly so newly added contacts appear without another export and upload.
-
-### Near-term visual
-
-Show the current and intended state:
-
-`Today: Excel update → export → upload → Cretile`
-
-`Next: Excel update → synchronised with Cretile`
-
-### Larger direction
-
-Clearly label this as proposed, not shipped:
-
-> Beyond synchronisation, the same product can carry lead context from the first enquiry into the sales conversation.
-
-Visual flow:
-
-`Website enquiry → Lead record → Brochure delivery → WhatsApp conversation → Sales owner → Qualification and follow-up`
-
-Copy:
-
-> I shaped this direction with the founders and salesperson so the first WhatsApp module could become part of a broader internal sales workflow rather than remain an isolated campaign tool.
-
----
-
-## 9. Reflection
-
-### Heading
-
-#### Building quickly does not remove the need to verify why a product should exist.
-
-> The cost assumption should have been verified before development began. Learning that Meta owned most of the message charge changed how I judged the product: it could not justify itself simply by being ours.
-
-> The more useful question became whether ownership allowed Cretile to work differently. The first release began answering that through connected campaign states, company-specific audience handling and Claude-assisted follow-up.
-
-> A custom product earns its place when it captures how the organisation works and creates room for the organisation to work differently—not when it recreates an existing tool feature for feature.
-
----
-
-## Visual Language
-
-### Copy budget
-
-The document is intentionally detailed so implementation decisions remain unambiguous; the page itself must stay concise.
-
-- Keep each chapter introduction below roughly 80 visible words.
-- Keep each problem lens or principle to one short sentence.
-- Let diagrams and captions replace repeated explanations.
-- Do not place the internal notes, rationale, or acceptance language from this document on the page.
-- If a paragraph repeats information already visible in a product screen or diagram, remove the paragraph.
-
-### Question-led chapters
-
-Use large bordered question fields as transitions between major chapters. They should feel like the reader's next natural question, not decorative search bars.
-
-Recommended questions:
-
-1. Why build our own tool instead of reconnecting Interakt?
-2. What did we believe building our own could change?
-3. Was the financial advantage as large as we expected?
-4. How did I turn the direction into a first release?
-5. What did the first release make possible?
-6. Where does the workflow still break?
-
-### Real product proof
-
-Every major product claim should be followed by a real screenshot, short clip or clearly labelled reconstruction. Screens should be shown large enough to read and should not be hidden by shadows, excessive framing, or aggressive cropping.
-
-### Diagrams
-
-Use code-native diagrams for:
-
-- the repeating Excel-to-campaign loop;
-- disconnected versus connected workflow;
-- expectation versus learned reality;
-- first-release product loop;
-- Claude response matching;
-- current upload versus future synchronisation;
-- proposed lead-to-qualification direction.
-
-Each diagram should make one relationship easier to understand. Avoid decorative arrows and generic process graphics.
-
-### Character illustration
-
-Use at most one or two character moments. The strongest opportunity is the operator manually carrying updated lead data between disconnected systems. It should make the human dependency visible without turning the case study into a comic.
-
-### Layout
-
-- Retain the portfolio's current restrained typography and spacing.
-- Use the existing case-study type scale rather than oversized display copy throughout.
-- Alternate text-led sections with diagrams and full-width product proof.
-- Do not place every section inside a grey container.
-- Use subtle rules, whitespace and captions to create grouping.
-- Keep screenshots fully visible unless a crop is intentionally annotating one decision.
-
-### Privacy
-
-Before publication, obscure or replace:
-
-- customer names;
-- phone numbers;
-- company names;
-- campaign names that reveal internal information;
-- message content unrelated to the design decision.
-
-Do not state or imply that Interakt sells customer data. Frame ownership as greater control and extensibility, not as an accusation about another company.
-
----
-
-## Claims and Boundaries
-
-### Safe claims
-
-- Samuel designed and built the first release.
-- The objective and larger direction were aligned with founders and sales.
-- The first release was scoped to two weeks after that alignment.
-- The product is live and used by Samuel and one salesperson.
-- The product supports contacts, campaigns, an inbox, analytics and safeguards.
-- The audience flow supports reusable groups and direct selection.
-- Campaign reports separate message states and allow retrying failed contacts.
-- The inbox shows the 24-hour reply status.
-- Claude handled option-specific follow-up for roughly 40 people in one campaign.
-- Live Excel synchronisation and the broader sales workflow are future directions.
-
-### Claims to avoid
-
-- The product eliminated Meta messaging charges.
-- Interakt was difficult to use.
-- Interakt sells customer data.
-- The current workflow is objectively faster or better than Interakt without evidence.
-- Formal user research was conducted for this first version.
-- Projected savings are realised savings.
-- The future sales-platform flow has already shipped.
-
-## Acceptance Criteria for the Final Page
-
-The narrative is ready to implement when:
-
-- the opening identifies Samuel as the product designer within the first screen;
-- the reader sees the product before reading the business history;
-- the summary and problem chapter do not repeat each other;
-- the reason to start is explained through the actual workflow, not only the lost account;
-- the original cost hypothesis and the corrected business case are clearly separated;
-- the design process reflects Samuel's real work and does not imitate a textbook framework;
-- selected use cases show judgment rather than enumerate features;
-- every important interface claim is supported by a visual;
-- current product, measured evidence, projected value and future direction are visibly distinct;
-- all customer and company-sensitive information is removed from screenshots.
+The portfolio inbox export has a contrast-adjusted teal template action with a visible label; this does not modify the underlying application. Videos use a subtle central play/pause button with keyboard support and native controls when JavaScript is unavailable. Both return links go to the top of the overview.

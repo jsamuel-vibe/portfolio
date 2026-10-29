@@ -69,6 +69,8 @@
   var intro = document.querySelector('.project-intro h1');
   if (intro) {
     document.querySelectorAll('main section, main header').forEach(function (el) {
+      var collapsedStory = el.closest('details:not([open])');
+      if (collapsedStory) return;
       var heading = el === intro.closest('header') ? intro : el.querySelector(':scope > h2, :scope > div > h2, :scope > div > div > h2');
       if (!heading) return;
       var first = el.querySelector('.t-body');
@@ -99,6 +101,8 @@
       b.setAttribute('aria-label', s.title);
       b.innerHTML = '<span class="rail-line"></span>';
       b.addEventListener('click', function () {
+        var story = s.heading.closest('details');
+        if (story) story.open = true;
         s.heading.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
       });
       var show = function () {
@@ -254,6 +258,7 @@
     var line = window.innerHeight * 0.35;
     var current = 0;
     sections.forEach(function (s, i) {
+      if (s.el.closest('details:not([open])')) return;
       if (s.heading.getBoundingClientRect().top <= line) current = i;
     });
     sections.forEach(function (s, i) {
@@ -265,5 +270,8 @@
   window.addEventListener('scroll', function () {
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
+  document.querySelectorAll('details').forEach(function (details) {
+    details.addEventListener('toggle', onScroll);
+  });
   onScroll();
 })();

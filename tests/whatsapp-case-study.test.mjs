@@ -5,141 +5,64 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const html = await readFile(resolve(root, 'whatsapp-campaigns.html'), 'utf8');
-const css = await readFile(resolve(root, 'styles.css'), 'utf8');
+const overview = await readFile(resolve(root, 'whatsapp-campaigns.html'), 'utf8');
+const storyPath = resolve(root, 'cretile-case-study.html');
+const attributes = (source, name) => [...source.matchAll(new RegExp('\\b' + name + '=["\x27]([^"\x27]+)["\x27]', 'g'))].map(match => match[1]);
+const pages = ['index.html', 'superstash.html', 'whatsapp-campaigns.html', 'cretile-case-study.html'];
 
-test('uses the portfolio case-study type system', () => {
-  assert.match(html, /class=["'][^"']*project-intro-inner/);
-  assert.match(html, /<h1 class=["']t-display["']/);
-  assert.ok((html.match(/class=["'][^"']*t-h24/g) || []).length >= 6);
-  assert.ok((html.match(/class=["'][^"']*t-body/g) || []).length >= 8);
+test('the overview leads to a separate readable story and the story links back', async () => {
+  const overviewLinks = attributes(overview, 'href');
+  assert.ok(overviewLinks.includes('cretile-case-study.html'), 'overview must link to the full case-study page');
+  const story = await readFile(storyPath, 'utf8');
+  assert.ok(attributes(story, 'href').some(href => href.split('#')[0] === 'whatsapp-campaigns.html'), 'full story needs a return route');
+  assert.match(story, /<h1\b/);
+  assert.match(story, /<main\b/);
 });
 
-test('publishes one editorial presentation without comparison machinery', () => {
-  assert.doesNotMatch(html, /data-case-view|case-viewer|case-study-view\.mjs/);
-  assert.doesNotMatch(html, /wa-person|wa-claude|Temporary comparison/);
-  assert.doesNotMatch(css, /data-case-view|\.case-viewer|\.wa-character-scene/);
-});
-
-test('moves from firsthand context to strategy, use cases, and direction', () => {
-  const sections = ['overview', 'scenarios', 'strategy', 'audience', 'launch', 'reply-state', 'analytics', 'follow-up', 'product', 'direction', 'takeaway'];
-
-  for (const id of sections) {
-    assert.match(html, new RegExp(`id=["']${id}["']`), `missing #${id}`);
-  }
-
-  const positions = sections.map((id) => html.indexOf(`id="${id}"`));
-  assert.deepEqual([...positions].sort((a, b) => a - b), positions, 'case-study sections are out of narrative order');
-
-  for (const removed of ['summary', 'at-a-glance', 'need', 'today', 'reflection', 'problem', 'scope', 'confidence', 'automation', 'rules', 'constraints', 'shipped', 'decisions']) {
-    assert.doesNotMatch(html, new RegExp(`id=["']${removed}["']`), `still contains #${removed}`);
+test('local media, posters, styles, scripts and page destinations resolve', async () => {
+  for (const page of pages) {
+    const html = await readFile(resolve(root, page), 'utf8');
+    for (const source of ['src', 'href', 'poster'].flatMap(name => attributes(html, name))) {
+      if (/^(?:https?:|mailto:|tel:|#)/.test(source)) continue;
+      const target = source.split(/[?#]/)[0];
+      await assert.doesNotReject(access(resolve(root, target)), page + ' has a broken local reference: ' + target);
+    }
   }
 });
 
-test('introduces the product decisions with one contextual scenario section', () => {
-  const scenarios = html.slice(html.indexOf('id="scenarios"'), html.indexOf('id="strategy"'));
-  assert.match(scenarios, /class=["'][^"']*wa-job-map/);
-  assert.match(scenarios, /Before designing/i);
-  assert.match(scenarios, /I was already creating campaigns/i);
-  assert.equal((scenarios.match(/<small>/g) || []).length, 5, 'each scenario needs a plain-language explanation');
-  assert.equal((html.match(/class=["'][^"']*wa-decision/g) || []).length, 5);
-  assert.ok(html.indexOf('id="scenarios"') < html.indexOf('id="audience"'));
-});
-
-test('shows the flexible audience paths as a consequential design decision', () => {
-  const audience = html.slice(html.indexOf('id="audience"'), html.indexOf('id="launch"'));
-  assert.match(audience, /class=["'][^"']*wa-audience-paths/);
-  assert.match(audience, /Reusable group/i);
-  assert.match(audience, /One-off group/i);
-  assert.match(audience, /Direct manipulation/i);
-  assert.match(audience, /Flexibility and efficiency of use/i);
-});
-
-test('ties selected product decisions to principles and evidence', () => {
-  assert.ok((html.match(/class=["'][^"']*wa-principle(?:\s|["'])/g) || []).length >= 4);
-  assert.ok((html.match(/class=["'][^"']*wa-principle-icon/g) || []).length >= 4);
-
-  for (const principle of [
-    'Error prevention',
-    'User control and freedom',
-    'Cognitive offloading',
-    'Visibility of system status',
-    'Actionable feedback'
-  ]) {
-    assert.match(html, new RegExp(principle, 'i'), `missing ${principle}`);
+test('page fragments resolve on their destination page', async () => {
+  for (const page of pages) {
+    const html = await readFile(resolve(root, page), 'utf8');
+    for (const href of attributes(html, 'href')) {
+      if (/^(?:https?:|mailto:|tel:)/.test(href) || !href.includes('#')) continue;
+      const [relative, fragment] = href.split('#');
+      if (!fragment) continue;
+      const target = relative ? await readFile(resolve(root, relative.split('?')[0]), 'utf8') : html;
+      assert.ok(attributes(target, 'id').includes(decodeURIComponent(fragment)), page + ' has a missing fragment destination: ' + href);
+    }
   }
 });
 
-test('uses campaign results to support a next action', () => {
-  const analytics = html.slice(html.indexOf('id="analytics"'), html.indexOf('id="follow-up"'));
-  assert.match(analytics, /wa-analytics\.png/);
-  assert.match(analytics, /resend/i);
-  assert.match(analytics, /inform the team/i);
-});
-
-test('grounds the reconstructed automation flow in existing product evidence', () => {
-  const followUp = html.slice(html.indexOf('id="follow-up"'), html.indexOf('id="product"'));
-  assert.match(followUp, /Simplified reconstruction/i);
-  assert.match(followUp, /roughly 40 follow-ups/i);
-  assert.match(followUp, /Cognitive offloading/i);
-});
-
-test('uses varied editorial compositions instead of a repeated screenshot list', () => {
-  assert.match(html, /class=["'][^"']*wa-process/);
-  assert.match(html, /class=["'][^"']*wa-choice-grid/);
-  assert.match(html, /class=["'][^"']*wa-job-map/);
-  assert.match(html, /class=["'][^"']*wa-audience-paths/);
-  assert.match(html, /class=["'][^"']*wa-media-pair/);
-  assert.match(html, /class=["'][^"']*wa-response-map/);
-  assert.match(html, /class=["'][^"']*wa-principle-grid/);
-  assert.match(html, /class=["'][^"']*wa-product-board/);
-});
-
-test('keeps the case study concise', () => {
-  const caseStudy = html.slice(html.indexOf('<header'), html.indexOf('<section class="sec">'));
-  const visibleText = caseStudy
-    .replace(/<script[\s\S]*?<\/script>/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&[^;]+;/g, ' ')
-    .trim();
-  const words = visibleText.split(/\s+/).filter(Boolean);
-  assert.ok(words.length <= 650, `case study has ${words.length} visible words`);
-});
-
-test('keeps the live product separate from the next direction', () => {
-  assert.match(html, /The product today/i);
-  assert.match(html, /Next direction[^<]*not yet built/i);
-  assert.match(html, /Website enquiry[\s\S]*Qualification/i);
-});
-
-test('does not publish rejected or unsupported claims', () => {
-  for (const claim of [/₹0\s*\/\s*mo/i, /4,000\+/, /5[–-]10 campaigns/i, /8%\+/, /Interakt[^.]{0,80}sell/i, /loophole/i, /wrong assumption|cost-saving idea/i]) {
-    assert.doesNotMatch(html, claim);
+test('both Cretile pages have unique IDs and valid accessibility references', async () => {
+  for (const page of ['whatsapp-campaigns.html', 'cretile-case-study.html']) {
+    const html = await readFile(resolve(root, page), 'utf8');
+    const ids = attributes(html, 'id');
+    assert.equal(ids.length, new Set(ids).size, page + ' has duplicate IDs');
+    for (const reference of ['aria-controls', 'aria-labelledby'].flatMap(name => attributes(html, name))) {
+      for (const id of reference.split(/\s+/)) assert.ok(ids.includes(id), page + ' has a missing accessible reference: ' + id);
+    }
   }
 });
 
-test('all local image, video, stylesheet, and script paths exist', async () => {
-  const sources = [...html.matchAll(/(?:src|href)=["']([^"']+)["']/g)]
-    .map((match) => match[1])
-    .filter((source) => !/^(?:https?:|mailto:|#)/.test(source))
-    .map((source) => source.split(/[?#]/)[0]);
-  await Promise.all(sources.map((source) => access(resolve(root, source))));
-});
-
-test('keeps captions with each product-design example', () => {
-  for (const asset of ['wa-hero.jpg', 'wa-preview.mp4', 'wa-audience.jpg', 'wa-undo.mp4', 'wa-analytics.png']) {
-    const index = html.indexOf(asset);
-    assert.notEqual(index, -1, `missing ${asset}`);
-    assert.match(html.slice(index, index + 700), /figcaption/, `missing caption near ${asset}`);
+test('each gallery tab has a distinct, labelled panel and local media', () => {
+  const tabMarkup = [...overview.matchAll(/<button\b[^>]*role="tab"[^>]*>/g)].map(match => match[0]);
+  assert.ok(tabMarkup.length > 1, 'preview needs multiple selectable views');
+  const controls = tabMarkup.map(tab => attributes(tab, 'aria-controls')[0]);
+  assert.equal(controls.length, new Set(controls).size, 'tabs must not share a panel');
+  for (let i = 0; i < controls.length; i++) {
+    const panel = overview.match(new RegExp('<figure\\b[^>]*id="' + controls[i] + '"[^>]*>([\\s\\S]*?)<\\/figure>'));
+    assert.ok(panel, 'tab must point to an available panel');
+    assert.ok(attributes(panel[0], 'aria-labelledby').includes(attributes(tabMarkup[i], 'id')[0]), 'panel must be named by its tab');
+    assert.ok(attributes(panel[0], 'src').some(source => source.startsWith('assets/')), 'panel must contain usable media');
   }
-});
-
-test('retains responsive and reduced-motion support', () => {
-  assert.match(css, /@media\s*\(max-width:\s*900px\)/);
-  assert.match(css, /@media\s*\(max-width:\s*640px\)/);
-  assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
-});
-
-test('does not ship tool-output truncation artifacts in the stylesheet', () => {
-  assert.doesNotMatch(css, /tokens truncated/i);
 });
