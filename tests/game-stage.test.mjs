@@ -20,9 +20,19 @@ test('puts the penalty stage in the footer, above the rule', () => {
 
 test('loads the rules, then the stage, then the game', () => {
   const order = ['games/penalty-rules.js', 'game-stage.js', 'games/penalty.js']
-    .map((src) => html.indexOf(`<script src="${src}"></script>`));
+    .map((src) => html.search(new RegExp(`<script src="${src.replace('.', '\\.')}(\\?v=[^"]+)?"></script>`)));
   assert.ok(order.every((i) => i > -1), JSON.stringify(order));
   assert.ok(order[0] < order[1] && order[1] < order[2], JSON.stringify(order));
+});
+
+// Browsers cache versioned assets until the label changes; a stale stylesheet with
+// fresh game scripts left the canvas unstyled over the footer. Ship them under one label.
+test('versions the stylesheet and game scripts with the same label', () => {
+  const css = html.match(/href="styles\.css\?v=([^"]+)"/);
+  assert.ok(css, 'stylesheet has a version label');
+  for (const src of ['games/penalty-rules.js', 'game-stage.js', 'games/penalty.js']) {
+    assert.ok(html.includes(`<script src="${src}?v=${css[1]}"></script>`), src);
+  }
 });
 
 test('keeps the stage hidden until the script mounts it', () => {
