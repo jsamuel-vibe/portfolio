@@ -3,8 +3,9 @@
 (function (root) {
   var SHOTS = 5;
   var MARGIN = 0.15;
-  var DIVE_X = { left: 0.22, centre: 0.5, right: 0.78 };
-  var REACH = { y: 0.3, rx: 0.2, ry: 0.45 };
+  var WOBBLE = 0.06;
+  var DIVE_X = { left: 0.15, centre: 0.5, right: 0.85 };
+  var REACH = { y: 0.4, rx: 0.2, ry: 0.5 };
   var LINES = ['Try another corner', "The keeper's having a day", 'Unlucky', 'Not bad', 'Nice finish', 'Perfect'];
 
   function sideOf(x) {
@@ -15,6 +16,14 @@
   function toTarget(x, y) {
     if (x < -MARGIN || x > 1 + MARGIN || y < -MARGIN || y > 1 + MARGIN) return null;
     return { x: x, y: Math.max(0, y) };
+  }
+
+  // Where the ball actually goes: a little off the aim, so shots tight to the frame can go wide or over.
+  function scatter(target, rand) {
+    return {
+      x: target.x + (rand() * 2 - 1) * WOBBLE,
+      y: Math.max(0, target.y + (rand() * 2 - 1) * WOBBLE)
+    };
   }
 
   // The keeper commits before seeing the ball, leaning toward the side used most this round.
@@ -55,6 +64,7 @@
   root.PenaltyRules = {
     SHOTS: SHOTS,
     toTarget: toTarget,
+    scatter: scatter,
     pickDive: pickDive,
     resolveShot: resolveShot,
     scoreLine: scoreLine,

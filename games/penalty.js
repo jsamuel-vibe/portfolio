@@ -92,10 +92,12 @@
       setPhase('ready');
     }
 
-    function shoot(target) {
+    // The keeper reads the aim (history); the ball goes where it actually lands.
+    function shoot(aim) {
       var dive = Rules.pickDive(mode === 'play' ? history : [], Math.random);
+      var target = mode === 'play' ? Rules.scatter(aim, Math.random) : aim;
       shot = { target: target, dive: dive, outcome: Rules.resolveShot(target, dive) };
-      if (mode === 'play') history.push(target);
+      if (mode === 'play') history.push(aim);
       setPhase('runup');
     }
 
@@ -135,9 +137,9 @@
       var side = shot ? SIDE[shot.dive] : 0;
       var bob = p ? 0 : Math.abs(Math.sin(clock * 0.006)) * L.gh * 0.04;
       return {
-        x: L.gx + (0.5 + side * 0.08 * p) * L.gw,
+        x: L.gx + (0.5 + side * 0.1 * p) * L.gw,
         y: L.gy - bob - (side ? Math.sin(p * Math.PI * 0.6) : p * 0.5) * L.gh * 0.24,
-        angle: side * p,
+        angle: side * p * 1.15,
         reach: p > 0
       };
     }

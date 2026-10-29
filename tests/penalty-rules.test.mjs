@@ -27,6 +27,15 @@ test('a low centre shot is saved by a keeper who stayed in the middle', () => {
   assert.equal(Rules.resolveShot({ x: 0.5, y: 0.2 }, 'centre'), 'save');
 });
 
+test('a correct guess saves a high shot that is only a little inside the frame', () => {
+  assert.equal(Rules.resolveShot({ x: 0.1, y: 0.85 }, 'left'), 'save');
+  assert.equal(Rules.resolveShot({ x: 0.9, y: 0.85 }, 'right'), 'save');
+});
+
+test('only a shot tight to the corner beats a correct guess', () => {
+  assert.equal(Rules.resolveShot({ x: 0.03, y: 0.97 }, 'left'), 'goal');
+});
+
 test('a keeper who guessed the wrong side concedes', () => {
   assert.equal(Rules.resolveShot({ x: 0.2, y: 0.3 }, 'right'), 'goal');
 });
@@ -78,6 +87,30 @@ test('scoreLine reports goals out of five with a line for each score', () => {
   assert.equal(Rules.scoreLine(round(1)), "1 / 5: The keeper's having a day");
   assert.equal(Rules.scoreLine(round(0)), '0 / 5: Try another corner');
   assert.equal(Rules.scoreLine(['goal', 'miss', 'goal', 'save', 'goal']), '3 / 5: Not bad');
+});
+
+test('the ball lands within 0.06 of where you aim, never below the ground', () => {
+  assert.deepEqual(plain(Rules.scatter({ x: 0.5, y: 0.5 }, () => 0.5)), { x: 0.5, y: 0.5 });
+  const edge = plain(Rules.scatter({ x: 0.5, y: 0.02 }, () => 0));
+  assert.ok(Math.abs(edge.x - 0.44) < 1e-9, JSON.stringify(edge));
+  assert.equal(edge.y, 0);
+
+  const rand = seeded(3);
+  for (let i = 0; i < 500; i++) {
+    const s = Rules.scatter({ x: 0.3, y: 0.4 }, rand);
+    assert.ok(Math.abs(s.x - 0.3) <= 0.06 && Math.abs(s.y - 0.4) <= 0.06, JSON.stringify(s));
+  }
+});
+
+test('aiming tight to the corner sometimes goes wide or over', () => {
+  const rand = seeded(11);
+  let misses = 0;
+  for (let i = 0; i < 1000; i++) {
+    const s = Rules.scatter({ x: 0.97, y: 0.95 }, rand);
+    if (Rules.resolveShot(s, 'left') === 'miss') misses++;
+  }
+  // About 31% expected: 25% wide (x > 1) or 8% over (y > 1).
+  assert.ok(misses > 200 && misses < 450, `misses: ${misses}`);
 });
 
 test('idle targets always land inside the click margin', () => {

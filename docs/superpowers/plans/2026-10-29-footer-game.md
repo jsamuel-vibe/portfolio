@@ -1039,13 +1039,13 @@ Also add this under "Preview locally" if there's no test command there already:
 Run the tests:
 
 ```
-node --test tests/
+node --test tests/*.test.mjs
 ```
 ````
 
 - [ ] **Step 2: Run the full test suite**
 
-Run: `node --test tests/`
+Run: `node --test tests/*.test.mjs`
 Expected: `tests/penalty-rules.test.mjs` and `tests/game-stage.test.mjs` pass. This work doesn't touch `tests/whatsapp-case-study.test.mjs` or the page it checks. If it fails, the failure predates this branch: report it and leave it alone.
 
 - [ ] **Step 3: Commit**

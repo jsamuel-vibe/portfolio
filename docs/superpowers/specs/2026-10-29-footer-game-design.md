@@ -118,8 +118,12 @@ Input is ignored while a shot is in progress.
 Coordinates are normalised to the goal mouth: `x` runs from 0 (left post) to 1 (right post), and `y` from 0 (ground) to 1 (crossbar).
 
 - `x < 0`, `x > 1` or `y > 1` → `miss`. Clicks are accepted in a margin around the goal, up to 15% of the goal width or height, so wide and high shots are possible. Clicks outside that margin are ignored. A `y` below 0 (a click on the grass) is clamped to 0, so it becomes a shot along the ground.
-- Otherwise, the keeper's reach is an ellipse centred on the dive position: `left` at x 0.22, `centre` at x 0.5, `right` at x 0.78, all at y 0.3. Its radii are 0.2 horizontally and 0.45 vertically. If the target is inside the ellipse → `save`. Otherwise → `goal`.
+- Otherwise, the keeper's reach is an ellipse centred on the dive position: `left` at x 0.15, `centre` at x 0.5, `right` at x 0.85, all at y 0.4. Its radii are 0.2 horizontally and 0.5 vertically. If the target is inside the ellipse → `save`. Otherwise → `goal`.
 - Result: a keeper who guesses right still can't reach a top corner, a keeper who stays in the middle saves low central shots, and shots tight to the posts score but risk missing.
+
+### Aim wobble (`scatter`)
+
+In play mode the ball lands near the click, not exactly on it: each axis is offset by a random amount of up to ±0.06, and `y` is clamped at 0. The keeper's bias uses the aimed spot, and the result uses where the ball lands. With the first reach numbers (reach stopping at y 0.75), any shot near the crossbar always scored. The reach above, together with the wobble, means a correct guess saves high shots a little inside the frame (x 0.1, y 0.85). Only shots tight to a corner beat a correct guess, and aiming there misses about 30% of the time.
 
 ### Score text (`scoreLine`)
 
