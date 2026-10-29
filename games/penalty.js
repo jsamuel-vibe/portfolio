@@ -2,7 +2,7 @@
 // penalty-rules.js decides where the keeper dives and whether a shot scores.
 (function () {
   var Rules = window.PenaltyRules;
-  var RUNUP = 400, FLIGHT = 500, RESULT = 1000, IDLE_GAP = 1500;
+  var RUNUP = 400, FLIGHT = 500, RESULT = 1000;
   var SIDE = { left: -1, centre: 0, right: 1 };
   var C = {
     sky: '#F6EEDF', stand: '#3E4A5C', hedge: '#4F8A3C',
@@ -94,10 +94,10 @@
 
     // The keeper reads the aim (history); the ball goes where it actually lands.
     function shoot(aim) {
-      var dive = Rules.pickDive(mode === 'play' ? history : [], Math.random);
-      var target = mode === 'play' ? Rules.scatter(aim, Math.random) : aim;
+      var dive = Rules.pickDive(history, Math.random);
+      var target = Rules.scatter(aim, Math.random);
       shot = { target: target, dive: dive, outcome: Rules.resolveShot(target, dive) };
-      if (mode === 'play') history.push(aim);
+      history.push(aim);
       setPhase('runup');
     }
 
@@ -113,9 +113,7 @@
 
     function update(dt) {
       t += dt;
-      if (phase === 'ready' && mode === 'idle' && t >= IDLE_GAP) {
-        shoot(Rules.randomTarget(Math.random));
-      } else if (phase === 'runup' && t >= RUNUP) {
+      if (phase === 'runup' && t >= RUNUP) {
         setPhase('flight');
       } else if (phase === 'flight' && t >= FLIGHT) {
         if (mode === 'play') results.push(shot.outcome);
@@ -435,12 +433,11 @@
     again.addEventListener('click', play);
 
     return {
-      // With reduced motion the demo is one still frame: keeper set, ball on the spot.
+      // Until someone clicks, the oval is one still frame: keeper set, ball on the spot.
       idle: function () {
         mode = 'idle';
         reset();
-        if (GameStage.reduceMotion) draw();
-        else start();
+        draw();
       },
       play: play,
       resize: function (w, h) {

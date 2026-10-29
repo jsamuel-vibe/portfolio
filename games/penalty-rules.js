@@ -52,22 +52,12 @@
     return goals + ' / ' + SHOTS + ': ' + LINES[goals];
   }
 
-  // The idle striker mostly hits the target, sometimes wide or over.
-  function randomTarget(rand) {
-    if (rand() < 0.85) return { x: 0.05 + rand() * 0.9, y: rand() * 0.95 };
-    var side = rand();
-    if (side < 0.4) return { x: -0.02 - rand() * 0.1, y: rand() * 0.9 };
-    if (side < 0.8) return { x: 1.02 + rand() * 0.1, y: rand() * 0.9 };
-    return { x: 0.1 + rand() * 0.8, y: 1.02 + rand() * 0.1 };
-  }
-
   root.PenaltyRules = {
     SHOTS: SHOTS,
     toTarget: toTarget,
     scatter: scatter,
     pickDive: pickDive,
     resolveShot: resolveShot,
-    scoreLine: scoreLine,
-    randomTarget: randomTarget
+    scoreLine: scoreLine
   };
 })(this);

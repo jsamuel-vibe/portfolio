@@ -5,7 +5,7 @@ Branch: `feature/footer-game` (worktree `../portfolio-footer-game`, off `be93a09
 
 ## Goal
 
-Add a small, playable game to the homepage footer. It sits in an oval, inspired by the illustrated oval on Keen's "Love & Relationships" page. Before anyone touches it, a demo plays inside the oval to give the footer some life. Clicking the oval expands it in place and starts a real round.
+Add a small, playable game to the homepage footer. It sits in an oval, inspired by the illustrated oval on Keen's "Love & Relationships" page. Before anyone clicks, the oval shows a still illustrated scene (keeper set, ball on the spot). Clicking the oval expands it in place and starts a real round.
 
 The first game is a **penalty shootout**. The oval and its behavior (the *stage*) are reusable: later games plug into the same stage without changing it.
 
@@ -55,15 +55,15 @@ If the game named in `data-game` isn't registered, the stage leaves the element 
 ### Collapsed (idle)
 
 - Full content width, `border-radius: 50%`, aspect ratio about 2.4:1 (roughly 1000×420 on desktop).
-- The game's idle demo plays inside it, clipped by the oval.
-- A pill button centred near the bottom reads **"⚽ Take a penalty"**. The label comes from a `data-label` attribute, so other games can set their own.
+- The game's still idle scene shows inside it, clipped by the oval. Nothing animates until it's clicked (changed after review: originally a self-playing demo).
+- A pill button centred near the top, over the crowd, reads **"⚽ Take a penalty"**. The label comes from a `data-label` attribute, so other games can set their own.
 - The whole oval has `role="button"`, `tabindex="0"` and an `aria-label` ("Play a penalty shootout"). On hover, the cursor becomes a pointer and the oval scales to 1.01.
 
 ### Expanding
 
 - About 450 ms, ease-out. The border radius animates from the oval to 24px, and the aspect ratio changes to 16:9, with the height capped at 80vh.
 - The page scrolls smoothly so the stage is centred.
-- The idle demo cuts straight into `play()`, with no loading screen.
+- The still scene cuts straight into `play()`, with no loading screen.
 
 ### Expanded
 
@@ -79,7 +79,7 @@ If the game named in `data-game` isn't registered, the stage leaves the element 
 
 ### Reduced motion (`prefers-reduced-motion: reduce`)
 
-- Idle: the game draws one still frame (keeper set, ball on the spot) and doesn't loop.
+- Idle is already a still frame for everyone.
 - Expanding and collapsing are instant.
 - The game itself still animates once the user chooses to play.
 
@@ -129,9 +129,9 @@ In play mode the ball lands near the click, not exactly on it: each axis is offs
 
 `"N / 5: <line>"`, where 5 → "Perfect", 4 → "Nice finish", 3 → "Not bad", 2 → "Unlucky", 1 → "The keeper's having a day", and 0 → "Try another corner".
 
-### Idle demo
+### Idle scene
 
-Same scene. An AI striker picks random targets (about 85% inside the goal, 15% in the margin), and `pickDive` runs with no history. There's a 1.5 s pause between shots, no heads-up display and no result card, and the loop never ends.
+One still frame of the same scene: keeper set on the line, striker at rest, ball on the spot. No animation loop, no heads-up display. (An earlier version had an AI striker shooting on a loop; it was removed after review.)
 
 ### Sound
 
@@ -157,13 +157,13 @@ Use `node:test`, following `tests/whatsapp-case-study.test.mjs`.
 
 Manual check with `python -m http.server 5173`:
 
-- The idle demo plays in the oval.
+- The oval shows a still scene and doesn't animate.
 - Click and Enter both expand it.
 - A full round of 5 works with mouse and touch.
 - × and Esc collapse it and return focus to the oval.
 - It pauses when scrolled off-screen.
 - The layout holds at 375px wide.
-- Reduced motion shows a still frame.
+- Reduced motion makes expanding instant.
 
 ## Out of scope
 

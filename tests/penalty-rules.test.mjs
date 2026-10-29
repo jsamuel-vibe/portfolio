@@ -112,11 +112,3 @@ test('aiming tight to the corner sometimes goes wide or over', () => {
   // About 31% expected: 25% wide (x > 1) or 8% over (y > 1).
   assert.ok(misses > 200 && misses < 450, `misses: ${misses}`);
 });
-
-test('idle targets always land inside the click margin', () => {
-  const rand = seeded(7);
-  for (let i = 0; i < 500; i++) {
-    const t = Rules.randomTarget(rand);
-    assert.notEqual(Rules.toTarget(t.x, t.y), null, JSON.stringify(t));
-  }
-});
