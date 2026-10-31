@@ -142,12 +142,12 @@ a:hover .btn-icon:first-child, .btn:hover .btn-icon:first-child { transform: tra
 /* Home: hero */
 .hero {
   padding-top: var(--section-gap);
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
-  grid-template-areas: "main ." ". sub"; row-gap: 32px; column-gap: 48px;
+  display: grid; grid-template-columns: minmax(0, 720px);
+  grid-template-areas: "main" "sub"; justify-content: start; row-gap: 24px;
 }
-.hero-main { grid-area: main; display: flex; flex-direction: column; gap: 24px; max-width: 460px; }
+.hero-main { grid-area: main; display: flex; flex-direction: column; gap: 24px; }
 .hero-title { font-weight: 500; font-size: clamp(30px, 3.4vw, 38px); line-height: 1.12; text-wrap: balance; }
-.hero-sub { grid-area: sub; }
+.hero-sub { grid-area: sub; max-width: 600px; }
 .avatar { width: 56px; height: 56px; border-radius: 18px; overflow: hidden; }
 
 /* Home: case study features */
