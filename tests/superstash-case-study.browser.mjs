@@ -12,23 +12,18 @@ let browser;
 before(async () => { browser = await chromium.launch({ headless: true, ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) }); });
 after(async () => { await browser?.close(); });
 
-test('Learn More opens the complete story and both return links reset the overview to its top', async () => {
+test('the overview continues into the complete story and old story links land on the same page', async () => {
   const page = await browser.newPage({ reducedMotion: 'reduce' });
   try {
-    for (const label of ['Overview', 'Back to overview']) {
-      await page.goto(url('superstash.html'));
-      assert.equal(await page.locator('.ss-exploration-board').count(), 0, 'the overview must not contain the full exploration story');
-      await page.getByRole('link', { name: 'Learn More', exact: true }).click();
-      assert.ok(page.url().endsWith('superstash-case-study.html'));
-      assert.equal(await page.locator('.ss-exploration-board .ss-ex').count(), 12, 'preserve the complete reviewed board');
-      await page.getByRole('link', { name: label, exact: true }).click();
-      assert.ok(page.url().endsWith('superstash.html#top'));
-      await page.waitForFunction(() => scrollY < 2);
-    }
+    await page.goto(url('superstash.html'));
+    assert.equal(await page.getByRole('link', { name: 'Learn More', exact: true }).count(), 0);
+    assert.equal(await page.locator('.ss-exploration-board .ss-ex').count(), 12, 'preserve the complete reviewed board');
+    await page.goto(url('superstash-case-study.html'));
+    await page.waitForURL('**/superstash.html');
   } finally { await page.close(); }
 });
 
-test('mobile gallery scrolls on one row, supports keyboard selection and shows useful media instructions', async () => {
+test('mobile gallery scrolls on one row, supports keyboard selection and shows finished media in every tab', async () => {
   const page = await browser.newPage({ viewport: { width: 442, height: 884 }, reducedMotion: 'reduce' });
   try {
     await page.goto(url('superstash.html'));
@@ -43,11 +38,8 @@ test('mobile gallery scrolls on one row, supports keyboard selection and shows u
       const panel = page.locator('#' + await tab.getAttribute('aria-controls'));
       assert.equal(await panel.isVisible(), true);
       assert.equal(await page.getByRole('tabpanel').filter({ visible: true }).count(), 1);
-      const slot = panel.locator('[data-media-slot]');
-      if (await slot.count()) {
-        assert.ok((await slot.innerText()).length > 140, 'placeholder must explain the real capture needed');
-        assert.equal(await slot.locator('img').count(), 0, 'a missing asset must not be represented by a broken image');
-      }
+      assert.equal(await panel.locator('[data-media-slot]').count(), 0, 'every tab shows finished media, not a placeholder');
+      assert.equal(await panel.locator('img.media, video.media').count(), 1, 'each tab shows exactly one image or video');
     }
     await tabs.first().focus();
     await page.keyboard.press('End');
@@ -56,12 +48,12 @@ test('mobile gallery scrolls on one row, supports keyboard selection and shows u
   } finally { await page.close(); }
 });
 
-test('old exploration and saving links still reach the corresponding full-story sections', async () => {
+test('old exploration and saving links still reach the corresponding story sections', async () => {
   const page = await browser.newPage({ reducedMotion: 'reduce' });
   try {
     for (const id of ['home-exploration', 'more-decisions']) {
-      await page.goto(url('superstash.html') + '#' + id);
-      await page.waitForURL('**/superstash-case-study.html#' + id);
+      await page.goto(url('superstash-case-study.html') + '#' + id);
+      await page.waitForURL('**/superstash.html#' + id);
       assert.equal(await page.locator('#' + id).count(), 1);
     }
   } finally { await page.close(); }
@@ -74,7 +66,6 @@ test('without JavaScript the full story, preview media slots and native video co
     await page.goto(url('superstash.html'));
     assert.equal(await page.locator('[role="tabpanel"]').count(), 5);
     for (const panel of await page.locator('[role="tabpanel"]').all()) assert.equal(await panel.isVisible(), true);
-    await page.getByRole('link', { name: 'Learn More', exact: true }).click();
     assert.ok(await page.locator('.wa-story-section').count() >= 8);
     assert.equal(await page.locator('.ss-exploration-board').isVisible(), true);
     for (const video of await page.locator('video').all()) assert.equal(await video.evaluate(el => el.controls), true);

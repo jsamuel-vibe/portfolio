@@ -101,8 +101,6 @@
 /* Legibility pass: show screenshots near their real size and keep small text crisp on Windows. */
 
 /* Hero: crop to the note field, filters and rail at roughly 1:1 instead of shrinking the whole screen. */
-.ss-hero-viewport { aspect-ratio: 1180 / 630; }
-.interface-stage .interface-viewport img.ss-hero-crop { width: 161%; max-width: none; }
 
 /* Headings sit above their content, so the page isn't half empty beside long sections. */
 .page .split { flex-direction: column; justify-content: flex-start; gap: var(--head-gap); }
@@ -130,12 +128,81 @@
 .ss-built-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
 .ss-built-grid article { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; border-top: 1px solid var(--hairline); }
 .ss-status { display: flex; flex-direction: column; gap: 20px; max-width: 760px; }
-.ss-story .wa-story-copy .t-body { line-height: 1.3; }
 .ss-story .wa-story-label { font-family: 'Inter', system-ui, sans-serif; }
-.ss-media-placeholder { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 20px; min-width: 0; min-height: 320px; padding: clamp(24px, 4vw, 48px); border: 1px dashed rgba(17, 17, 17, .22); border-radius: var(--radius); background: var(--surface); }
-.ss-media-placeholder > * { max-width: 640px; }
-.ss-media-kind { margin: 0; color: var(--muted); font: 400 12px/1.4 'Inter', system-ui, sans-serif; letter-spacing: .02em; }
+
+/* Original research, cropped without changing the artefacts. A separate board
+   keeps the reviewed twelve-screen exploration and its animation untouched. */
+.ss-research { display: flex; flex-direction: column; gap: 24px; }
+.ss-research-board {
+  --board: min(1640px, 100vw - 48px);
+  position: relative; width: var(--board);
+  margin-inline: calc(50% - var(--board) / 2);
+  aspect-ratio: 16 / 10; container-type: inline-size;
+}
+.ss-research-board::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(17, 17, 17, .14) 1px, transparent 1.4px) 0 0 / 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 52% 50% at 50% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 52% 50% at 50% 50%, #000 55%, transparent 100%);
+}
+.ss-research-heading { position: absolute; left: 40%; top: 37%; width: 27%; display: flex; flex-direction: column; gap: 12px; }
+.page .ss-research-heading h2 { font-size: clamp(32px, 3.4cqw, 48px); line-height: 1; }
+.ss-research-heading p { color: var(--muted); font-size: clamp(18px, 1.4cqw, 22px); font-style: italic; line-height: 1.2; }
+.ss-research-card { --r: 0deg; position: absolute; display: flex; flex-direction: column; gap: 12px; min-width: 0; margin: 0; }
+.ss-research-card .zoomable { display: block; width: 100%; border-radius: 2px; background: white; transform: rotate(var(--r)); box-shadow: 0 0 0 1px var(--hairline), 0 8px 22px rgba(17, 17, 17, .1); transition: transform .2s ease, box-shadow .2s ease; }
+.ss-research-card .media { border-radius: 2px; background: white; }
+.ss-research-card .zoomable::after { content: none; }
+.ss-research-card .zoomable:hover, .ss-research-card .zoomable:focus-visible { transform: rotate(0deg) scale(1.03); box-shadow: 0 0 0 1px var(--hairline), 0 12px 32px rgba(17, 17, 17, .16); }
+.ss-research-card:focus-within { z-index: 1; }
+.ss-research-card figcaption { color: var(--muted); font-size: clamp(16px, 1.2cqw, 20px); font-style: italic; line-height: 1.2; }
+.ss-research-framing { left: 4%; top: 5%; width: 31%; --r: -2deg; }
+.ss-research-journey { left: 60%; top: 6%; width: 36%; --r: 1deg; }
+.ss-research-opportunities { left: 4%; top: 48%; width: 33%; --r: -1deg; }
+.ss-research-stories { left: 72%; top: 40%; width: 22%; --r: 1.5deg; }
+.ss-research-flows { left: 40%; top: 73%; width: 28%; --r: -1.5deg; }
+.ss-research-context { max-width: 680px; }
+@media (max-width: 900px) {
+  .ss-research-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; width: auto; margin-inline: 0; aspect-ratio: auto; container-type: normal; }
+  .ss-research-board::before { display: none; }
+  .ss-research-heading, .ss-research-card { position: static; width: auto; }
+  .ss-research-heading { grid-column: 1 / -1; max-width: 520px; }
+  .page .ss-research-heading h2 { font-size: 40px; }
+  .ss-research-heading p { font-size: 20px; }
+  .ss-research-card figcaption { font-size: 18px; }
+  .ss-research-card .zoomable, .ss-research-card .zoomable:hover, .ss-research-card .zoomable:focus-visible { transform: none; }
+}
+@media (max-width: 640px) { .ss-research-board { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .ss-research-card .zoomable { transition: none; } }
 @media (max-width: 640px) {
   .ss-built-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .ss-media-placeholder { min-height: 300px; }
+}
+
+/* Preview gallery: views listed on the left, the recording on the right. The active
+   view opens to show its caption (copied in by cretile-overview.js); the caption under
+   the recording stays for screen readers. Narrower screens keep the scrolling strip. */
+.ss-tab-caption { display: none; }
+@media (min-width: 901px) {
+  .ss-preview.is-enhanced { display: grid; grid-template-columns: 300px minmax(0, 1fr); column-gap: 48px; align-items: start; }
+  .ss-preview .wa-preview-tabs { grid-column: 1; grid-row: 1; align-self: end; display: flex; flex-direction: column; gap: 0; width: auto; box-shadow: none; overflow: visible; }
+  .ss-preview .wa-preview-tabs button { display: grid; grid-template-rows: auto 0fr; min-height: 44px; padding: 12px 0 14px; text-align: left; border-bottom: 0; background: linear-gradient(var(--hairline), var(--hairline)) left bottom / 100% 1px no-repeat; font-family: 'Inter', system-ui, sans-serif; font-size: 16px; white-space: normal; transition: color .2s ease, grid-template-rows .3s ease; }
+  .ss-preview .wa-preview-tabs button[aria-selected="true"] { grid-template-rows: auto 1fr; }
+  .ss-preview .ss-tab-caption { display: block; overflow: hidden; min-height: 0; color: var(--muted); font-size: 14px; line-height: 1.45; opacity: 0; transition: opacity .3s ease; }
+  .ss-preview [aria-selected="true"] .ss-tab-caption { padding-top: 8px; opacity: 1; }
+  .ss-preview .wa-preview-panel { grid-column: 2; grid-row: 1; }
+  .ss-preview.has-tab-captions .wa-preview-panel .media-caption { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+/* Auto-advance: the active tab's line fills as its recording plays (set by cretile-overview.js). */
+.ss-preview.is-auto .wa-preview-tabs button[aria-selected="true"] {
+  border-bottom-color: transparent;
+  background: linear-gradient(var(--ink), var(--ink)) left bottom / calc(var(--progress, 0) * 100%) 2px no-repeat;
+}
+@media (min-width: 901px) {
+  .ss-preview.is-auto .wa-preview-tabs button[aria-selected="true"] {
+    background:
+      linear-gradient(var(--ink), var(--ink)) left bottom / calc(var(--progress, 0) * 100%) 1.5px no-repeat,
+      linear-gradient(var(--hairline), var(--hairline)) left bottom / 100% 1px no-repeat;
+  }
+}
+@media (min-width: 901px) and (prefers-reduced-motion: reduce) {
+  .ss-preview .wa-preview-tabs button, .ss-preview .ss-tab-caption { transition: none; }
 }

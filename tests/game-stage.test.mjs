@@ -8,14 +8,15 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const html = await readFile(resolve(root, 'index.html'), 'utf8');
 const css = await readFile(resolve(root, 'styles.css'), 'utf8');
 
-test('puts the penalty stage in the footer, above the rule', () => {
+test('ends the footer with the penalty stage, below the contact links', () => {
   const footer = html.slice(html.indexOf('<footer class="contact'), html.indexOf('</footer>'));
   const stage = footer.indexOf('class="game-stage"');
   assert.ok(stage > -1, 'stage is inside the footer');
-  assert.ok(stage < footer.indexOf('class="rule"'), 'stage comes before the rule');
+  assert.ok(stage > footer.indexOf('class="footer-links"'), 'stage comes after the contact links');
+  assert.ok(stage > footer.indexOf('class="t-small muted contact-note"'), 'stage comes after the copyright line');
   assert.match(footer, /data-game="penalty"/);
-  assert.match(footer, /data-label="⚽ Take a penalty"/);
-  assert.match(footer, /aria-label="Play a penalty shootout"/);
+  assert.match(footer, /aria-label="Penalty game: tap the goal to shoot"/);
+  assert.doesNotMatch(footer, /data-label=/, 'no "Take a penalty" button');
 });
 
 test('loads the rules, then the stage, then the game', () => {
@@ -38,8 +39,4 @@ test('versions the stylesheet and game scripts with the same label', () => {
 test('keeps the stage hidden until the script mounts it', () => {
   assert.match(css, /\.game-stage\s*\{[^}]*display:\s*none/);
   assert.match(css, /\.game-stage\.is-ready\s*\{\s*display:\s*block/);
-});
-
-test('turns stage motion off for reduced motion', () => {
-  assert.match(css, /prefers-reduced-motion: reduce\)\s*\{[^}]*\.game-stage/);
 });

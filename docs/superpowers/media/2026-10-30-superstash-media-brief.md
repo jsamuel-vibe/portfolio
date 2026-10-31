@@ -1,6 +1,6 @@
 # Superstash: remaining media to capture
 
-The content and two-page structure are implemented. Real existing images and the reviewed exploration board are already placed. Four visible slots need replacement. Do not rewrite the case study or recreate the interface to fill them.
+The content and two-page structure are implemented. Real existing images and the reviewed exploration board are already placed. Three recording slots need replacement. Research slot SS-04 has been filled with five exact screenshot crops on the full story's research board. Do not rewrite the case study or recreate the interface to fill the remaining slots.
 
 ## Source of truth
 
@@ -17,7 +17,6 @@ The content and two-page structure are implemented. Real existing images and the
 | SS-01 | Overview, Browser capture tab | `assets/superstash-browser-capture-clean.mp4` and `assets/superstash-browser-capture-poster.webp` | 15–20 seconds: open a harmless public reference, save through the currently working extension action, show confirmation, then show that same item in the library. Choose the actual available action; do not claim an old prototype is the current flow. |
 | SS-02 | Overview, Quick notes tab | `assets/superstash-quick-note-clean.mp4` and `assets/superstash-quick-note-poster.webp` | 10–15 seconds: start with New quick note in the gallery, enter a short fictional design observation, complete the existing save flow and reopen the note. Example note: “Try a quieter navigation rail so references keep most of the space.” |
 | SS-03 | Overview, Finding references tab | `assets/superstash-find-reference-clean.mp4` and `assets/superstash-find-reference-poster.webp` | 10–15 seconds: show a mixed library, search for a term that genuinely matches an existing harmless reference, use a content-type filter if it helps, and open the result. Show current search/filter behavior, not semantic reasoning or a simulated external AI integration. |
-| SS-04 | Full story, Who I designed for | `assets/superstash-research-excerpt.webp` | Export a readable close view of an existing competitor comparison or one competitor journey from Samuel's actual design file. Include the original observations and meaningful labels. Do not use the unreadable whole-board overview or manufacture interviews, survey findings or new research evidence. |
 
 ## Replacement steps
 
@@ -35,17 +34,21 @@ The content and two-page structure are implemented. Real existing images and the
 ```
 
 3. Set video width and height to the actual exported pixel dimensions. Preserve its natural aspect ratio. Do not add autoplay or a custom control implementation: `cretile-overview.js` supplies the shared central play/pause control, respects reduced motion and keeps native controls without JavaScript.
-4. Replace SS-04 with a real image inside the existing figure:
+## Completed research media, 2026-10-31
 
-```html
-<div class="interface-stage"><div class="interface-viewport">
-  <img class="media" src="assets/superstash-research-excerpt.webp"
-    alt="Original Superstash competitor-comparison notes and the observations used to frame the problem"
-    loading="lazy">
-</div></div>
-```
+SS-04 is now the five-excerpt `#research` board on `superstash-case-study.html`. Crops remove application chrome and unrelated canvas only. PNG export preserves the captured text and colours without generation, redrawing, sharpening or upscaling. The original screenshots remain untouched. Small text is still limited by the source resolution; full-size viewing does not recreate missing detail.
 
-5. Add the research image's actual width and height. Update its alt text and existing figcaption to describe the specific original artefact shown. Remove the instruction caption after the slot is filled.
+Source folder: `C:/Users/SamuelJoseph/Pictures/Screenshots/`. Crop coordinates are `width:height:x:y`, in source pixels:
+
+| Original screenshot | Asset | Crop |
+| --- | --- | --- |
+| Screenshot 2026-10-31 074929.png | `assets/superstash-research-competitor-journey.png` | `1730:688:128:226` |
+| Screenshot 2026-10-31 074858.png | `assets/superstash-research-framing.png` | `1544:762:270:150` |
+| Screenshot 2026-10-31 074827.png | `assets/superstash-research-opportunities.png` | `1384:766:286:148` |
+| Screenshot 2026-10-31 074811.png | `assets/superstash-research-user-stories.png` | `548:706:598:179` |
+| Screenshot 2026-10-31 074752.png | `assets/superstash-research-task-flows.png` | `1540:706:176:184` |
+
+Each was exported with FFmpeg's `crop=width:height:x:y:exact=1` filter to one PNG frame. The FigJam link was not readable through the available web access; only the supplied screenshots were used. These are exploratory artefacts, not validated user findings or a list of shipped features. Do not replace them with generated research. Future higher-resolution exports may replace the same assets after their actual dimensions and captions are updated.
 
 ## Capture and privacy rules
 

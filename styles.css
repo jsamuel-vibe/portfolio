@@ -12,6 +12,13 @@
   src: url('assets/fonts/inter-latin-variable.woff2') format('woff2');
 }
 @font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('assets/fonts/plus-jakarta-sans-latin-variable.woff2') format('woff2');
+}
+@font-face {
   font-family: 'Crimson Pro';
   font-style: normal;
   font-weight: 200 900;
@@ -31,17 +38,18 @@
   --surface: #F3F3F6;
   --surface-alt: rgb(239, 239, 241);
   --white: rgb(255, 255, 255);
-  --ink: rgb(17, 17, 17);
+  --ink: #1F1F1F;
   --ink-hover: rgb(48, 48, 48);
-  --muted: rgba(17, 17, 17, 0.6);
-  --faint: rgba(17, 17, 17, 0.3);
-  --hairline: rgba(17, 17, 17, 0.08);
+  --muted: rgba(31, 31, 31, 0.6);
+  --faint: rgba(31, 31, 31, 0.3);
+  --hairline: rgba(31, 31, 31, 0.08);
   --tip-bg: rgb(30, 30, 30);
   --device-screen: rgb(30, 30, 30);
   --content-width: 1180px;
 
   --font: 'Crimson Pro', Georgia, 'Times New Roman', serif;
   --font-display: var(--font);
+  --font-sub: 'Plus Jakarta Sans', system-ui, sans-serif;
   --tracking: 0;
 
   --section-gap: clamp(96px, 12.5vw, 160px);
@@ -63,13 +71,58 @@ h2, h3 { scroll-margin-top: 48px; }
   color: var(--ink);
   background: var(--bg);
   min-height: 100vh;
-  padding: 0 24px;
+  --page-x: 24px;
+  padding: 0 var(--page-x);
   overflow-x: clip;
+  position: relative;
+  isolation: isolate;
 }
 .container { max-width: var(--content-width); margin: 0 auto; }
 
+/* Page frame: two vertical lines a little outside the content column,
+   crossed by rules that end on them. The same rule places them on every page:
+   24px under the header, then halfway into the gap above each section.
+   Drawn behind the content so they never cover media. On narrow screens the
+   vertical lines sit halfway between the screen edge and the content. */
+.page {
+  --frame-x: max(var(--page-x) / 2, (100% - var(--content-width)) / 2 - 40px);
+  --frame-line: rgba(31, 31, 31, 0.08);
+  container-type: inline-size;
+}
+@media (max-width: 640px) { .page { --page-x: 32px; } }
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0 var(--frame-x);
+  z-index: -1;
+  border-inline: 1px solid var(--frame-line);
+  pointer-events: none;
+}
+.page .site-nav,
+.container > .sec { position: relative; }
+.page .site-nav::after,
+.container > .sec::before,
+.wa-project-details::before, .case-project-details::before,
+.wa-project-details::after, .case-project-details::after {
+  content: "";
+  position: absolute;
+  /* Rules end on the two vertical frame lines, never past them. cqw is the
+     page's content width, so the page edge sits a further --page-x outside it.
+     Measured from the column's left edge, so narrower sections still line up. */
+  --half-frame: calc(50cqw + var(--page-x) - max(var(--page-x) / 2, (100cqw + 2 * var(--page-x) - var(--content-width)) / 2 - 40px));
+  left: calc(min(100cqw, var(--content-width)) / 2 - var(--half-frame));
+  width: calc(2 * var(--half-frame));
+  height: 1px;
+  background: var(--frame-line);
+  pointer-events: none;
+}
+.page .site-nav::after { top: calc(100% + 24px); }
+.container > .sec::before { top: calc(var(--sec-pad) / 2); }
+/* The footer's frame rule replaces its old divider; the divider keeps its space. */
+.contact > .rule { visibility: hidden; }
+
 /* Spacing */
-.sec { padding-top: var(--section-gap); }
+.sec { --sec-pad: var(--section-gap); padding-top: var(--sec-pad); }
 .sec-tight { padding-top: var(--block-gap); }
 
 /* Type */
@@ -78,7 +131,7 @@ h2, h3 { scroll-margin-top: 48px; }
   font-weight: 400;
   letter-spacing: -.025em;
 }
-.t-body { color: var(--muted); font-weight: 400; font-size: 18px; line-height: 1.3; text-wrap: pretty; }
+.t-body { color: var(--ink); font-family: var(--font-sub); font-weight: 400; font-size: 16px; line-height: 1.5; text-wrap: pretty; }
 .page :is(h2, h3).t-h16 { font-size: 28px; line-height: 1.15; }
 .t-title { font-weight: 500; font-size: 20px; line-height: 1.2; }
 .t-display { font-weight: 400; font-size: clamp(40px, 4.2vw, 48px); line-height: 1.04; text-wrap: balance; }
@@ -119,11 +172,21 @@ a:hover .btn-icon:first-child, .btn:hover .btn-icon:first-child { transform: tra
 .placeholder { background: var(--surface); }
 .section-heading { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .section-heading::after { content: ""; width: 94px; height: 1px; background: var(--ink); }
-.topnav { padding-top: 40px; display: flex; justify-content: space-between; align-items: center; }
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand:hover { opacity: .7; }
-.brand-mark { width: 32px; height: 32px; border-radius: 10px; display: block; }
-.avatar, .brand-mark { background: var(--white) url("assets/profile.jpg") center / cover no-repeat; }
+/* Site header: the same portrait and contact button on every page. */
+.site-nav { display: flex; align-items: center; justify-content: space-between; padding-top: 48px; }
+.site-portrait-link { display: block; border-radius: 18px; transition: opacity .2s ease; }
+.site-portrait-link:hover { opacity: .7; }
+.site-portrait { display: block; width: 56px; height: 56px; border-radius: 18px; object-fit: cover; }
+.avatar { background: var(--white) url("assets/profile.jpg") center / cover no-repeat; }
+
+/* Breadcrumbs sit above a project opening. */
+.breadcrumbs { padding-top: 48px; }
+.breadcrumbs ol { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; row-gap: 4px; font-size: 16px; line-height: 24px; letter-spacing: var(--track-sm); color: var(--muted); }
+.breadcrumbs li + li::before { content: "/"; padding: 0 10px; color: rgba(17, 17, 17, 0.3); }
+.breadcrumbs a { color: var(--muted); transition: color .2s ease; }
+.breadcrumbs a:hover { color: var(--ink); }
+.breadcrumbs [aria-current="page"] { color: var(--ink); }
+body .breadcrumbs + .project-intro { padding-top: 56px; }
 .rule { height: 1px; background: var(--hairline); }
 
 /* Footer */
@@ -168,7 +231,7 @@ a:hover .btn-icon:first-child, .btn:hover .btn-icon:first-child { transform: tra
 .meta > div { display: flex; flex-direction: column; gap: 6px; }
 .meta dt { color: var(--muted); font-size: 12px; line-height: 1.2; }
 .meta dd { font-weight: 400; font-size: 16px; line-height: 1.35; }
-.project-intro-inner > .t-body { font-size: 18px; line-height: 1.3; }
+.project-intro-inner > .t-body { font-size: 16px; line-height: 1.5; }
 
 /* Case study blocks */
 .label-col { flex: 1 1 200px; }
@@ -239,7 +302,7 @@ a:hover .btn-icon:first-child, .btn:hover .btn-icon:first-child { transform: tra
 .dg-col { display: flex; flex-direction: column; gap: 10px; }
 .dg-label { color: var(--muted); font-weight: 500; font-size: 12px; line-height: 1; text-transform: uppercase; letter-spacing: .04em; }
 .dg-card { background: var(--white); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
-.dg-card .t-body { font-size: 14px; line-height: 20px; }
+.dg-card .t-body { color: var(--muted); font-size: 14px; line-height: 20px; }
 .dg-card.is-later { background: transparent; box-shadow: inset 0 0 0 1px rgba(17, 17, 17, .3); }
 .dg-arrow { color: var(--muted); font-size: 14px; line-height: 1; white-space: nowrap; text-align: center; }
 .dg-note { color: var(--muted); font-style: italic; font-size: 13px; line-height: 1.35; }
@@ -329,7 +392,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   :root { --block-gap: 40px; --head-gap: 28px; }
   .t-display { font-size: clamp(38px, 9.5vw, 48px); }
   .hero { grid-template-columns: minmax(0, 1fr); grid-template-areas: "main" "sub"; row-gap: 24px; }
-  .topnav { padding-top: 24px; }
+  .site-nav { padding-top: 24px; }
+  .site-portrait-link, .site-portrait { width: 48px; height: 48px; border-radius: 15px; }
+  .breadcrumbs { padding-top: 32px; }
+  body .breadcrumbs + .project-intro { padding-top: 40px; }
   .footer-links { flex-wrap: wrap; }
   .footer-gosh .footer-links { gap: 32px; }
   .footer-links a { padding: 10px 0; }
@@ -365,25 +431,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .contact-email { font-size: 18px; overflow-wrap: anywhere; }
 }
 
-/* Footer game stage: an oval that plays a demo and expands in place. game-stage.js sets the height. */
-.game-stage { display: none; position: relative; width: 100%; margin-bottom: var(--block-gap); border-radius: 50%; overflow: hidden; background: #7DB956; cursor: pointer; transition: height .45s cubic-bezier(.2, .7, .2, 1), border-radius .45s cubic-bezier(.2, .7, .2, 1), transform .25s ease; -webkit-tap-highlight-color: transparent; }
+/* Footer game stage: the page ends on the pitch. Full-bleed (.page clips the overflow), flush with the bottom.
+   game-stage.js sets the height. */
+.game-stage { display: none; position: relative; width: 100vw; margin: var(--head-gap) 0 0 calc(50% - 50vw); -webkit-tap-highlight-color: transparent; }
 .game-stage.is-ready { display: block; }
-.game-stage.is-open { border-radius: 24px; cursor: default; }
-.game-stage:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-@media (hover: hover) { .game-stage.is-ready:not(.is-open):hover { transform: scale(1.01); } }
+.contact:has(.game-stage.is-ready) { padding-bottom: 0; }
 .game-screen { position: absolute; inset: 0; }
 .game-screen canvas { display: block; width: 100%; height: 100%; touch-action: manipulation; }
-.game-cta { position: absolute; left: 50%; top: 50%; z-index: 1; transform: translate(-50%, -50%); pointer-events: none; }
-.game-stage.is-open .game-cta { display: none; }
-.game-close { display: none; position: absolute; top: 12px; right: 12px; z-index: 2; }
-.game-stage.is-open .game-close { display: inline-flex; }
-.penalty-card { position: absolute; left: 50%; top: 50%; z-index: 2; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 28px; border-radius: 16px; background: var(--white); box-shadow: 0 8px 24px rgba(0, 0, 0, .18); cursor: default; }
-.penalty-card[hidden] { display: none; }
-.penalty-score { font-weight: 500; font-size: 20px; white-space: nowrap; }
-@media (prefers-reduced-motion: reduce) {
-  .game-stage { transition: none; }
-  .game-stage.is-ready:not(.is-open):hover { transform: none; }
-}
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 /* Optical tracking. Letter-spacing set on .page in em is converted to px at 16px and inherited,
    so big text ended up looser than body text. Each style sets its own value instead, following
@@ -405,7 +460,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .dg-label { letter-spacing: .04em; }
 
 /* Carousel: large slides that scroll sideways and run off the right edge of the page */
-.carousel { --edge: max(24px, (100vw - var(--content-width)) / 2); display: flex; flex-direction: column; gap: 20px; }
+.carousel { --edge: max(var(--page-x),(100vw - var(--content-width)) / 2); display: flex; flex-direction: column; gap: 20px; }
 .carousel-track {
   display: grid; grid-auto-flow: column; grid-auto-columns: min(82%, 760px); gap: 20px;
   overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth;
@@ -465,7 +520,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .lesson { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 48px; padding: 28px 0; border-bottom: 1px solid var(--hairline); }
 .lesson-wrong { display: flex; flex-direction: column; gap: 10px; }
 .lesson-now { display: flex; flex-direction: column; gap: 10px; padding-left: 20px; border-left: 2px solid var(--ink); align-self: start; }
-.lesson-now .t-body { color: var(--ink); }
+.lesson-wrong .t-body { color: var(--muted); }
 .lesson-label { font-weight: 500; font-size: 12px; line-height: 1; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: 9px; }
 .lesson-close { max-width: 620px; }
 .inline-link { color: var(--ink); font-weight: 500; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 1px; }
@@ -485,12 +540,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .project-intro .case-opening-inner { max-width: none; gap: 48px; }
 .wa-opening-grid, .case-opening-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  grid-template-columns: minmax(0, 1fr);
   gap: 64px;
   align-items: start;
 }
 .wa-intro-copy, .case-intro-copy { display: flex; flex-direction: column; gap: 32px; }
 .case-title-block { display: flex; flex-direction: column; gap: 18px; }
+/* The details row spans the page, so the title keeps the measure it had beside the old sidebar. */
+.wa-title-block, .case-title-block { max-width: 760px; }
 .wa-summary, .case-summary {
   padding-top: 28px;
   border-top: 1px solid var(--hairline);
@@ -499,17 +556,34 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   gap: 16px;
 }
 .wa-summary-copy, .case-summary-copy { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+/* Superstash's four paragraphs read as one story, so they run down a single column. */
+.case-summary-copy { grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 640px; }
 .wa-title-block > .t-body,
 .wa-summary-copy .t-body,
 .case-title-block > .t-body,
-.case-summary-copy .t-body { font-size: 18px; line-height: 1.3; }
-.wa-project-details, .case-project-details { margin: 0; border-top: 1px solid var(--hairline); }
+.case-summary-copy .t-body { font-size: 16px; line-height: 1.5; }
+/* Project details run as one row under the title, between two full-width
+   frame rules drawn like the section rules so they cross the frame lines. */
+.wa-project-details, .case-project-details {
+  position: relative;
+  margin: 0;
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px 32px;
+}
+.wa-project-details::before, .case-project-details::before { top: 0; }
+.wa-project-details::after, .case-project-details::after { bottom: 0; }
 .wa-project-details > div, .case-project-details > div {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--hairline);
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+/* The row's bottom hairline already opens the summary. */
+.wa-project-details + .wa-summary,
+.case-project-details + .case-summary { padding-top: 0; border-top: 0; }
+@media (max-width: 900px) {
+  .wa-project-details, .case-project-details { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .wa-project-details dt, .case-project-details dt {
   color: var(--muted);
@@ -834,6 +908,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .wa-opening-grid, .case-opening-grid { gap: 32px; }
   .wa-intro-copy, .case-intro-copy { gap: 28px; }
   .wa-summary, .case-summary { padding-top: 24px; }
+  .wa-project-details, .case-project-details { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 20px 0; }
   .wa-job-map,
   .wa-choice-grid,
   .wa-principle-grid,

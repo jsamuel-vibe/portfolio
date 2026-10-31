@@ -10,20 +10,22 @@ const storyPath = resolve(root, 'cretile-case-study.html');
 const attributes = (source, name) => [...source.matchAll(new RegExp('\\b' + name + '=["\x27]([^"\x27]+)["\x27]', 'g'))].map(match => match[1]);
 const pages = ['index.html', 'superstash.html', 'superstash-case-study.html', 'whatsapp-campaigns.html', 'cretile-case-study.html'];
 
-test('Superstash overview opens a separate story with explicit return-to-top routes', async () => {
-  const source = await readFile(resolve(root, 'superstash.html'), 'utf8');
-  assert.ok(attributes(source, 'href').includes('superstash-case-study.html'));
-  const story = await readFile(resolve(root, 'superstash-case-study.html'), 'utf8');
-  assert.equal(attributes(story, 'href').filter(href => href === 'superstash.html#top').length, 2);
+test('each project keeps its overview and full story on one page', async () => {
+  for (const [page, sections] of [['superstash.html', ['why', 'research', 'home-exploration', 'capture', 'next']], ['whatsapp-campaigns.html', ['why', 'scope', 'audience', 'shipped', 'reflection']]]) {
+    const html = await readFile(resolve(root, page), 'utf8');
+    const ids = attributes(html, 'id');
+    for (const id of ['overview', 'preview', ...sections]) assert.ok(ids.includes(id), page + ' is missing section ' + id);
+    assert.equal(ids.includes('learn-more'), false, page + ' should not send readers to another page for the story');
+    assert.equal((html.match(/<h1\b/g) || []).length, 1, page + ' needs exactly one page title');
+  }
 });
 
-test('the overview leads to a separate readable story and the story links back', async () => {
-  const overviewLinks = attributes(overview, 'href');
-  assert.ok(overviewLinks.includes('cretile-case-study.html'), 'overview must link to the full case-study page');
-  const story = await readFile(storyPath, 'utf8');
-  assert.ok(attributes(story, 'href').some(href => href.split('#')[0] === 'whatsapp-campaigns.html'), 'full story needs a return route');
-  assert.match(story, /<h1\b/);
-  assert.match(story, /<main\b/);
+test('old full case-study pages forward to the combined project pages', async () => {
+  for (const [old, page] of [['superstash-case-study.html', 'superstash.html'], ['cretile-case-study.html', 'whatsapp-campaigns.html']]) {
+    const html = await readFile(resolve(root, old), 'utf8');
+    assert.ok(html.includes("location.replace('" + page + "'"), old + ' must forward to ' + page);
+    assert.ok(attributes(html, 'href').includes(page), old + ' needs a plain link for browsers without JavaScript');
+  }
 });
 
 test('local media, posters, styles, scripts and page destinations resolve', async () => {

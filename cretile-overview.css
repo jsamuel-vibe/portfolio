@@ -1,9 +1,7 @@
 /* Shared case-study layouts and controls. Existing wa-* names stay compatible. */
 .case-study { --wa-accent: var(--ink); }
-.wa-case .sec, .case-study .sec { padding-top: clamp(64px, 7vw, 104px); }
+.wa-case .sec, .case-study .sec { --sec-pad: clamp(64px, 7vw, 104px); }
 .wa-title-block { display: flex; flex-direction: column; gap: 18px; }
-.wa-nav-links { display: flex; align-items: center; gap: 20px; }
-.wa-all-projects { font-size: 13px; letter-spacing: var(--track-sm); }
 .wa-skip { position: fixed; top: 12px; left: 24px; z-index: 100; padding: 12px 18px; border-radius: 8px; background: var(--ink); color: white; font: 14px var(--font); transform: translateY(-160%); }
 .wa-skip:focus { transform: none; }
 .wa-overview-section { display: flex; flex-direction: column; gap: 32px; }
@@ -13,11 +11,12 @@
 
 /* The gallery shows the interface without a decorative background. */
 .wa-preview-gallery { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
-.wa-preview-tabs { display: flex; flex-wrap: nowrap; gap: 6px; min-width: 0; width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: none; scroll-padding-inline: 6px; border-bottom: 1px solid var(--hairline); padding: 6px 0 12px; }
+/* Equal-width tabs; the track under them is only as long as the tabs. */
+.wa-preview-tabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0; min-width: 0; width: max-content; max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: none; box-shadow: inset 0 -1px 0 var(--hairline); padding: 0; }
 .wa-preview-tabs::-webkit-scrollbar { display: none; }
-.wa-preview-tabs button { flex: 0 0 auto; white-space: nowrap; min-height: 40px; padding: 10px 15px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: var(--muted); font: inherit; font-family: var(--font); font-size: 18px; line-height: 1.3; letter-spacing: var(--track-sm); cursor: pointer; }
-.wa-preview-tabs button[aria-selected="true"] { background: var(--ink); color: var(--white); }
-.wa-preview-tabs button:hover { border-color: var(--hairline); }
+.wa-preview-tabs button { flex: 0 0 auto; white-space: nowrap; min-height: 44px; padding: 10px 24px 12px; text-align: center; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: var(--muted); font: inherit; font-family: var(--font); font-size: 18px; line-height: 1.3; letter-spacing: var(--track-sm); cursor: pointer; transition: color .2s ease, border-color .2s ease; }
+.wa-preview-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.wa-preview-tabs button:hover { color: var(--ink); }
 .wa-preview-tabs button:focus-visible, .wa-preview-panel:focus-visible { outline: 2px solid var(--wa-accent); outline-offset: 4px; }
 .wa-preview-panel { margin: 0; gap: 12px; }
 .wa-preview-panel[hidden] { display: none; }
@@ -36,7 +35,9 @@
 .wa-video-icon::before { content: ""; position: absolute; top: 1px; left: 4px; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 9px solid currentColor; }
 .wa-video-player[data-playing="true"] .wa-video-icon::before { top: 1px; left: 2px; width: 3px; height: 12px; border: 0; background: currentColor; box-shadow: 7px 0 0 currentColor; }
 @media (hover: none) { .wa-video-player[data-playing="true"] .wa-video-toggle { opacity: .65; } }
-.wa-learn-more.sec { display: flex; justify-content: space-between; align-items: center; gap: 32px; margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--hairline); }
+.wa-learn-more.sec { display: flex; justify-content: space-between; align-items: center; gap: 32px; margin-top: 64px; padding-top: 32px; border-top: 1px solid transparent; }
+/* Its frame rule sits halfway across the 64px margin and 32px padding, past the 1px border. */
+.wa-learn-more.sec::before { top: -17px; }
 .wa-learn-more > div { display: flex; flex-direction: column; gap: 14px; max-width: 700px; }
 .wa-learn-more-link { display: inline-flex; align-items: center; flex-shrink: 0; min-height: 44px; padding: 8px 0; font-size: 22px; line-height: 1.3; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .wa-learn-more-link:hover { text-decoration-thickness: 2px; }
@@ -50,7 +51,7 @@
 .wa-story-content { display: contents; }
 .wa-story-copy { grid-column: 2; display: flex; flex-direction: column; gap: 20px; max-width: 760px; min-width: 0; }
 .wa-story-copy h3:not(:first-child) { margin-top: 20px; }
-.wa-story-copy .t-body { line-height: 1.65; }
+.wa-story-copy .t-body { line-height: 1.5; }
 .wa-story-section > .media-figure, .wa-story-content > .media-figure, .wa-story-media-pair { grid-column: 1 / -1; }
 .wa-story-media { min-width: 0; }
 .wa-story-media-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
@@ -71,14 +72,9 @@
   .wa-story .wa-story-opening, .case-story .wa-story-opening { padding-top: 48px; }
   .wa-story-label { padding: 0; font-size: 13px; }
   .wa-learn-more.sec, .wa-story-return { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .wa-preview-tabs { width: calc(100% + 48px); margin-inline: -24px; padding-inline: 24px; scroll-padding-inline: 24px; gap: 4px; }
-  .wa-preview-tabs button { padding: 9px 12px; }
+  /* The strip scrolls out to the frame lines, which sit halfway into the page margin. */
+  .wa-preview-tabs { width: calc(100% + var(--page-x)); max-width: none; margin-inline: calc(-.5 * var(--page-x)); padding-inline: calc(.5 * var(--page-x)); scroll-padding-inline: calc(.5 * var(--page-x)); gap: 24px; }
   .wa-preview-surface { border-radius: 8px; }
-  .wa-nav-links { gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-  .wa-nav-links .btn { padding: 0 12px; }
-  .wa-all-projects { font-size: 12px; }
-  .wa-story .brand, .case-story .brand { gap: 8px; }
-  .wa-story .topnav, .case-story .topnav { flex-wrap: wrap; row-gap: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .wa-case .media, .wa-case .btn, .case-study .media, .case-study .btn, .wa-video-toggle { transition: none; }

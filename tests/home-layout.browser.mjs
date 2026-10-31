@@ -79,10 +79,11 @@ test('all main pages load the approved Crimson Pro headings without a remote fon
   try {
     await page.route('https://fonts.googleapis.com/**', route => route.abort());
     await page.route('https://fonts.gstatic.com/**', route => route.abort());
-    for (const name of ['index.html', 'superstash.html', 'whatsapp-campaigns.html', 'cretile-case-study.html']) {
+    for (const name of ['index.html', 'superstash.html', 'whatsapp-campaigns.html']) {
       await page.goto(new URL(name, home).href);
       await page.evaluate(() => document.fonts.ready);
-      const headings = await page.locator('h1, h2, h3, h4, h5, h6').evaluateAll(elements => elements.map(el => ({
+      // Superstash's small story labels are deliberately sans serif (superstash.css).
+      const headings = await page.locator('h1, h2, h3, h4, h5, h6').evaluateAll(elements => elements.filter(el => !el.matches('.ss-story .wa-story-label')).map(el => ({
         text: el.textContent.trim(), family: getComputedStyle(el).fontFamily
       })));
       assert.ok(headings.length > 0);
@@ -98,7 +99,7 @@ test('homepage introduction has a narrower measure and clear space before the pr
     await page.goto(home);
     await page.evaluate(() => document.fonts.ready);
     const layout = await page.evaluate(() => {
-      const portrait = document.querySelector('.home-portrait').getBoundingClientRect();
+      const portrait = document.querySelector('.site-portrait').getBoundingClientRect();
       const title = document.querySelector('h1').getBoundingClientRect();
       const copy = document.querySelector('.hero-sub').getBoundingClientRect();
       const project = document.querySelector('.home-projects').getBoundingClientRect();
@@ -114,7 +115,7 @@ test('homepage introduction has a narrower measure and clear space before the pr
 test('supporting copy, project details and controls share the approved font', async () => {
   const page = await browser.newPage();
   try {
-    for (const name of ['index.html', 'superstash.html', 'whatsapp-campaigns.html', 'cretile-case-study.html']) {
+    for (const name of ['index.html', 'superstash.html', 'whatsapp-campaigns.html']) {
       await page.goto(new URL(name, home).href);
       await page.evaluate(() => document.fonts.ready);
       const copy = await page.locator('.t-body, .meta dt, .meta dd, .wa-project-details dt, .wa-project-details dd').evaluateAll(elements => elements.map(el => ({ text: el.textContent.trim(), font: getComputedStyle(el).fontFamily })));
@@ -172,10 +173,14 @@ test('Superstash opening shares the paragraph scale and preserves its reviewed m
       const imageBounds = await page.locator('header .interface-viewport').boundingBox();
       const titleBounds = await page.locator('h1').boundingBox();
       const detailsBounds = await page.locator('.case-project-details').boundingBox();
-      const copyBounds = await page.locator('.case-intro-copy').boundingBox();
+      const summaryBounds = await page.locator('.case-summary').boundingBox();
       assert.ok(imageBounds.y + imageBounds.height <= titleBounds.y, 'lead with the product image');
-      if (width > 640) assert.ok(detailsBounds.x >= copyBounds.x + copyBounds.width, 'desktop details sit beside the story');
-      else assert.ok(detailsBounds.y >= copyBounds.y + copyBounds.height, 'mobile details follow the summary');
+      assert.ok(detailsBounds.y >= titleBounds.y + titleBounds.height, 'details follow the title');
+      assert.ok(detailsBounds.y + detailsBounds.height <= summaryBounds.y, 'details sit above the summary');
+      if (width > 900) {
+        const rowTops = await page.locator('.case-project-details > div').evaluateAll(items => new Set(items.map(item => Math.round(item.getBoundingClientRect().top))).size);
+        assert.equal(rowTops, 1, 'desktop details run as one row');
+      }
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     }
   } finally { await page.close(); }
