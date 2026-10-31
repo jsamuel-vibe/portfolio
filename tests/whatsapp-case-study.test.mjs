@@ -8,7 +8,14 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const overview = await readFile(resolve(root, 'whatsapp-campaigns.html'), 'utf8');
 const storyPath = resolve(root, 'cretile-case-study.html');
 const attributes = (source, name) => [...source.matchAll(new RegExp('\\b' + name + '=["\x27]([^"\x27]+)["\x27]', 'g'))].map(match => match[1]);
-const pages = ['index.html', 'superstash.html', 'whatsapp-campaigns.html', 'cretile-case-study.html'];
+const pages = ['index.html', 'superstash.html', 'superstash-case-study.html', 'whatsapp-campaigns.html', 'cretile-case-study.html'];
+
+test('Superstash overview opens a separate story with explicit return-to-top routes', async () => {
+  const source = await readFile(resolve(root, 'superstash.html'), 'utf8');
+  assert.ok(attributes(source, 'href').includes('superstash-case-study.html'));
+  const story = await readFile(resolve(root, 'superstash-case-study.html'), 'utf8');
+  assert.equal(attributes(story, 'href').filter(href => href === 'superstash.html#top').length, 2);
+});
 
 test('the overview leads to a separate readable story and the story links back', async () => {
   const overviewLinks = attributes(overview, 'href');
@@ -43,8 +50,8 @@ test('page fragments resolve on their destination page', async () => {
   }
 });
 
-test('both Cretile pages have unique IDs and valid accessibility references', async () => {
-  for (const page of ['whatsapp-campaigns.html', 'cretile-case-study.html']) {
+test('case-study pages have unique IDs and valid accessibility references', async () => {
+  for (const page of pages.filter(page => page !== 'index.html')) {
     const html = await readFile(resolve(root, page), 'utf8');
     const ids = attributes(html, 'id');
     assert.equal(ids.length, new Set(ids).size, page + ' has duplicate IDs');

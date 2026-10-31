@@ -4,27 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Superstash · Samuel</title>
-<meta name="description" content="A place to save what inspires you and find it again. What I designed, what I got wrong, and how it changed the way I work.">
+<meta name="description" content="How I designed and built Superstash, a creative library for collecting inspiration and finding it again.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Samuel Joseph">
 <meta property="og:title" content="Superstash · Samuel">
-<meta property="og:description" content="A place to save what inspires you and find it again. What I designed, what I got wrong, and how it changed the way I work.">
+<meta property="og:description" content="How I designed and built Superstash, a creative library for collecting inspiration and finding it again.">
 <meta property="og:url" content="https://jsamuel-vibe.github.io/portfolio/superstash.html">
 <meta property="og:image" content="https://jsamuel-vibe.github.io/portfolio/assets/og-superstash.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261029-overview">
+<link rel="preload" href="assets/fonts/crimson-pro-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=20261030-case-opening">
+<link rel="stylesheet" href="cretile-overview.css?v=20261030-shared">
+<link rel="stylesheet" href="superstash.css?v=20261030-complete">
 </head>
-<body>
+<body class="case-study ss-overview" id="top" data-story-page="superstash-case-study.html" data-story-anchors="home-exploration more-decisions">
+<a class="wa-skip" href="#overview">Skip to content</a>
 <main class="page">
   <div class="container">
-
     <nav class="topnav">
       <a class="brand" href="index.html">
         <span class="brand-mark"></span>
@@ -33,248 +33,82 @@
       <a class="btn btn-secondary btn-sm" href="index.html#work">All projects</a>
     </nav>
 
-    <header class="project-intro">
-      <div class="project-intro-inner">
-        <div class="stack" style="gap:8px">
-          <h1 class="t-display">Superstash: save it, then actually find it again</h1>
-          <p class="t-body">Superstash is my tool for saving things I find online, like images, posts, quotes and articles, so I can find them later. My first version made saving very easy. That turned out to be the wrong goal, so I redesigned it to make saved things useful.</p>
+    <header class="project-intro case-project-opening" id="overview">
+      <div class="project-intro-inner case-opening-inner">
+        <figure class="media-figure">
+          <div class="interface-stage"><div class="interface-viewport ss-hero-viewport">
+            <img class="media ss-hero-crop" src="assets/superstash-home-current.webp" width="1901" height="1015" alt="The working Superstash home screen, with a quick-note field, content-type filters and saved references" fetchpriority="high">
+          </div></div>
+        </figure>
+        <div class="case-opening-grid">
+          <div class="case-intro-copy">
+            <div class="case-title-block">
+              <h1 class="t-display">Superstash: a personal knowledge library for designers</h1>
+              <p class="t-body">I designed and built a place to collect references and notes, with a longer-term goal: giving AI tools useful context from what I save, learn and think.</p>
+              <a class="ss-website-link" href="https://stash-extension.samueljoseph0110.workers.dev/landing/" target="_blank" rel="noopener">Visit Superstash website</a>
+            </div>
+            <div class="case-summary">
+              <h2 class="t-h16">Long story short</h2>
+              <div class="case-summary-copy">
+                <p class="t-body">My references and thoughts were scattered across different apps. I kept collecting things to learn from, but often struggled to bring that knowledge back into the work I was doing.</p>
+                <p class="t-body">I wanted Superstash to connect that collection with AI tools, helping resurface forgotten references and inform new ideas. Working solo, I started with the foundation: browser capture, a shared library for saves and notes, and AI-generated descriptions and tags.</p>
+                <p class="t-body">Using it myself made quick note-taking a priority. I chose a simpler interface that I could build sooner, with a note field directly in the gallery and compact navigation.</p>
+                <p class="t-body">The API connection remains planned. My immediate focus is fixing bugs and refining the existing UI and workflows before expanding the AI capabilities.</p>
+              </div>
+            </div>
+          </div>
+          <dl class="case-project-details">
+            <div><dt>Role</dt><dd>Designer and builder</dd></div>
+            <div><dt>Scope</dt><dd>Visual identity, UX/UI and development</dd></div>
+            <div><dt>Type</dt><dd>Personal project</dd></div>
+            <div><dt>Timeline</dt><dd>Since August 2026</dd></div>
+            <div><dt>Status</dt><dd>Working product, used personally</dd></div>
+          </dl>
         </div>
-        <dl class="meta">
-          <div><dt>Type</dt><dd>Personal project</dd></div>
-          <div><dt>Timeline</dt><dd>Since Aug 2026</dd></div>
-          <div><dt>Role</dt><dd>Design and build</dd></div>
-        </dl>
       </div>
     </header>
 
-    <section class="sec-tight">
-      <div class="interface-stage"><div class="interface-viewport">
-        <img class="media" src="assets/superstash-screen.jpg" alt="The Superstash home screen, showing saved images, notes and posts in one grid">
-      </div></div>
-    </section>
 
-    <section class="split sec">
-      <h2 class="t-h24 label-col">The problem</h2>
-      <div class="content-col">
-        <div class="stack" style="gap:20px">
-          <p class="t-body">When something online caught my eye, I had no single place to keep it. Things ended up spread across Pinterest, screenshots, Notion, my downloads folder and chat apps.</p>
-          <p class="t-body">Saving wasn’t the hard part. Finding things again was. I kept forgetting where I’d put them, so I kept relearning things I already knew.</p>
-        </div>
-        <h3 class="t-h16" style="margin-top:64px">Why other tools didn’t work for me</h3>
-        <div class="compare" style="margin-top:20px">
-          <div><span class="t-h16" style="line-height:20px">Notion</span><span class="t-body">Too many steps to save one thing</span></div>
-          <div><span class="t-h16" style="line-height:20px">mymind</span><span class="t-body">Great app, but too expensive for me</span></div>
-        </div>
-        <p class="t-body" style="margin-top:32px">So I decided to build my own: quick to save, easy to find.</p>
+    <section class="sec wa-overview-section" id="built" aria-labelledby="built-title">
+      <h2 class="t-h24" id="built-title">What I’ve built today</h2>
+      <div class="ss-built-grid">
+        <article><h3 class="t-h16">References and thinking, in one workspace</h3><p class="t-body">The working product brings saved references and notes into a shared library. Browser capture collects material from the web, while a quick-note field in the gallery makes room for the thoughts, critiques and ideas that come with it.</p></article>
+        <article><h3 class="t-h16">Context without organising everything by hand</h3><p class="t-body">AI-generated descriptions and tags add context to saved material. This is the first part of the larger ambition: building a collection that could eventually give an AI tool useful context about my interests and thinking.</p></article>
       </div>
     </section>
-
-    <section class="stack sec" style="gap:var(--head-gap)">
-      <h2 class="t-h24">Limits</h2>
-      <div class="constraints">
-        <div class="tile">
-          <span class="t-num">#1</span>
-          <p class="t-body"><strong>Just me, after work.</strong> I couldn’t build and polish everything.</p>
+    <section class="sec wa-overview-section" id="preview" aria-labelledby="preview-title">
+      <div class="wa-section-head"><h2 class="t-h24" id="preview-title">Take a look inside Superstash.</h2><p class="t-body">The working library, browser capture, quick notes and AI-generated descriptions. Choose a view or open a screenshot full screen.</p></div>
+      <div class="wa-preview-gallery" data-product-preview>
+        <div class="wa-preview-tabs" role="tablist" aria-label="Superstash screens and recordings">
+          <button type="button" role="tab" id="ss-tab-library" aria-controls="ss-preview-library" aria-selected="true" tabindex="0">Library</button>
+          <button type="button" role="tab" id="ss-tab-capture" aria-controls="ss-preview-capture" aria-selected="false" tabindex="-1">Browser capture</button>
+          <button type="button" role="tab" id="ss-tab-notes" aria-controls="ss-preview-notes" aria-selected="false" tabindex="-1">Quick notes</button>
+          <button type="button" role="tab" id="ss-tab-context" aria-controls="ss-preview-context" aria-selected="false" tabindex="-1">AI context</button>
+          <button type="button" role="tab" id="ss-tab-finding" aria-controls="ss-preview-finding" aria-selected="false" tabindex="-1">Finding references</button>
         </div>
-        <div class="tile">
-          <span class="t-num">#2</span>
-          <p class="t-body"><strong>Working beats pretty.</strong> I chose rough but working over polished but slow.</p>
-        </div>
-        <div class="tile">
-          <span class="t-num">#3</span>
-          <p class="t-body"><strong>Built to grow.</strong> I made choices I wouldn’t have to undo when adding features later.</p>
-        </div>
+        <figure class="wa-preview-panel media-figure" role="tabpanel" id="ss-preview-library" aria-labelledby="ss-tab-library" tabindex="0"><div class="wa-preview-surface"><img class="media" src="assets/superstash-home-current.webp" width="1901" height="1015" alt="Superstash library with the quick-note field, content-type filters, saved posts and visual references" loading="lazy"></div><figcaption class="media-caption">Saved references and personal notes share the same workspace.</figcaption></figure>
+        <figure class="wa-preview-panel media-figure" role="tabpanel" id="ss-preview-capture" aria-labelledby="ss-tab-capture" tabindex="0">
+          <div class="ss-media-placeholder" data-media-slot="SS-01"><p class="ss-media-kind">SS-01 · Screen recording to add</p><h3 class="t-h24">Capture a reference from the browser</h3><p class="t-body">Record 15–20 seconds in the current extension: open one reference, save it using the available browser action, then show that same item in Superstash. Keep the source and saved item identifiable. Use a harmless public page and hide account details.</p></div>
+          <figcaption class="media-caption">Bring a reference into the collection while browsing.</figcaption>
+        </figure>
+        <figure class="wa-preview-panel media-figure" role="tabpanel" id="ss-preview-notes" aria-labelledby="ss-tab-notes" tabindex="0">
+          <div class="ss-media-placeholder" data-media-slot="SS-02"><p class="ss-media-kind">SS-02 · Screen recording to add</p><h3 class="t-h24">Capture a thought directly from the gallery</h3><p class="t-body">Record 10–15 seconds: start at New quick note, write a short design observation, save it and reopen the resulting note. Show the current working flow without adding invented controls. Use a fictional note, not private work.</p></div>
+          <figcaption class="media-caption">Quick notes make room for the thinking that accompanies a reference.</figcaption>
+        </figure>
+        <figure class="wa-preview-panel media-figure" role="tabpanel" id="ss-preview-context" aria-labelledby="ss-tab-context" tabindex="0"><div class="wa-preview-surface"><img class="media" src="assets/superstash-ai-tags-clean.webp" width="1424" height="750" alt="A saved illustration with its generated description and tags, including typography, colour and visual style" loading="lazy"></div><figcaption class="media-caption">AI adds a description and tags to a save. The connection to external AI tools is still planned.</figcaption></figure>
+        <figure class="wa-preview-panel media-figure" role="tabpanel" id="ss-preview-finding" aria-labelledby="ss-tab-finding" tabindex="0">
+          <div class="ss-media-placeholder" data-media-slot="SS-03"><p class="ss-media-kind">SS-03 · Screen recording to add</p><h3 class="t-h24">Return to a saved reference</h3><p class="t-body">Record 10–15 seconds using the current search and filters: begin with a mixed library, enter a query that matches a real saved item, narrow by content type if useful, and open the result. Show actual matches, not a mock search or a simulated Claude integration.</p></div>
+          <figcaption class="media-caption">Find an existing save through the library’s current search and filters.</figcaption>
+        </figure>
       </div>
     </section>
-
-    <section class="split sec">
-      <h2 class="t-h24 label-col" style="white-space:nowrap">What I decided</h2>
-      <div class="content-col" style="align-items:center;gap:57px">
-        <div class="stack" style="align-self:stretch;gap:42px">
-          <div class="stack" style="gap:16px">
-            <h3 class="t-h16"><span class="decision-num">01</span> I made saving one click. It backfired.</h3>
-            <div class="stack" style="gap:20px">
-              <p class="t-body">My first idea was to remove every step. A Save button appeared on any image I hovered over, so saving took one click.</p>
-              <p class="t-body">It worked too well. I saved everything, and my library became the same messy pile I was trying to escape. Easy saving didn’t make my saves useful.</p>
-            </div>
-          </div>
-          <div class="stack" style="gap:24px">
-            <figure class="media-figure">
-              <div class="interface-stage"><div class="interface-viewport">
-                <img class="media" src="assets/superstash-hover-save-clean.webp" alt="A Save button floating over an image on hover, saving it in one click" loading="lazy">
-              </div></div>
-              <figcaption class="media-caption">Before: a Save button on every image. One click and it was saved.</figcaption>
-            </figure>
-            <figure class="media-figure">
-              <div class="interface-stage"><div class="interface-viewport">
-                <video class="media" src="assets/superstash-flooded-library-clean.mp4" poster="assets/superstash-flooded-library-poster-clean.webp" autoplay muted loop playsinline preload="metadata" aria-label="Scrolling through the flooded, unsorted Superstash library"></video>
-              </div></div>
-              <figcaption class="media-caption">The result: a library full of things I never meant to keep.</figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="stack" style="align-self:stretch;gap:42px">
-          <div class="stack" style="gap:16px">
-            <h3 class="t-h16"><span class="decision-num">02</span> I didn’t fix it right away</h3>
-            <p class="t-body">I knew the fix: make saving a little harder on purpose. But saving and finding things had to work first, so I put the fix on hold. Choosing what to leave for later was a decision too.</p>
-          </div>
-          <figure class="media diagram" aria-label="Diagram: saving and finding built first, two-click saving left for later">
-            <div class="dg-col">
-              <span class="dg-label">Built first</span>
-              <div class="dg-card"><span class="t-h16">Saving</span><span class="t-body">One-click save from the browser extension</span></div>
-              <div class="dg-card"><span class="t-h16">Finding</span><span class="t-body">AI tags and a short description on every save</span></div>
-            </div>
-            <span class="dg-arrow" aria-hidden="true">then →</span>
-            <div class="dg-col">
-              <span class="dg-label">Later</span>
-              <div class="dg-card is-later"><span class="t-h16">Two-click saving</span><span class="t-body">Right-click → Save to Superstash</span></div>
-              <span class="dg-note">The messy library could wait until the basics worked.</span>
-            </div>
-          </figure>
-        </div>
-        <div class="decisions-more" id="more-decisions">
-          <div class="stack" style="align-self:stretch;gap:42px">
-            <div class="stack" style="gap:16px">
-              <h3 class="t-h16"><span class="decision-num">03</span> Saving now takes two clicks <span class="decision-tag">(in progress)</span></h3>
-              <div class="stack" style="gap:20px">
-                <p class="t-body">Instead of a button on every image, you right-click and choose Save to Superstash. It’s one extra step, so saving becomes a choice instead of a habit.</p>
-                <p class="t-body">The catch: right-click is harder to discover, and phones don’t have it. This hasn’t shipped yet, and I’m still testing it.</p>
-              </div>
-            </div>
-            <div class="interface-stage"><div class="interface-viewport">
-              <video class="media" src="assets/superstash-right-click-save-clean.mp4" poster="assets/superstash-right-click-save-poster-clean.webp" autoplay muted loop playsinline preload="metadata" aria-label="Right-clicking a Pinterest image, choosing Save to Superstash, and tagging the save"></video>
-            </div></div>
-          </div>
-          <div class="stack" style="align-self:stretch;gap:42px">
-            <div class="stack" style="gap:16px">
-              <h3 class="t-h16"><span class="decision-num">04</span> AI does the sorting</h3>
-              <p class="t-body">To make things easy to find, AI adds tags and a short description to every save. I wrote the prompts so it describes each save the way a person would. Nobody has to organise anything by hand. This part works best so far.</p>
-            </div>
-            <div class="interface-stage"><div class="interface-viewport">
-              <img class="media" src="assets/superstash-ai-tags-clean.webp" alt="A saved illustration in Superstash with its AI-written summary and tags: Illustration, Poster, Star, Typography, Blue, Yellow, Hand-Drawn, Playful" loading="lazy">
-            </div></div>
-          </div>
-        </div>
-        <button class="btn btn-secondary" type="button" aria-controls="more-decisions" aria-expanded="false" data-toggle-more hidden>View all decisions</button>
-      </div>
-    </section>
-
-    <section class="stack sec" style="gap:var(--head-gap)">
-      <div class="stack" style="gap:12px;max-width:560px">
-        <h2 class="t-h24">How the home screen changed</h2>
-        <p class="t-body">Before building, I tried several layouts for the home screen in Figma. Here are three of them. All of them would have worked. I chose the one at the top of this page because it was the most flexible: I can add buttons and features without changing the whole structure, and it still stays minimal.</p>
-      </div>
-      <div class="carousel" data-carousel>
-        <div class="carousel-track" tabindex="0" aria-label="Home screen versions, scroll sideways">
-          <figure class="carousel-slide media-figure">
-            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="Version 1: Tag filters and Home / Trash tabs across the top" aria-label="Open version 1 full screen">
-              <span class="interface-viewport">
-                <img class="media" src="assets/superstash-home-v1-clean.webp" alt="Early home screen: a top bar with tag filters and Home and Trash tabs above the grid" loading="lazy">
-              </span>
-            </button>
-            <figcaption class="media-caption"><strong>Version 1</strong> · Tag filters and Home / Trash tabs across the top</figcaption>
-          </figure>
-          <figure class="carousel-slide media-figure">
-            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="Version 2: Icon sidebar, an Add new card in the grid, sort and view options" aria-label="Open version 2 full screen">
-              <span class="interface-viewport">
-                <img class="media" src="assets/superstash-home-v2-clean.webp" alt="Early home screen: an icon sidebar, an Add new card in the grid, and sort and view options" loading="lazy">
-              </span>
-            </button>
-            <figcaption class="media-caption"><strong>Version 2</strong> · Icon sidebar, an Add new card in the grid, sort and view options</figcaption>
-          </figure>
-          <figure class="carousel-slide media-figure">
-            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="Version 3: Text sidebar with a large search heading" aria-label="Open version 3 full screen">
-              <span class="interface-viewport">
-                <img class="media" src="assets/superstash-home-v3-clean.webp" alt="Early home screen: a text sidebar and a large Search your stash heading above the grid" loading="lazy">
-              </span>
-            </button>
-            <figcaption class="media-caption"><strong>Version 3</strong> · Text sidebar with a large search heading</figcaption>
-          </figure>
-          <figure class="carousel-slide media-figure">
-            <button class="zoomable interface-stage" type="button" data-lightbox="home-versions" data-caption="The one I built: Flexible enough to add features without changing the structure" aria-label="Open the one i built full screen">
-              <span class="interface-viewport">
-                <img class="media" src="assets/superstash-screen.jpg" alt="The home screen I built: icon sidebar, search bar and a grid of saves" loading="lazy">
-              </span>
-            </button>
-            <figcaption class="media-caption"><strong>The one I built</strong> · Flexible enough to add features without changing the structure</figcaption>
-          </figure>
-        </div>
-        <div class="carousel-controls">
-          <button class="btn btn-secondary btn-round" type="button" data-prev aria-label="Previous version"><span aria-hidden="true">←</span></button>
-          <span class="carousel-count t-small muted" aria-live="polite">1 / 4</span>
-          <button class="btn btn-secondary btn-round" type="button" data-next aria-label="Next version"><span aria-hidden="true">→</span></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="stack sec" style="gap:var(--head-gap)">
-      <div class="stack" style="gap:12px;max-width:560px">
-        <h2 class="t-h24">What I learned</h2>
-        <p class="t-body">This was my first UX project, and I’m still its only user, so there are no numbers yet. What I do have is three mistakes that changed how I work.</p>
-      </div>
-      <ol class="lessons">
-        <li class="lesson">
-          <div class="lesson-wrong">
-            <div class="mistake-head"><span class="t-num">#1</span><h3 class="t-h16">I made saving too easy</h3></div>
-            <p class="t-body">I removed every step, so I saved everything, and my library became the messy pile I was trying to escape.</p>
-          </div>
-          <div class="lesson-now">
-            <span class="lesson-label">Now</span>
-            <p class="t-body">I remember that easy and good aren’t the same thing. Removing friction at the start can just move the problem further down the line. I only caught it because I used the tool every day.</p>
-          </div>
-        </li>
-        <li class="lesson">
-          <div class="lesson-wrong">
-            <div class="mistake-head"><span class="t-num">#2</span><h3 class="t-h16">I started with screens</h3></div>
-            <p class="t-body">I spent a long time on the UI and kept coming up with new ideas, without deciding what the product needed to do. I often didn’t know what to work on next.</p>
-          </div>
-          <div class="lesson-now">
-            <span class="lesson-label">Now</span>
-            <p class="t-body">I set the goal and the main flow before touching any UI.</p>
-          </div>
-        </li>
-        <li class="lesson">
-          <div class="lesson-wrong">
-            <div class="mistake-head"><span class="t-num">#3</span><h3 class="t-h16">I designed an app, not a solution</h3></div>
-            <p class="t-body">I wanted to build an app, so I kept adding screens. The real work was the core problem: saving things and finding them again.</p>
-          </div>
-          <div class="lesson-now">
-            <span class="lesson-label">Now</span>
-            <p class="t-body">I build the core first, with help from AI coding tools, and leave polish for later.</p>
-          </div>
-        </li>
-      </ol>
-      <p class="lesson-close t-body">These habits, plus a deadline for every project, are how I shipped my next project in two weeks: <a class="inline-link" href="whatsapp-campaigns.html">the WhatsApp campaign tool <span aria-hidden="true">→</span></a></p>
-    </section>
-
-    <section class="stack sec" style="gap:var(--head-gap)">
-      <h2 class="t-h24">What’s next</h2>
-      <div class="next-grid">
-        <div>
-          <h3 class="t-h16">Ship two-click saving</h3>
-          <p class="t-body">Then check whether my library stays useful.</p>
-        </div>
-        <div>
-          <h3 class="t-h16">Test with 5 people</h3>
-          <p class="t-body">People who save a lot online, to make sure it’s not just my problem.</p>
-        </div>
-        <div>
-          <h3 class="t-h16">Group saves by tag</h3>
-          <p class="t-body">Turn the tags AI already adds into projects automatically.</p>
-        </div>
-        <div>
-          <h3 class="t-h16">Make saving work on phones</h3>
-          <p class="t-body">Phones have no right-click, so this needs a different gesture.</p>
-        </div>
-      </div>
-    </section>
-
+    <section class="sec ss-status" id="status" aria-labelledby="status-title"><h2 class="t-h24" id="status-title">Where the project stands</h2><p class="t-body">Superstash is a working personal product that I use myself. That use has already influenced the design, particularly the priority given to quick notes.</p><p class="t-body">The connection to external AI tools remains planned. My immediate focus is improving reliability and refining the existing interface and workflows.</p></section>
+    <section class="sec wa-learn-more" id="learn-more"><div><h2 class="t-h24">Why I built it, and how the direction changed.</h2><p class="t-body">The starting problem, the alternatives I explored and the decisions behind the working version.</p></div><a class="wa-learn-more-link" href="superstash-case-study.html">Learn More</a></section>
     <section class="sec">
       <a class="next-project" href="whatsapp-campaigns.html">
         <div class="next-text">
           <span class="t-small muted">Next project</span>
           <span class="t-display">WhatsApp campaign tool</span>
-          <span class="btn btn-primary">View case study</span>
         </div>
         <div class="next-preview interface-stage"><div class="interface-viewport"><img src="assets/wa-workspace-redacted.webp" alt="" loading="lazy"></div></div>
       </a>
@@ -284,7 +118,6 @@
       <div class="rule"></div>
       <div class="contact-main">
         <div class="contact-head">
-          <span class="t-small muted">Open to product design roles</span>
           <h2 class="contact-title">Let’s talk.</h2>
         </div>
         <div class="contact-actions">
@@ -303,6 +136,7 @@
 
   </div>
 </main>
-<script src="site.js"></script>
+<script src="cretile-overview.js?v=20261030-shared"></script>
+<script src="site.js?v=20261030-board"></script>
 </body>
 </html>

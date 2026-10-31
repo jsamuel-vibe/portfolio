@@ -3,55 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Samuel, Product Designer</title>
-<meta name="description" content="I design products and build them too. Case studies: a WhatsApp campaign tool built in two weeks, and Superstash, a place to save and find inspiration.">
+<title>Samuel Joseph, UI &amp; Product Designer</title>
+<meta name="description" content="I work through the complexity so the product interface feels simple. UI and product design by Samuel Joseph, featuring Superstash and Cretile’s campaign tool.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Samuel Joseph">
-<meta property="og:title" content="Samuel, Product Designer">
-<meta property="og:description" content="I design products and build them too. Case studies: a WhatsApp campaign tool built in two weeks, and Superstash, a place to save and find inspiration.">
+<meta property="og:title" content="Samuel Joseph, UI &amp; Product Designer">
+<meta property="og:description" content="I work through the complexity so the product interface feels simple. UI and product design by Samuel Joseph, featuring Superstash and Cretile’s campaign tool.">
 <meta property="og:url" content="https://jsamuel-vibe.github.io/portfolio/">
 <meta property="og:image" content="https://jsamuel-vibe.github.io/portfolio/assets/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261029-overview">
+<link rel="preload" href="assets/fonts/crimson-pro-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=20261029-type-scale">
+<link rel="stylesheet" href="home.css?v=20261029-type-scale">
 </head>
 <body>
-<main class="page">
+<main class="page home-page">
   <div class="container">
 
-    <section class="hero">
-      <div class="hero-main">
-        <div class="avatar"></div>
-        <h1 class="hero-title">Hi, I’m Samuel. I design products, and I build them too.</h1>
-      </div>
-      <p class="t-body hero-sub">I come from marketing, so I design with both the user and the business in mind. A tool I designed and built is now how my company runs its WhatsApp campaigns.</p>
+    <header class="home-nav">
+      <img class="home-portrait" src="assets/profile.jpg" alt="Samuel Joseph" width="56" height="56">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+    </header>
+
+    <section class="home-hero" aria-labelledby="home-title">
+      <h1 id="home-title" class="home-title">Hi, I’m Samuel. I work through the complexity so the product interface <em>feels simple.</em></h1>
+      <p class="t-body hero-sub">I start by understanding what people need to do, explore different ways through it, and refine how each screen looks and behaves. That approach shapes my work, from Cretile’s internal campaign tool to Superstash, a creative library for designers.</p>
     </section>
 
-    <section id="work" class="stack sec" style="gap:var(--head-gap)">
-      <div class="section-heading"><h2 class="t-title">Case studies</h2></div>
-      <div class="features">
-        <a class="feature" href="whatsapp-campaigns.html">
+    <section id="work" class="home-work" aria-label="Projects">
+      <div class="home-projects">
+        <article class="home-project" aria-labelledby="superstash-title">
+          <a class="feature-media interface-stage" href="superstash.html" aria-label="Explore the Superstash case study"><div class="interface-viewport"><img class="media" src="assets/superstash-screen.jpg" alt="The Superstash home screen: a grid of saved images, notes and posts" loading="lazy"></div></a>
           <div class="feature-text">
-            <h3 class="t-title">WhatsApp campaign tool</h3>
-            <p class="t-body">I designed and built Cretile’s first internal sales-platform module, connecting contacts, WhatsApp campaigns, customer replies and reporting.</p>
-            <span class="btn btn-primary">View case study</span>
+            <h2 id="superstash-title" class="home-project-title"><a href="superstash.html">Superstash</a></h2>
+            <p class="t-body">A creative library for designers to save inspiration and find it again. I shaped the visual identity and designed the responsive interface, from saving a reference to browsing the collection.</p>
+            <a class="btn btn-primary" href="superstash.html">View case study</a>
           </div>
-          <div class="feature-media interface-stage"><div class="interface-viewport"><img class="media" src="assets/wa-workspace-redacted.webp" alt="The WhatsApp campaign tool: number warm-up and a list of past campaigns" loading="lazy"></div></div>
-        </a>
-        <a class="feature is-flipped" href="superstash.html">
+        </article>
+        <article class="home-project" aria-labelledby="cretile-title">
+          <a class="feature-media interface-stage" href="whatsapp-campaigns.html" aria-label="Explore the WhatsApp campaign tool case study"><div class="interface-viewport"><img class="media" src="assets/wa-workspace-redacted.webp" alt="The WhatsApp campaign tool: number warm-up and a list of past campaigns" loading="lazy"></div></a>
           <div class="feature-text">
-            <h3 class="t-title">Superstash</h3>
-            <p class="t-body">A place to save what inspires you and find it again. My first version made saving too easy, and I learned that easy isn’t the same as useful.</p>
-            <span class="btn btn-primary">View case study</span>
+            <h2 id="cretile-title" class="home-project-title"><a href="whatsapp-campaigns.html">WhatsApp campaign tool</a></h2>
+            <p class="t-body">One connected workspace for Cretile’s contacts, campaigns, customer replies and reporting. I designed and built the first release around the work our team needed to do.</p>
+            <a class="btn btn-primary" href="whatsapp-campaigns.html">View case study</a>
           </div>
-          <div class="feature-media interface-stage"><div class="interface-viewport"><img class="media" src="assets/superstash-screen.jpg" alt="The Superstash home screen: a grid of saved images, notes and posts" loading="lazy"></div></div>
-        </a>
+        </article>
       </div>
     </section>
 
@@ -75,20 +75,11 @@
     </section>
     -->
 
-    <section class="stack sec" style="align-items:center;gap:var(--head-gap)">
-      <h2 class="t-display">About me</h2>
-      <div class="split" style="width:100%">
-        <p class="t-body half">I studied business (BBA, St. Joseph’s University, Bangalore, 2024) and work as a marketing executive at Cretile. Marketing taught me to start with the person using the product and the goal behind it, then find the problem that’s worth solving.</p>
-        <p class="t-body half">I design in Figma and build with Claude, so what I design turns into something people can use. I care about the details that stop mistakes before they happen: clear steps, sensible defaults and an undo button when you need one.</p>
-      </div>
-    </section>
-
-    <footer class="contact sec">
+    <footer class="contact sec" id="contact">
       <div class="game-stage" data-game="penalty" data-label="⚽ Take a penalty" aria-label="Play a penalty shootout"></div>
       <div class="rule"></div>
       <div class="contact-main">
         <div class="contact-head">
-          <span class="t-small muted">Open to product design roles</span>
           <h2 class="contact-title">Let’s talk.</h2>
         </div>
         <div class="contact-actions">
