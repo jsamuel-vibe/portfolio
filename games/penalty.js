@@ -265,7 +265,7 @@
       ctx.fillStyle = C.striker;
       rrect(-0.21 * u, -0.92 * u, 0.42 * u, 0.42 * u, 0.1 * u);
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = '600 ' + Math.round(0.16 * u) + 'px Inter, sans-serif';
+      ctx.font = '600 ' + Math.round(0.16 * u) + 'px "Plus Jakarta Sans", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText('10', 0, -0.7 * u);
@@ -303,7 +303,7 @@
     function drawHud() {
       var size = Math.max(13, Math.min(16, L.gh * 0.1));
       ctx.fillStyle = C.muted;
-      ctx.font = '500 ' + Math.round(size) + 'px Inter, sans-serif';
+      ctx.font = '500 ' + Math.round(size) + 'px "Plus Jakarta Sans", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
       ctx.fillText(results.length ? tally() : 'Tap the goal to shoot', W / 2, L.gy - L.gh - size * 0.9);
@@ -313,7 +313,7 @@
       var text = resultText();
       var size = L.gh * 0.32 * (0.8 + 0.2 * ease(clamp01(rp * 4)));
       ctx.globalAlpha = 1 - clamp01((rp - 0.75) * 4);
-      ctx.font = '600 ' + Math.round(size) + 'px Inter, sans-serif';
+      ctx.font = '600 ' + Math.round(size) + 'px "Plus Jakarta Sans", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.lineJoin = 'round';

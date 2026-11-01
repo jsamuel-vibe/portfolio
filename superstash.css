@@ -116,7 +116,7 @@
 /* Small text in a sans serif: thin serifs at 12-14px break up on Windows screens. */
 .case-project-details dt, .dg-label, .lesson-label,
 .dg-card .t-body, .dg-arrow, .dg-note, .media-caption {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sub);
 }
 .media-caption { font-size: 14px; line-height: 1.45; }
 .dg-note { font-style: normal; }
@@ -128,7 +128,7 @@
 .ss-built-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
 .ss-built-grid article { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; border-top: 1px solid var(--hairline); }
 .ss-status { display: flex; flex-direction: column; gap: 20px; max-width: 760px; }
-.ss-story .wa-story-label { font-family: 'Inter', system-ui, sans-serif; }
+.ss-story .wa-story-label { font-family: var(--font-sub); }
 
 /* Original research, cropped without changing the artefacts. A separate board
    keeps the reviewed twelve-screen exploration and its animation untouched. */
@@ -184,7 +184,7 @@
 @media (min-width: 901px) {
   .ss-preview.is-enhanced { display: grid; grid-template-columns: 300px minmax(0, 1fr); column-gap: 48px; align-items: start; }
   .ss-preview .wa-preview-tabs { grid-column: 1; grid-row: 1; align-self: end; display: flex; flex-direction: column; gap: 0; width: auto; box-shadow: none; overflow: visible; }
-  .ss-preview .wa-preview-tabs button { display: grid; grid-template-rows: auto 0fr; min-height: 44px; padding: 12px 0 14px; text-align: left; border-bottom: 0; background: linear-gradient(var(--hairline), var(--hairline)) left bottom / 100% 1px no-repeat; font-family: 'Inter', system-ui, sans-serif; font-size: 16px; white-space: normal; transition: color .2s ease, grid-template-rows .3s ease; }
+  .ss-preview .wa-preview-tabs button { display: grid; grid-template-rows: auto 0fr; min-height: 44px; padding: 12px 0 14px; text-align: left; border-bottom: 0; background: linear-gradient(var(--hairline), var(--hairline)) left bottom / 100% 1px no-repeat; font-family: var(--font-sub); font-size: 16px; white-space: normal; transition: color .2s ease, grid-template-rows .3s ease; }
   .ss-preview .wa-preview-tabs button[aria-selected="true"] { grid-template-rows: auto 1fr; }
   .ss-preview .ss-tab-caption { display: block; overflow: hidden; min-height: 0; color: var(--muted); font-size: 14px; line-height: 1.45; opacity: 0; transition: opacity .3s ease; }
   .ss-preview [aria-selected="true"] .ss-tab-caption { padding-top: 8px; opacity: 1; }
