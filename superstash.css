@@ -23,7 +23,7 @@
   width: max-content; max-width: 90%; text-align: center;
   color: var(--ink); font-size: clamp(16px, 1.15cqw, 20px); line-height: 1.3;
 }
-.ss-ex-title { position: absolute; left: 32.5%; top: 42%; width: 17%; display: flex; flex-direction: column; gap: .6cqw; }
+.ss-ex-title { position: absolute; left: 25.7%; top: 42%; width: 17%; display: flex; flex-direction: column; gap: .6cqw; }
 .page .ss-ex-title h2 { font-size: 3.4cqw; line-height: 1; font-weight: 400; letter-spacing: -.02em; }
 .ss-ex-title p { color: var(--muted); font-style: italic; font-size: 1.2cqw; line-height: 1.2; text-wrap: pretty; }
 
@@ -40,18 +40,19 @@
 .ss-ex:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 /* Position (left/top/width) and centre (--cx/--cy, used to fan out from the middle). */
-.ss-ex-a { left: 24%;   top: 9%;  width: 10.5%; --r: -2.5deg; --cx: 29; --cy: 16; --d: .05s; }
-.ss-ex-b { left: 37.5%; top: 17%; width: 10%;   --r: 1.5deg;  --cx: 42; --cy: 23; --d: .12s; }
-.ss-ex-c { left: 55%;   top: 8%;  width: 10%;   --r: -1deg;   --cx: 60; --cy: 14; --d: .2s; }
-.ss-ex-d { left: 51%;   top: 32%; width: 9.5%;  --r: 2deg;    --cx: 56; --cy: 38; --d: 0s; }
-.ss-ex-e { left: 68%;   top: 18%; width: 10%;   --r: -2deg;   --cx: 73; --cy: 24; --d: .28s; }
-.ss-ex-f { left: 80%;   top: 31%; width: 10%;   --r: 1.5deg;  --cx: 85; --cy: 37; --d: .36s; }
-.ss-ex-g { left: 17%;   top: 37%; width: 11.5%; --r: -1deg;   --cx: 23; --cy: 43; --d: .5s; }
-.ss-ex-h { left: 17%;   top: 73%; width: 10%;   --r: -1.5deg; --cx: 22; --cy: 79; --d: .4s; }
-.ss-ex-i { left: 30%;   top: 69%; width: 10%;   --r: 2.5deg;  --cx: 35; --cy: 75; --d: .3s; }
-.ss-ex-j { left: 50%;   top: 66%; width: 10%;   --r: -1.5deg; --cx: 55; --cy: 72; --d: .16s; }
-.ss-ex-k { left: 66%;   top: 43%; width: 10%;   --r: 2deg;    --cx: 71; --cy: 49; --d: .08s; }
-.ss-ex-l { left: 70%;   top: 66%; width: 10.5%; --r: 1deg;    --cx: 75; --cy: 72; --d: .24s; }
+/* Spread across the board like the research cards, so the outer drafts cross the frame lines. */
+.ss-ex-a { left: 14.6%; top: 9%;  width: 10.5%; --r: -2.5deg; --cx: 19.5; --cy: 16; --d: .05s; }
+.ss-ex-b { left: 31%;   top: 17%; width: 10%;   --r: 1.5deg;  --cx: 35.4; --cy: 23; --d: .12s; }
+.ss-ex-c { left: 52.4%; top: 8%;  width: 10%;   --r: -1deg;   --cx: 57.4; --cy: 14; --d: .2s; }
+.ss-ex-d { left: 47.4%; top: 32%; width: 9.5%;  --r: 2deg;    --cx: 52.7; --cy: 38; --d: 0s; }
+.ss-ex-e { left: 68.2%; top: 18%; width: 10%;   --r: -2deg;   --cx: 73.2; --cy: 24; --d: .28s; }
+.ss-ex-f { left: 82.9%; top: 31%; width: 10%;   --r: 1.5deg;  --cx: 87.9; --cy: 37; --d: .36s; }
+.ss-ex-g { left: 6.2%;  top: 37%; width: 11.5%; --r: -1deg;   --cx: 12.2; --cy: 43; --d: .5s; }
+.ss-ex-h { left: 6%;    top: 73%; width: 10%;   --r: -1.5deg; --cx: 11;   --cy: 79; --d: .4s; }
+.ss-ex-i { left: 21.9%; top: 69%; width: 10%;   --r: 2.5deg;  --cx: 26.9; --cy: 75; --d: .3s; }
+.ss-ex-j { left: 46.3%; top: 66%; width: 10%;   --r: -1.5deg; --cx: 51.3; --cy: 72; --d: .16s; }
+.ss-ex-k { left: 65.8%; top: 43%; width: 10%;   --r: 2deg;    --cx: 70.8; --cy: 49; --d: .08s; }
+.ss-ex-l { left: 70.7%; top: 66%; width: 10.5%; --r: 1deg;    --cx: 75.7; --cy: 72; --d: .24s; }
 
 /* The wandering route between drafts, and margin questions. */
 .ss-ex-trail { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; fill: none; stroke: var(--faint); stroke-width: 1.5; stroke-dasharray: 2 7; stroke-linecap: round; }
@@ -59,11 +60,11 @@
   position: absolute; margin: 0; pointer-events: none; white-space: nowrap;
   color: var(--muted); font-style: italic; font-size: clamp(14px, 1.05cqw, 18px); line-height: 1.2;
 }
-.ss-ex-note-a { right: 77%;  top: 14%; transform: rotate(-4deg); }
-.ss-ex-note-c { left: 66%;   top: 9%;  transform: rotate(3deg); }
-.ss-ex-note-e { left: 82%;   top: 22%; transform: rotate(-3deg); }
-.ss-ex-note-d { left: 53%;   top: 49%; transform: rotate(2deg); }
-.ss-ex-note-i { left: 31%;   top: 87%; transform: rotate(-2deg); }
+.ss-ex-note-a { right: 87.6%; top: 14%; transform: rotate(-4deg); }
+.ss-ex-note-c { left: 63.8%;  top: 9%;  transform: rotate(3deg); }
+.ss-ex-note-e { left: 82.3%;  top: 22%; transform: rotate(-3deg); }
+.ss-ex-note-d { left: 47.6%;  top: 49%; transform: rotate(2deg); }
+.ss-ex-note-i { left: 22%;    top: 87%; transform: rotate(-2deg); }
 
 /* Entrance: drafts fan out from the title, then the route and notes fade in.
    site.js adds .is-armed before the board is seen and swaps it for .is-entering on view. */

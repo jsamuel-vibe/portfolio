@@ -104,10 +104,22 @@ h2, h3 { scroll-margin-top: 48px; }
      page's content width, so the page edge sits a further --page-x outside it.
      Measured from the column's left edge, so narrower sections still line up. */
   --half-frame: calc(50cqw + var(--page-x) - max(var(--page-x) / 2, (100cqw + 2 * var(--page-x) - var(--content-width)) / 2 - 40px));
-  left: calc(min(100cqw, var(--content-width)) / 2 - var(--half-frame));
-  width: calc(2 * var(--half-frame));
-  height: 1px;
-  background: var(--frame-line);
+  /* Each rule is drawn as a strip: the 1px line through its middle and a plus
+     mark on each end, centred where it meets a vertical frame line. */
+  --node: 9px;
+  --node-stroke: 1px;
+  --node-color: #7A7A7A;
+  /* Offset by (node - 1) / 2 so the 1px arms land on the 1px frame lines exactly. */
+  left: calc(min(100cqw, var(--content-width)) / 2 - var(--half-frame) - (var(--node) - 1px) / 2);
+  width: calc(2 * var(--half-frame) + var(--node) - 1px);
+  height: var(--node);
+  transform: translateY(calc(0.5px - var(--node) / 2));
+  background:
+    linear-gradient(var(--node-color), var(--node-color)) left center / var(--node) var(--node-stroke) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) calc(var(--node) / 2 - var(--node-stroke) / 2) 0 / var(--node-stroke) 100% no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) right center / var(--node) var(--node-stroke) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 - var(--node-stroke) / 2) top 0 / var(--node-stroke) 100% no-repeat,
+    linear-gradient(var(--frame-line), var(--frame-line)) center / calc(100% - var(--node)) 1px no-repeat;
   pointer-events: none;
 }
 .page .site-nav::after { top: calc(100% + 24px); }
@@ -595,7 +607,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   gap: 20px 32px;
 }
 .wa-project-details::before, .case-project-details::before { top: 0; }
-.wa-project-details::after, .case-project-details::after { bottom: 0; }
+.wa-project-details::after, .case-project-details::after { top: calc(100% - 1px); }
 .wa-project-details > div, .case-project-details > div {
   display: flex;
   flex-direction: column;
