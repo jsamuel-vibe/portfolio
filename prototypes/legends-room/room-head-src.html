@@ -1,0 +1,79 @@
+<meta charset="utf-8">
+<title>Legends Room Test</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one room. Painted wall, gilded portrait on it, the name in script across the wall, nav on the wall, the legends at the table in front. */
+:root{
+  --bg:#ffffff; --ink:#1b1b1b; --muted:#5d5a55; --line:#e6e4e0;
+  --wall:#7d1a14; --wall-deep:#4a0d0a; --on-wall:#f6ead2; --on-wall-soft:rgba(246,234,210,.74);
+  --gold-1:#6f4e14; --gold-2:#f4dc94; --gold-3:#a8802a;
+  --display:"Crimson Pro", Georgia, "Times New Roman", serif;
+  --script:"Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+  --body:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);margin:0}
+.wrap{max-width:1260px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.frame-lines{border-left:1px solid var(--line);border-right:1px solid var(--line)}
+
+.switch{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;padding-block:14px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
+.switch button{font:inherit;font-weight:500;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:6px 13px;border-radius:999px;cursor:pointer}
+.switch button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* the room */
+.room{position:relative;container-type:inline-size;overflow:hidden;background:var(--wall);isolation:isolate}
+.room[data-wall="green"]{--wall:#1f3d2e;--wall-deep:#0e2018}
+.room[data-wall="blue"]{--wall:#1d2c4a;--wall-deep:#0c1426}
+.room::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(120% 80% at 50% 30%,transparent 35%,var(--wall-deep) 100%),
+             repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 2px,transparent 2px 9px)}
+.room::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .15 0 0 0 0 .1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:clamp(18px,2cqw,32px) max(16px,4cqw) 0;font-size:clamp(12px,1cqw,15px);color:var(--on-wall)}
+.nav a{color:inherit;text-decoration:none}
+.nav .l,.nav .r{display:flex;gap:2.4cqw}
+.nav .r{justify-content:flex-end}
+.nav .mark{font-family:var(--display);font-size:clamp(14px,1.3cqw,19px);letter-spacing:.02em;padding:.1em .5em;border-left:1px solid var(--on-wall-soft);border-right:1px solid var(--on-wall-soft)}
+
+.wallrow{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:4cqw;padding:3.6cqw max(16px,4cqw) 0}
+.center{position:relative;display:flex;flex-direction:column;align-items:center}
+.role{text-align:center;font-family:var(--display);color:var(--on-wall);font-size:clamp(16px,2cqw,30px);line-height:1.05;margin-bottom:1.6cqw}
+.story{justify-self:end;max-width:min(24cqw,360px);font-family:var(--display);font-size:clamp(13px,1.2cqw,18px);line-height:1.45;color:var(--on-wall-soft);text-align:right;margin:0}
+.cta{justify-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:1.2cqw;font-size:clamp(12px,1cqw,15px);color:var(--on-wall)}
+.cta .open{border-left:1px solid var(--on-wall-soft);border-right:1px solid var(--on-wall-soft);padding:.25em .7em}
+.cta a.btn{background:var(--on-wall);color:var(--wall-deep);text-decoration:none;font-weight:600;padding:.75em 1.4em;border-radius:2px}
+
+.portrait{width:16cqw;aspect-ratio:4/5;padding:1.15cqw;position:relative;
+  background:linear-gradient(135deg,var(--gold-1),var(--gold-2) 22%,var(--gold-3) 45%,var(--gold-2) 70%,var(--gold-1));
+  box-shadow:inset 0 0 0 .25cqw #4b340b,inset 0 0 0 .5cqw var(--gold-2),inset 0 0 0 .75cqw var(--gold-3),0 2cqw 3cqw rgba(0,0,0,.5)}
+.portrait::after{content:"";position:absolute;inset:1.15cqw;box-shadow:inset 0 0 0 .2cqw #3a2808,inset 0 0 1.4cqw rgba(0,0,0,.6);pointer-events:none}
+.portrait img{display:block;width:100%;height:100%;object-fit:cover;filter:sepia(.45) saturate(.8) contrast(1.08) brightness(.9)}
+
+.name{position:relative;text-align:center;font-family:var(--script);font-weight:400;font-size:10.5cqw;line-height:1;color:var(--on-wall);margin:-4.5cqw 0 0;letter-spacing:-.01em;z-index:1;pointer-events:none;text-shadow:0 .3cqw 1cqw rgba(0,0,0,.25)}
+
+.scene{position:relative;margin-top:-6cqw;z-index:2}
+.scene svg{display:block;width:100%;height:auto;overflow:visible}
+/*TAGS*/
+.dim{opacity:0;transition:opacity .45s ease;pointer-events:none}
+.stage.talking .dim{opacity:1}
+.hit{fill:transparent;cursor:pointer;outline:none}
+/*INK*/
+.note{font-size:13px;color:var(--muted);text-align:center;padding-block:18px;border-top:1px solid var(--line);margin:0}
+
+@media (max-width:700px){
+  .nav .l{display:none}.nav{grid-template-columns:auto 1fr;padding:16px 16px 0}.nav .r{gap:14px}
+  .wallrow{grid-template-columns:1fr;justify-items:center;gap:14px;padding:24px 16px 0}
+  .role{font-size:20px}
+  .portrait{width:44cqw;padding:10px}.portrait::after{inset:10px}
+  .center{order:1}.story{order:2;justify-self:center;text-align:center;max-width:none;font-size:15px}
+  .cta{order:3;justify-self:center;align-items:center;font-size:13px;gap:10px}
+  .name{font-size:19cqw;margin-top:8px}
+  .scene{margin-top:2cqw}
+  .ink{font-size:12px;max-width:62%}
+}
+@media (prefers-reduced-motion:reduce){.dim,.tag{transition:none}.ink .c,.ink.gone .c{animation-duration:.01ms;animation-delay:0ms}}
+</style>

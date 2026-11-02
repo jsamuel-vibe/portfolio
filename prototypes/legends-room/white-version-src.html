@@ -1,0 +1,198 @@
+<meta charset="utf-8">
+<title>Legends Hero Test</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: the portfolio hero, copy centred, cut-out painting standing on the hero's bottom edge, subtitles over the table. Single light look, matching the live site. */
+:root{
+  --bg:#ffffff; --ink:#1b1b1b; --muted:#5d5a55; --line:#e6e4e0;
+  --sub:#ffffff; --sub-name:#f1d9a8; --sub-shadow:rgba(0,0,0,.85);
+  --display:"Crimson Pro", Georgia, "Times New Roman", serif;
+  --body:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);margin:0}
+.wrap{max-width:1260px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.frame{border-left:1px solid var(--line);border-right:1px solid var(--line)}
+
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:clamp(48px,9vw,104px)}
+.hero h1{font-family:var(--display);font-weight:500;font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.hero p{max-width:560px;font-size:16px;line-height:1.65;color:var(--muted);margin:20px 16px 0}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ink);margin-top:22px}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:#2f9e5b;box-shadow:0 0 0 4px #2f9e5b22}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px;padding-inline:16px}
+.links a{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;border:1px solid var(--line);padding:9px 16px;border-radius:999px}
+.links a.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.stage{position:relative;width:100%;margin-top:clamp(40px,6vw,72px);user-select:none;-webkit-user-select:none}
+.stage svg{display:block;width:100%;height:auto;overflow:visible}
+.dim{opacity:0;transition:opacity .45s ease;pointer-events:none}
+.stage.talking .dim{opacity:1}
+.hit{fill:transparent;cursor:pointer;outline:none}
+
+/* name oval on hover */
+.tag{opacity:0;transition:opacity .2s ease;pointer-events:none}
+.tag.on{opacity:1}
+.tag ellipse{fill:none;stroke:var(--ink);stroke-width:2.5}
+.tag .halo{stroke:#fff;stroke-width:8;opacity:.9}
+.tag text{font-family:var(--display);font-style:italic;font-weight:600;font-size:30px;fill:var(--ink);stroke:#fff;stroke-width:7px;stroke-linejoin:round;paint-order:stroke;letter-spacing:.02em}
+
+/* diary ink: small lines that write themselves above the speaker's head, then sink away */
+.ink{position:absolute;width:max-content;max-width:min(280px,46%);text-align:center;transform:translate(var(--tx,-50%),-100%);pointer-events:none;
+  font-family:var(--display);font-style:italic;font-size:14px;line-height:1.35;color:#3b2a1c;text-wrap:balance}
+.ink .who{font-family:var(--body);font-style:normal;font-weight:600;font-size:11px;letter-spacing:.04em;color:#8a5a2b;margin-right:4px}
+.ink .w{white-space:nowrap}
+.ink .c{opacity:0;display:inline-block;filter:blur(3px);animation:write .5s ease forwards;animation-delay:calc(var(--i) * 34ms)}
+.ink .sp{display:inline}
+.ink.gone .c{opacity:1;filter:none;animation:sink .9s ease forwards;animation-delay:calc(var(--j) * 1ms)}
+@keyframes write{from{opacity:0;filter:blur(3px);transform:translateY(1px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes sink{from{opacity:1;filter:blur(0)}to{opacity:0;filter:blur(2.5px);transform:translateY(2px)}}
+@media (max-width:640px){.ink{font-size:12px;max-width:62%}.ink .who{font-size:10px}}
+@media (prefers-reduced-motion:reduce){.ink .c,.ink.gone .c{animation-duration:.01ms;animation-delay:0ms}}
+.note{font-size:13px;color:var(--muted);text-align:center;padding-block:18px;border-top:1px solid var(--line);margin:0}
+@media (prefers-reduced-motion:reduce){.dim,.tag{transition:none}}
+</style>
+
+<div class="wrap"><div class="frame">
+  <section class="hero">
+    <h1>Samuel Joseph, designer in Bangalore.</h1>
+    <p>Self-taught. At Cretile I work as a multidisciplinary designer across brand, marketing and product. Over the past year I moved into app design, building Cretile's internal campaign tool and Superstash along the way.</p>
+    <span class="status">Open to product design roles &middot; Bangalore or remote</span>
+    <div class="links">
+      <a class="primary" href="#">Resume</a>
+      <a href="#">Email</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">X / Twitter</a>
+    </div>
+
+    <div class="stage" id="stage">
+      <svg viewBox="0 0 1672 941" aria-label="A painting of design legends looking over Samuel's shoulder at his laptop">
+        <defs>
+          <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="40"/></filter>
+          <filter id="darken" color-interpolation-filters="sRGB"><feComponentTransfer><feFuncR type="linear" slope=".5"/><feFuncG type="linear" slope=".48"/><feFuncB type="linear" slope=".46"/></feComponentTransfer></filter>
+          <mask id="dimMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1672" height="941">
+            <rect width="1672" height="941" fill="#fff"/>
+            <ellipse id="hole" cx="-500" cy="-500" rx="180" ry="220" fill="#000" filter="url(#soft)" style="transition:cx .5s ease,cy .5s ease,rx .5s ease,ry .5s ease"/>
+          </mask>
+        </defs>
+        <image href="__IMG__" width="1672" height="941"/>
+        <g class="dim" mask="url(#dimMask)"><image href="__IMG__" width="1672" height="941" filter="url(#darken)"/></g>
+        <g id="tags"></g>
+        <g id="hits"></g>
+      </svg>
+      <div class="ink" id="ink" aria-live="polite"></div>
+    </div>
+  </section>
+  <p class="note">Test page. The legends talk on their own, one after another. Point at anyone to see their name; click (or tap) someone to hear their line next.</p>
+</div></div>
+
+<script>
+const W=1672,H=941;
+/* timings, in milliseconds */
+const T={start:1500, perChar:34, hold:1900, vanish:1100, beat:900, gap:2000};
+const ME={id:"me",top:286,name:"Samuel",short:"Sam",head:[835,380,92,100],spot:[835,470,190,230],
+  poly:[[760,320],[820,290],[900,300],[920,360],[900,430],[960,470],[980,560],[900,560],[860,700],[750,720],[640,710],[600,640],[610,520],[700,460],[760,440],[750,380]]};
+const L=[
+ {id:"ray",top:335,name:"Ray Eames",say:"Damn, this guy's good. Charles, he named his layers.",reply:"Finally, someone noticed.",
+  head:[1490,420,108,104],spot:[1520,520,180,220],
+  poly:[[1390,450],[1440,370],[1500,338],[1582,354],[1592,420],[1622,480],[1672,500],[1672,722],[1530,722],[1500,620],[1450,560],[1400,540],[1384,500]]},
+ {id:"rand",top:123,name:"Paul Rand",say:"Don't try to be original. Just try to be good.",reply:"Working on it, sir.",
+  head:[372,470,96,94],spot:[350,560,210,200],
+  poly:[[290,440],[330,398],[400,393],[442,420],[456,480],[472,520],[502,560],[512,640],[482,702],[360,722],[250,712],[170,702],[92,642],[100,540],[150,500],[270,480]]},
+ {id:"corbu",top:272,name:"Le Corbusier",say:"Too busy. Paint everything white.",reply:"Already did. Look at the background.",
+  head:[1116,356,96,96],spot:[1100,420,180,190],
+  poly:[[1040,310],[1090,274],[1160,278],[1196,330],[1202,400],[1252,460],[1242,540],[1150,546],[1100,550],[1000,550],[960,540],[930,450],[960,380],[1020,340]]},
+ {id:"leo",top:123,name:"Leonardo da Vinci",say:"Is this what art has come to? A freaking computer?",reply:"Relax Leo, you'd have loved Figma.",
+  head:[334,212,124,104],spot:[320,300,200,250],
+  poly:[[215,165],[260,130],[340,118],[432,145],[450,212],[420,262],[446,300],[400,350],[345,366],[330,400],[262,432],[200,470],[130,500],[60,560],[0,560],[0,300],[80,262],[170,232]]},
+ {id:"charles",top:378,name:"Charles Eames",say:"Two typefaces. Good. A third and I'm leaving.",reply:"Relax, I deleted Comic Sans this morning.",
+  head:[1314,462,86,92],spot:[1300,560,170,200],
+  poly:[[1260,420],[1300,384],[1360,384],[1396,430],[1392,520],[1432,560],[1442,700],[1300,732],[1180,722],[1150,640],[1160,540],[1230,500],[1250,460]]},
+ {id:"morris",top:236,name:"William Morris",say:"Needs more leaves.",reply:"Sir, this is a product page.",
+  head:[546,330,114,100],spot:[570,430,180,240],
+  poly:[[450,290],[500,250],[580,240],[642,276],[652,350],[702,362],[742,420],[722,560],[622,600],[602,652],[560,692],[520,642],[470,560],[452,500],[402,390],[422,340]]}
+];
+const NS="http://www.w3.org/2000/svg";
+const $=s=>document.querySelector(s);
+const stage=$("#stage"),ink=$("#ink"),hole=$("#hole"),tagsG=$("#tags"),hitsG=$("#hits");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pts=p=>p.map(a=>a.join(",")).join(" ");
+const tags={};
+
+[...L,ME].forEach(p=>{
+  // name oval
+  const [cx,cy,rx,ry]=p.head, R=rx+14, RY=ry+14;
+  const g=document.createElementNS(NS,"g");g.setAttribute("class","tag");
+  g.innerHTML=`<ellipse class="halo" cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/>
+    <ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/>
+    <path id="arc-${p.id}" d="M ${cx-R} ${cy} A ${R} ${RY} 0 0 1 ${cx+R} ${cy}" fill="none"/>
+    <text><textPath href="#arc-${p.id}" startOffset="50%" text-anchor="middle">${p.name}</textPath></text>`;
+  tagsG.appendChild(g);tags[p.id]=g;
+  // hit area
+  const el=document.createElementNS(NS,"polygon");
+  el.setAttribute("points",pts(p.poly));el.setAttribute("class","hit");el.setAttribute("tabindex","0");
+  el.setAttribute("role","button");el.setAttribute("aria-label",p.name);
+  const on=()=>g.classList.add("on"),off=()=>g.classList.remove("on");
+  el.addEventListener("mouseenter",on);el.addEventListener("mouseleave",off);
+  el.addEventListener("focus",on);el.addEventListener("blur",off);
+  el.addEventListener("click",()=>{
+    if(p===ME)return;
+    if(touchTag&&touchTag!==g)touchTag.classList.remove("on"); touchTag=g; on();
+    playNow(L.indexOf(p));
+  });
+  el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.dispatchEvent(new Event("click"))}});
+  hitsG.appendChild(el);
+});
+let touchTag=null;
+
+function spot(p){
+  if(!p){stage.classList.remove("talking");return}
+  const [cx,cy,rx,ry]=p.spot;
+  hole.setAttribute("cx",cx);hole.setAttribute("cy",cy);hole.setAttribute("rx",rx);hole.setAttribute("ry",ry);
+  stage.classList.add("talking");
+}
+function write(p,text){
+  const words=text.split(" ");let n=0;
+  const html=words.map(w=>`<span class="w">${[...w].map(ch=>`<span class="c" style="--i:${n++};--j:${Math.round(Math.random()*500)}">${ch.replace(/&/g,"&amp;").replace(/</g,"&lt;")}</span>`).join("")}</span>`).join('<span class="sp"> </span>');
+  ink.classList.remove("gone");
+  ink.innerHTML=html;
+  const r=stage.getBoundingClientRect(),s=r.width/W, x=p.head[0]*s;
+  ink.style.left=x+"px"; ink.style.top=(p.top*s-10)+"px";
+  const bw=ink.offsetWidth; let tx=-bw/2;
+  if(x+tx<4)tx=4-x; if(x+tx+bw>r.width-4)tx=r.width-4-bw-x;
+  ink.style.setProperty("--tx",tx+"px");
+  return text.length*T.perChar+500;
+}
+function vanish(){ink.classList.add("gone")}
+function quiet(){ink.innerHTML=""}
+
+/* the conversation loop */
+let i=0,timers=[],running=false,visible=true;
+const wait=(ms)=>new Promise(r=>timers.push(setTimeout(r,ms)));
+function clearAll(){timers.forEach(clearTimeout);timers=[]}
+let token=0;
+async function loop(startAt){
+  const my=++token; running=true; if(startAt!=null)i=startAt;
+  while(my===token){
+    if(!visible){await wait(500);continue}
+    const p=L[i%L.length];
+    spot(p); let d=write(p,p.say);
+    await wait(d+T.hold); if(my!==token)return;
+    vanish(); await wait(T.vanish); if(my!==token)return;
+    quiet(); await wait(T.beat); if(my!==token)return;
+    spot(ME); d=write(ME,p.reply);
+    await wait(d+T.hold); if(my!==token)return;
+    vanish(); await wait(T.vanish); if(my!==token)return;
+    quiet(); spot(null);
+    if(touchTag){touchTag.classList.remove("on");touchTag=null}
+    i++;
+    await wait(T.gap);
+  }
+}
+function playNow(idx){clearAll();vanish();spot(null);timers.push(setTimeout(()=>loop(idx),250))}
+
+new IntersectionObserver(es=>{visible=es[0].isIntersecting},{threshold:.35}).observe(stage);
+timers.push(setTimeout(()=>loop(0),T.start));
+</script>
