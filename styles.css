@@ -118,30 +118,30 @@ h2, h3 { scroll-margin-top: 48px; }
   height: var(--node);
   transform: translateY(calc(0.5px - var(--node) / 2));
   background:
-    linear-gradient(var(--node-color), var(--node-color)) left calc(var(--node) / 2 * (1 - var(--link))) center / calc(var(--node) * var(--link)) var(--node-stroke) no-repeat,
-    linear-gradient(var(--node-color), var(--node-color)) left calc(var(--node) / 2 - var(--node-stroke) / 2) top calc(var(--node) / 2 * (1 - var(--link))) / var(--node-stroke) calc(var(--node) * var(--link)) no-repeat,
-    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 * (1 - var(--link))) center / calc(var(--node) * var(--link)) var(--node-stroke) no-repeat,
-    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 - var(--node-stroke) / 2) top calc(var(--node) / 2 * (1 - var(--link))) / var(--node-stroke) calc(var(--node) * var(--link)) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) left calc(var(--node) / 2 * (1 - var(--node-in))) center / calc(var(--node) * var(--node-in)) var(--node-stroke) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) left calc(var(--node) / 2 - var(--node-stroke) / 2) top calc(var(--node) / 2 * (1 - var(--node-in))) / var(--node-stroke) calc(var(--node) * var(--node-in)) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 * (1 - var(--node-in))) center / calc(var(--node) * var(--node-in)) var(--node-stroke) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 - var(--node-stroke) / 2) top calc(var(--node) / 2 * (1 - var(--node-in))) / var(--node-stroke) calc(var(--node) * var(--node-in)) no-repeat,
     /* The line in two halves, each growing in from a plus mark until they meet in the middle. */
     linear-gradient(var(--frame-line), var(--frame-line)) left calc(var(--node) / 2) center / calc((50% - var(--node) / 2) * var(--draw)) 1px no-repeat,
     linear-gradient(var(--frame-line), var(--frame-line)) right calc(var(--node) / 2) center / calc((50% - var(--node) / 2) * var(--draw)) 1px no-repeat;
   pointer-events: none;
-  transition: --link .4s cubic-bezier(.3, 1.6, .5, 1), --draw .8s cubic-bezier(.6, 0, .2, 1) .2s;
+  transition: --node-in .4s cubic-bezier(.3, 1.6, .5, 1), --draw .8s cubic-bezier(.6, 0, .2, 1) .2s;
 }
 
 /* Frame lines draw in as they come into view. The head script adds .lines-anim (skipped for reduced
    motion) and site.js adds .is-linked to each rule's section once it's on screen. Without either,
-   --link and --draw keep their initial 1 and every line shows fully drawn. */
-@property --link { syntax: '<number>'; inherits: false; initial-value: 1; }
+   --node-in and --draw keep their initial 1 and every line shows fully drawn. */
+@property --node-in { syntax: '<number>'; inherits: false; initial-value: 1; }
 @property --draw { syntax: '<number>'; inherits: false; initial-value: 1; }
 .lines-anim .page .site-nav::after,
 .lines-anim .container > .sec::before,
 .lines-anim .wa-project-details::before, .lines-anim .case-project-details::before,
-.lines-anim .wa-project-details::after, .lines-anim .case-project-details::after { --link: 0; --draw: 0; }
+.lines-anim .wa-project-details::after, .lines-anim .case-project-details::after { --node-in: 0; --draw: 0; }
 .lines-anim .page .site-nav.is-linked::after,
 .lines-anim .container > .sec.is-linked::before,
 .lines-anim .wa-project-details.is-linked::before, .lines-anim .case-project-details.is-linked::before,
-.lines-anim .wa-project-details.is-linked::after, .lines-anim .case-project-details.is-linked::after { --link: 1; --draw: 1; }
+.lines-anim .wa-project-details.is-linked::after, .lines-anim .case-project-details.is-linked::after { --node-in: 1; --draw: 1; }
 /* The header rule waits for the vertical lines to reach it. */
 .lines-anim .page .site-nav::after { transition-delay: .25s, .45s; }
 /* The vertical lines draw down the page on load, quickly past the first screen. */
