@@ -3,6 +3,62 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var scrollBehavior = reduceMotion ? 'auto' : 'smooth';
 
+  // Light/dark toggle beside "Get in touch". The head script has already applied the saved choice,
+  // or the system setting when there isn't one. Pages listen for "themechange" (the footer game does).
+  var root = document.documentElement;
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  var toggles = document.querySelectorAll('[data-theme-toggle]');
+  function labelToggles(t) {
+    toggles.forEach(function (b) { b.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); });
+  }
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    if (themeMeta) themeMeta.content = t === 'dark' ? '#1a1a1a' : '#ffffff';
+    labelToggles(t);
+    document.dispatchEvent(new CustomEvent('themechange', { detail: t }));
+  }
+  function savedTheme() {
+    try { var t = localStorage.getItem('theme'); return t === 'light' || t === 'dark' ? t : null; } catch (e) { return null; }
+  }
+  labelToggles(root.getAttribute('data-theme'));
+  toggles.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('theme', next); } catch (e) { /* not remembered */ }
+      if (!document.startViewTransition || reduceMotion) return applyTheme(next);
+      // The new theme spreads out in a circle from the toggle, wide enough to reach the far corner.
+      var b = btn.getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2;
+      var r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      var transition = document.startViewTransition(function () { applyTheme(next); });
+      transition.ready.then(function () {
+        root.animate({ clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + r + 'px at ' + x + 'px ' + y + 'px)'] },
+          { duration: 600, easing: 'cubic-bezier(.45, 0, .2, 1)', pseudoElement: '::view-transition-new(root)' });
+      }).catch(function () { /* skipped: the theme still changed */ });
+    });
+  });
+
+  // Frame lines: each rule links up once its section scrolls into view (styles.css draws it).
+  if (root.classList.contains('lines-anim')) {
+    var linked = document.querySelectorAll('.page .site-nav, .container > .sec, .wa-project-details, .case-project-details');
+    if ('IntersectionObserver' in window) {
+      var linker = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-linked');
+          linker.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' });
+      linked.forEach(function (el) { linker.observe(el); });
+    } else {
+      linked.forEach(function (el) { el.classList.add('is-linked'); });
+    }
+  }
+  // Until the visitor picks, follow the system setting if it changes.
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  if (systemDark.addEventListener) systemDark.addEventListener('change', function (e) {
+    if (!savedTheme()) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
   // "View all" toggles. Extra items stay visible unless this script runs,
   // so the page never hides content it can't reveal again.
   document.querySelectorAll('[data-toggle-more]').forEach(function (btn) {
@@ -57,11 +113,14 @@
   toTop.type = 'button';
   toTop.className = 'to-top';
   toTop.setAttribute('aria-label', 'Back to top');
-  toTop.innerHTML = '<span aria-hidden="true">↑</span>';
+  toTop.innerHTML = '<svg class="to-top-ring" viewBox="0 0 44 44" aria-hidden="true"><circle class="track" cx="22" cy="22" r="21"/>' +
+    '<circle class="fill" cx="22" cy="22" r="21" stroke-dasharray="131.95" stroke-dashoffset="131.95"/></svg>' +
+    '<svg class="to-top-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19.5V5M5.5 11.5 12 5l6.5 6.5"/></svg>';
   toTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: scrollBehavior });
   });
   document.body.appendChild(toTop);
+  var ringFill = toTop.querySelector('.to-top-ring .fill');
 
   // Section rail: one line per section, the current one highlighted,
   // hover shows the section's title and first line, click jumps there.
@@ -254,6 +313,9 @@
   function onScroll() {
     ticking = false;
     toTop.classList.toggle('is-visible', window.scrollY > 700);
+    var readable = document.documentElement.scrollHeight - window.innerHeight;
+    var read = readable > 0 ? Math.min(1, window.scrollY / readable) : 0;
+    ringFill.setAttribute('stroke-dashoffset', (131.95 * (1 - read)).toFixed(2)); // 131.95 = the ring's length, 2π × 21
     if (!sections.length || !sections[0].button) return;
     var line = window.innerHeight * 0.35;
     var current = 0;

@@ -28,6 +28,7 @@
 }
 
 :root {
+  color-scheme: light;
   --bg: rgb(255, 255, 255);
   --surface: #F3F3F6;
   --surface-alt: rgb(239, 239, 241);
@@ -39,6 +40,7 @@
   --hairline: rgba(31, 31, 31, 0.08);
   --tip-bg: rgb(30, 30, 30);
   --device-screen: rgb(30, 30, 30);
+  --link: #0066CC;
   --content-width: 1180px;
 
   --font: 'Crimson Pro', Georgia, 'Times New Roman', serif;
@@ -96,6 +98,7 @@ h2, h3 { scroll-margin-top: 48px; }
 .container > .sec { position: relative; }
 .page .site-nav::after,
 .container > .sec::before,
+.home-project::after,
 .wa-project-details::before, .case-project-details::before,
 .wa-project-details::after, .case-project-details::after {
   content: "";
@@ -115,13 +118,35 @@ h2, h3 { scroll-margin-top: 48px; }
   height: var(--node);
   transform: translateY(calc(0.5px - var(--node) / 2));
   background:
-    linear-gradient(var(--node-color), var(--node-color)) left center / var(--node) var(--node-stroke) no-repeat,
-    linear-gradient(var(--node-color), var(--node-color)) calc(var(--node) / 2 - var(--node-stroke) / 2) 0 / var(--node-stroke) 100% no-repeat,
-    linear-gradient(var(--node-color), var(--node-color)) right center / var(--node) var(--node-stroke) no-repeat,
-    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 - var(--node-stroke) / 2) top 0 / var(--node-stroke) 100% no-repeat,
-    linear-gradient(var(--frame-line), var(--frame-line)) center / calc(100% - var(--node)) 1px no-repeat;
+    linear-gradient(var(--node-color), var(--node-color)) left calc(var(--node) / 2 * (1 - var(--link))) center / calc(var(--node) * var(--link)) var(--node-stroke) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) left calc(var(--node) / 2 - var(--node-stroke) / 2) top calc(var(--node) / 2 * (1 - var(--link))) / var(--node-stroke) calc(var(--node) * var(--link)) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 * (1 - var(--link))) center / calc(var(--node) * var(--link)) var(--node-stroke) no-repeat,
+    linear-gradient(var(--node-color), var(--node-color)) right calc(var(--node) / 2 - var(--node-stroke) / 2) top calc(var(--node) / 2 * (1 - var(--link))) / var(--node-stroke) calc(var(--node) * var(--link)) no-repeat,
+    /* The line in two halves, each growing in from a plus mark until they meet in the middle. */
+    linear-gradient(var(--frame-line), var(--frame-line)) left calc(var(--node) / 2) center / calc((50% - var(--node) / 2) * var(--draw)) 1px no-repeat,
+    linear-gradient(var(--frame-line), var(--frame-line)) right calc(var(--node) / 2) center / calc((50% - var(--node) / 2) * var(--draw)) 1px no-repeat;
   pointer-events: none;
+  transition: --link .4s cubic-bezier(.3, 1.6, .5, 1), --draw .8s cubic-bezier(.6, 0, .2, 1) .2s;
 }
+
+/* Frame lines draw in as they come into view. The head script adds .lines-anim (skipped for reduced
+   motion) and site.js adds .is-linked to each rule's section once it's on screen. Without either,
+   --link and --draw keep their initial 1 and every line shows fully drawn. */
+@property --link { syntax: '<number>'; inherits: false; initial-value: 1; }
+@property --draw { syntax: '<number>'; inherits: false; initial-value: 1; }
+.lines-anim .page .site-nav::after,
+.lines-anim .container > .sec::before,
+.lines-anim .wa-project-details::before, .lines-anim .case-project-details::before,
+.lines-anim .wa-project-details::after, .lines-anim .case-project-details::after { --link: 0; --draw: 0; }
+.lines-anim .page .site-nav.is-linked::after,
+.lines-anim .container > .sec.is-linked::before,
+.lines-anim .wa-project-details.is-linked::before, .lines-anim .case-project-details.is-linked::before,
+.lines-anim .wa-project-details.is-linked::after, .lines-anim .case-project-details.is-linked::after { --link: 1; --draw: 1; }
+/* The header rule waits for the vertical lines to reach it. */
+.lines-anim .page .site-nav::after { transition-delay: .25s, .45s; }
+/* The vertical lines draw down the page on load, quickly past the first screen. */
+.lines-anim .page::before { animation: frame-down 1.8s cubic-bezier(.4, 0, .9, .5) both; }
+@keyframes frame-down { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
 .page .site-nav::after { top: calc(100% + 24px); }
 .container > .sec::before { top: calc(var(--sec-pad) / 2); }
 /* The footer's frame rule replaces its old divider; the divider keeps its space. */
@@ -187,6 +212,22 @@ a:hover .btn-icon:first-child, .btn:hover .btn-icon:first-child { transform: tra
 .site-portrait-link { display: block; border-radius: 18px; transition: opacity .2s ease; }
 .site-portrait-link:hover { opacity: .7; }
 .site-portrait { display: block; width: 56px; height: 56px; border-radius: 18px; object-fit: cover; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+/* Light/dark toggle. It needs the head script (which sets data-theme), so it stays hidden without it.
+   One icon shows the current theme: a sun in light mode, which pulls in its rays while a shadow
+   slides over it to leave a crescent moon in dark mode. */
+.theme-toggle { color: var(--ink); }
+html:not([data-theme]) .theme-toggle { display: none; }
+.theme-icon { width: 20px; height: 20px; overflow: visible; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+.theme-toggle:hover .theme-icon { transform: rotate(-15deg); }
+.theme-icon .core { transition: r .45s cubic-bezier(.4, 0, .2, 1); }
+.theme-icon .bite { transition: cx .45s cubic-bezier(.4, 0, .2, 1), cy .45s cubic-bezier(.4, 0, .2, 1); }
+.theme-icon .rays { transform-origin: 12px 12px; transition: transform .45s cubic-bezier(.4, 0, .2, 1), opacity .3s ease; }
+[data-theme="dark"] .theme-icon .core { r: 8.5px; }
+[data-theme="dark"] .theme-icon .bite { cx: 17px; cy: 7px; }
+[data-theme="dark"] .theme-icon .rays { transform: rotate(60deg) scale(.4); opacity: 0; }
+/* The theme switch spreads out in a circle from the toggle (site.js runs it as a view transition). */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 .avatar { background: var(--white) url("assets/profile.jpg") center / cover no-repeat; }
 
 /* Breadcrumbs sit above a project opening. */
@@ -364,14 +405,28 @@ body .breadcrumbs + .project-intro { padding-top: 56px; }
 .to-top {
   position: fixed; z-index: 20;
   right: max(24px, calc(env(safe-area-inset-right, 0px) + 16px)); bottom: max(24px, calc(env(safe-area-inset-bottom, 0px) + 16px));
+  display: grid; place-items: center; overflow: hidden; padding: 0;
   width: 44px; height: 44px; border: 0; border-radius: 999px; cursor: pointer;
-  background: var(--white); color: var(--ink); font-size: 18px; font-family: var(--font-sub);
+  background: var(--white); color: var(--ink);
   box-shadow: 0 0 0 1px var(--hairline), 0 6px 20px rgba(0, 0, 0, .1);
   opacity: 0; transform: translateY(8px); pointer-events: none;
   transition: opacity .25s ease, transform .25s ease, box-shadow .2s ease;
 }
 .to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
 .to-top:hover { box-shadow: 0 0 0 1px rgba(17, 17, 17, .16), 0 8px 24px rgba(0, 0, 0, .14); }
+/* A ring around the edge fills as you read down the page. site.js sets the dash offset on the circle
+   itself, in real units: Firefox ignores a unitless calc() in stroke-dashoffset. */
+.to-top-ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); fill: none; stroke-width: 2; }
+.to-top-ring .track { stroke: var(--hairline); }
+.to-top-ring .fill { stroke: var(--ink); stroke-linecap: round; transition: stroke-dashoffset .1s linear; }
+.to-top-arrow { display: block; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+/* On hover the arrow shoots up out of the button and comes back in from below. */
+.to-top:hover .to-top-arrow { animation: to-top-lift .5s cubic-bezier(.5, 0, .3, 1); }
+@keyframes to-top-lift {
+  45% { transform: translateY(-26px); opacity: 0; }
+  46% { transform: translateY(26px); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
 
 /* Section rail (case studies, wide screens) */
 .rail {

@@ -1,0 +1,101 @@
+/* Dark theme. Loaded after every other stylesheet and only overrides colour. Every rule is
+   scoped to <html data-theme="dark">, which the head script sets from the visitor's choice
+   (the toggle beside "Get in touch") or, until they choose, from their system setting.
+
+   The light site uses --white for two jobs: raised cards on the page, and text
+   sitting on --ink. In the dark theme those split: --white becomes the raised
+   card colour, and text on an --ink fill uses --on-ink, set per rule below.
+   Elevation goes up in lightness: page #1a1a1a, panels --surface, cards inside
+   panels --white. */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1A1A1A;
+  --surface: #222222;
+  --surface-alt: #262626;
+  --white: #2B2B2B;
+  --ink: #ECECEC;
+  --ink-hover: #D4D4D4;
+  --on-ink: #1A1A1A;
+  --muted: rgba(236, 236, 236, 0.62);
+  --faint: rgba(236, 236, 236, 0.34);
+  --hairline: rgba(255, 255, 255, 0.1);
+  --tip-bg: #2E2E2E;
+  --device-screen: #111111;
+  --shadow: rgba(0, 0, 0, .45);
+  --link: #2997FF;
+
+  /* The footer game reads these (games/penalty.js). */
+  --game-page: transparent;
+  --game-frame: #FFFFFF;
+  --game-net: rgba(255, 255, 255, .32);
+  --game-muted: rgba(236, 236, 236, .62);
+  --game-grass: #2D5A2A;
+  --game-grass-alt: #285125;
+  --game-lights: on;
+  --game-slot: rgba(255, 255, 255, .28);
+  --game-scored: #3DDC84;
+  --game-failed: #FF6369;
+}
+
+/* Page frame lines and the plus marks where rules cross them. */
+:root[data-theme="dark"] .page { --frame-line: rgba(255, 255, 255, 0.09); }
+:root[data-theme="dark"] .page .site-nav::after,
+:root[data-theme="dark"] .container > .sec::before,
+:root[data-theme="dark"] .home-project::after,
+:root[data-theme="dark"] .wa-project-details::before,
+:root[data-theme="dark"] .case-project-details::before,
+:root[data-theme="dark"] .wa-project-details::after,
+:root[data-theme="dark"] .case-project-details::after { --node-color: #6E6E6E; }
+
+/* Text on --ink fills: light surfaces now, so the text turns dark. */
+:root[data-theme="dark"] .btn-primary { color: var(--on-ink); box-shadow: 0 1px 2px var(--shadow); }
+:root[data-theme="dark"] .wa-skip { color: var(--on-ink); }
+:root[data-theme="dark"] .wa-choice-grid .is-chosen { color: var(--on-ink); }
+:root[data-theme="dark"] .wa-choice-grid .is-chosen > span,
+:root[data-theme="dark"] .wa-choice-grid .is-chosen > p { color: rgba(26, 26, 26, .66); }
+:root[data-theme="dark"] .wa-process li:not(:last-child)::after { color: var(--on-ink); }
+:root[data-theme="dark"] .wa-response-card.is-claude { color: var(--on-ink); }
+:root[data-theme="dark"] .wa-response-card.is-claude > span { color: rgba(26, 26, 26, .62); }
+
+/* Overlays that stay dark keep white text. */
+:root[data-theme="dark"] .rail-tip { color: #FFFFFF; box-shadow: 0 0 0 1px var(--hairline), 0 12px 32px var(--shadow); }
+:root[data-theme="dark"] .zoomable::after { background: rgba(10, 10, 10, .82); color: #FFFFFF; box-shadow: 0 0 0 1px var(--hairline); }
+:root[data-theme="dark"] .lightbox { background: rgba(10, 10, 10, .96); color: #FFFFFF; }
+:root[data-theme="dark"] .lightbox::backdrop { background: rgba(10, 10, 10, .96); }
+:root[data-theme="dark"] .lb-btn { color: #FFFFFF; }
+:root[data-theme="dark"] .lb-btn:focus-visible { outline-color: #FFFFFF; }
+
+/* Hard-coded dark-on-light hairlines and shadows. Shadows barely read on a dark
+   page, so they get deeper and lean on the hairline ring for the edge. */
+:root[data-theme="dark"] .btn-secondary { box-shadow: 0 0 0 1px var(--hairline), 0 1px 2px var(--shadow); }
+:root[data-theme="dark"] .btn-secondary:hover { background: #333333; box-shadow: 0 0 0 1px rgba(255, 255, 255, .18), 0 2px 6px var(--shadow); }
+:root[data-theme="dark"] .breadcrumbs li + li::before { color: var(--faint); }
+:root[data-theme="dark"] .dg-card.is-later { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .26); }
+:root[data-theme="dark"] .pill { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .5); }
+:root[data-theme="dark"] .wa-kickers span { border-color: rgba(255, 255, 255, .2); }
+:root[data-theme="dark"] .wa-later { border-top-color: rgba(255, 255, 255, .2); }
+:root[data-theme="dark"] .interface-viewport { box-shadow: 0 0 0 1px var(--hairline), 0 12px 32px var(--shadow); }
+/* Homepage screenshots: a lighter shadow than on the case-study pages. */
+:root[data-theme="dark"] .home-project .interface-viewport { box-shadow: 0 0 0 1px var(--hairline), 0 8px 20px rgba(0, 0, 0, .22); }
+:root[data-theme="dark"] .next-preview { box-shadow: 0 0 0 1px var(--hairline), 0 12px 40px var(--shadow); }
+:root[data-theme="dark"] .to-top { box-shadow: 0 0 0 1px var(--hairline), 0 6px 20px var(--shadow); }
+:root[data-theme="dark"] .to-top:hover { box-shadow: 0 0 0 1px rgba(255, 255, 255, .18), 0 8px 24px var(--shadow); }
+:root[data-theme="dark"] .wa-rule-board .media-strip { box-shadow: 0 0 0 1px var(--hairline), 0 8px 24px var(--shadow); }
+
+/* Cretile accent: the deep green would sink into the dark, so it lifts. */
+:root[data-theme="dark"] .wa-case { --wa-accent: #5CC6A6; --wa-accent-soft: #1F2E2A; }
+:root[data-theme="dark"] .wa-state-compare .is-closed > span { color: #E3A94F; }
+:root[data-theme="dark"] .wa-state-compare .is-closed > div { border-color: #5A4718; background: #2A2415; }
+:root[data-theme="dark"] .wa-state-compare .is-closed strong { color: #F2CB72; }
+
+/* Cretile video control. */
+:root[data-theme="dark"] .wa-video-toggle { background: rgba(10, 10, 10, .55); }
+:root[data-theme="dark"] .wa-video-player:hover .wa-video-toggle, :root[data-theme="dark"] .wa-video-toggle:focus-visible { background: rgba(10, 10, 10, .75); }
+
+/* Superstash exploration board and research cards. */
+:root[data-theme="dark"] .ss-exploration-board::before, :root[data-theme="dark"] .ss-research-board::before { background-image: radial-gradient(circle, rgba(255, 255, 255, .12) 1px, transparent 1.4px); }
+:root[data-theme="dark"] .ss-ex { box-shadow: 0 0 0 1px var(--hairline), 0 6px 18px var(--shadow); }
+:root[data-theme="dark"] .ss-ex:hover, :root[data-theme="dark"] .ss-ex:focus-visible { box-shadow: 0 0 0 1px var(--hairline), 0 18px 40px var(--shadow); }
+:root[data-theme="dark"] .ss-research-card .zoomable { box-shadow: 0 0 0 1px var(--hairline), 0 8px 22px var(--shadow); }
+:root[data-theme="dark"] .ss-research-card .zoomable:hover, :root[data-theme="dark"] .ss-research-card .zoomable:focus-visible { box-shadow: 0 0 0 1px var(--hairline), 0 12px 32px var(--shadow); }
