@@ -39,7 +39,7 @@
 }
 
 /* Page frame lines and the plus marks where rules cross them. */
-:root[data-theme="dark"] .page { --frame-line: rgba(255, 255, 255, 0.09); }
+:root[data-theme="dark"] .page { --frame-line: rgba(255, 255, 255, 0.14); }
 :root[data-theme="dark"] .page .site-nav::after,
 :root[data-theme="dark"] .container > .sec::before,
 :root[data-theme="dark"] .home-project::after,

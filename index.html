@@ -30,9 +30,9 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/crimson-pro-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20261102-linkfix">
-<link rel="stylesheet" href="home.css?v=20261102-chevron">
-<link rel="stylesheet" href="dark.css?v=20261102-linkfix">
+<link rel="stylesheet" href="styles.css?v=20261103-arch">
+<link rel="stylesheet" href="home.css?v=20261103-arch">
+<link rel="stylesheet" href="dark.css?v=20261103-arch">
 </head>
 <body>
 <main class="page home-page">
@@ -52,9 +52,23 @@
       </div>
     </header>
 
-    <section class="home-hero" aria-labelledby="home-title">
-      <h1 id="home-title" class="home-title">Hi, I’m Samuel. I work through the complexity so the product interface <em>feels simple.</em></h1>
-      <p class="t-body hero-sub">I start by understanding what people need to do, explore different ways through it, and refine how each screen looks and behaves. That approach shapes my work, from Cretile’s internal campaign tool to Superstash, a creative library for designers.</p>
+    <!-- Arch hero: photo in an arch, name set around its top, short story below. -->
+    <section class="home-hero arch-hero" aria-labelledby="home-title">
+      <h1 id="home-title" class="visually-hidden">Samuel Joseph, product designer</h1>
+      <svg class="arch-figure" viewBox="110 200 540 510" role="img" aria-label="Samuel Joseph standing in a courtyard, framed in an arch with his name around the top">
+        <defs>
+          <clipPath id="arch-clip"><path d="M230 700 V420 A150 150 0 0 1 530 420 V700 Z"/></clipPath>
+          <path id="arch-name-path" d="M206 650 V420 A174 174 0 0 1 554 420 V650"/>
+        </defs>
+        <image href="assets/samuel-standing.jpg" x="230" y="180" width="300" height="520" preserveAspectRatio="xMidYMid slice" clip-path="url(#arch-clip)"/>
+        <!-- Three pieces so the star sits exactly on the top of the arch (the path is 1006.7 long, so 503.4),
+             with the same gap either side. Both words keep the same letter spacing; SAMUEL is a little
+             longer than JOSEPH because of its wide M. -->
+        <text class="arch-name"><textPath href="#arch-name-path" startOffset="470" text-anchor="end">Samuel</textPath></text>
+        <text class="arch-name"><textPath href="#arch-name-path" startOffset="503.4" text-anchor="middle">✦</textPath></text>
+        <text class="arch-name"><textPath href="#arch-name-path" startOffset="537" text-anchor="start">Joseph</textPath></text>
+      </svg>
+      <p class="t-body arch-story">Self-taught designer. Brand, marketing and product at Cretile. Now designing apps, including Cretile’s campaign tool and Superstash.</p>
     </section>
 
     <section id="work" class="sec home-work" aria-label="Projects">
