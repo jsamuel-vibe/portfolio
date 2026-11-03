@@ -108,6 +108,25 @@
     });
   });
 
+  // Nav: hides while scrolling down, comes back on any scroll up (styles.css keeps it sticky).
+  // Small moves are ignored so it doesn't flicker, and it never hides while it holds focus.
+  var nav = document.querySelector('.page .site-nav');
+  if (nav) {
+    var lastY = window.scrollY, navTicking = false;
+    var updateNav = function () {
+      navTicking = false;
+      var y = window.scrollY, dy = y - lastY;
+      if (y <= nav.offsetHeight) nav.classList.remove('is-hidden');
+      else if (dy > 6 && !nav.contains(document.activeElement)) nav.classList.add('is-hidden');
+      else if (dy < -6) nav.classList.remove('is-hidden');
+      if (Math.abs(dy) > 6 || y <= nav.offsetHeight) lastY = y;
+    };
+    window.addEventListener('scroll', function () {
+      if (!navTicking) { navTicking = true; requestAnimationFrame(updateNav); }
+    }, { passive: true });
+    nav.addEventListener('focusin', function () { nav.classList.remove('is-hidden'); });
+  }
+
   // Back to top: appears once the reader is well into the page.
   var toTop = document.createElement('button');
   toTop.type = 'button';

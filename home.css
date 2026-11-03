@@ -1,6 +1,6 @@
 /* Homepage editorial layout, using the shared heading and body fonts. */
 
-.home-hero { padding-top: 88px; }
+.home-hero { padding-top: 56px; }
 .home-title {
   max-width: 600px;
   font-family: var(--font-display);
@@ -83,7 +83,7 @@
   .home-project .feature-text { max-width: 620px; }
 }
 @media (max-width: 640px) {
-  .home-hero { padding-top: 64px; }
+  .home-hero { padding-top: 40px; }
   .home-title { font-size: clamp(38px, 9.5vw, 48px); }
   .home-hero .hero-sub { margin-top: 24px; }
   .home-work { --sec-pad: 96px; }
