@@ -17,6 +17,8 @@
     labelToggles(t);
     document.dispatchEvent(new CustomEvent('themechange', { detail: t }));
   }
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  function systemTheme() { return systemDark.matches ? 'dark' : 'light'; }
   function savedTheme() {
     try { var t = localStorage.getItem('theme'); return t === 'light' || t === 'dark' ? t : null; } catch (e) { return null; }
   }
@@ -24,7 +26,12 @@
   toggles.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      try { localStorage.setItem('theme', next); } catch (e) { /* not remembered */ }
+      // Only a choice that differs from the device is remembered. Picking the device's own theme
+      // clears it, so the site goes back to following the system setting.
+      try {
+        if (next === systemTheme()) localStorage.removeItem('theme');
+        else localStorage.setItem('theme', next);
+      } catch (e) { /* not remembered */ }
       if (!document.startViewTransition || reduceMotion) return applyTheme(next);
       // The new theme spreads out in a circle from the toggle, wide enough to reach the far corner.
       var b = btn.getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2;
@@ -53,10 +60,12 @@
       linked.forEach(function (el) { el.classList.add('is-linked'); });
     }
   }
-  // Until the visitor picks, follow the system setting if it changes.
-  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
-  if (systemDark.addEventListener) systemDark.addEventListener('change', function (e) {
-    if (!savedTheme()) applyTheme(e.matches ? 'dark' : 'light');
+  // Follow the system setting when it changes, unless the visitor picked the other theme.
+  // Once the system catches up with their pick, the pick is dropped and the system leads again.
+  if (systemDark.addEventListener) systemDark.addEventListener('change', function () {
+    var sys = systemTheme(), saved = savedTheme();
+    if (saved === sys) { try { localStorage.removeItem('theme'); } catch (e) {} saved = null; }
+    if (!saved) applyTheme(sys);
   });
 
   // "View all" toggles. Extra items stay visible unless this script runs,
